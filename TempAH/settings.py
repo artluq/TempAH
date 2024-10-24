@@ -75,17 +75,13 @@ WSGI_APPLICATION = 'TempAH.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'TempAHDB',
-        'USER': 'tempah',
-        'PASSWORD': 'tempah123',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tempah_db',
+        'USER': 'root',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '1433',
-
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-            'extra_params': 'TrustServerCertificate=yes;'
-        }
+        'PORT': '3306',
+        
     }
 }
 
