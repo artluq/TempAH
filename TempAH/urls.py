@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from . import views
+from booking import views
 
 urlpatterns = [
     path('services/', views.service_list, name='service_list'),
