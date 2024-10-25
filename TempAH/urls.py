@@ -15,11 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+<<<<<<< HEAD
 from django.urls import path, include
 from booking import views
 
 urlpatterns = [
     path('', views.service_list, name='home'),
+=======
+from django.urls import path
+from booking import views
+
+urlpatterns = [
+>>>>>>> origin
     path('services/', views.service_list, name='service_list'),
     path('services/<int:service_id>/book/', views.book_service, name='book_service'),
     path('booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
