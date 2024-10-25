@@ -81,13 +81,8 @@ DATABASES = {
         'NAME': 'tempah_db',
         'USER': 'root',
         'PASSWORD': 'password',
-<<<<<<< HEAD
-        'HOST': '127.0.0.1',
-=======
         'HOST': 'localhost',
->>>>>>> origin
         'PORT': '3306',
-        
     }
 }
 
