@@ -15,16 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path, include
+from django.urls import path,
 from booking import views
 
 urlpatterns = [
-    #path('services/', views.service_list, name='service_list'),
-    #path('services/<int:service_id>/book/', views.book_service, name='book_service'),
-    #path('booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
+    path('', views.service_list, name='service_list'),
+    path('services/', views.service_list, name='service_list'),
+    path('services/<int:service_id>/book/', views.book_service, name='book_service'),
+    path('booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
     
-    path('templates/booking', views.service_list, name='service_list'),
-    path('templates/booking/<int:service_id>/book/', views.book_service, name='book_service'),
-    path('templates/booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
+    #path('templates/booking', views.service_list, name='service_list'),
+    #path('templates/booking/<int:service_id>/book/', views.book_service, name='book_service'),
+    #path('templates/booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
 ]
 
