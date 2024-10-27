@@ -19,10 +19,12 @@ from django.urls import path, include
 from booking import views
 
 urlpatterns = [
-    path('services/', views.service_list, name='service_list'),
-    path('services/<int:service_id>/book/', views.book_service, name='book_service'),
-    path('booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
-    #path('', views.service_list, name='service_list'),  # Map root URL to the service list view
-    #path('services/', include('views.py')),
+    #path('services/', views.service_list, name='service_list'),
+    #path('services/<int:service_id>/book/', views.book_service, name='book_service'),
+    #path('booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
+    
+    path('templates/booking', views.service_list, name='service_list'),
+    path('templates/booking/<int:service_id>/book/', views.book_service, name='book_service'),
+    path('templates/booking/<int:booking_id>/confirmation/', views.booking_confirmation, name='booking_confirmation'),
 ]
 
