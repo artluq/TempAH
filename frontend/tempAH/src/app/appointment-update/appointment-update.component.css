@@ -1,0 +1,56 @@
+.appointment-form {
+    max-width: 400px; /* Set a max width for the form */
+    margin: 0 auto; /* Center the form */
+    padding: 20px; /* Add some padding */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form elements */
+}
+
+label {
+    display: block; /* Ensure labels are on their own lines */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Optional: make labels bold */
+}
+
+input {
+    width: 100%; /* Full-width inputs */
+    padding: 8px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Input border */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.button-group {
+    display: flex; /* Use flexbox for buttons */
+    justify-content: space-between; /* Space between buttons */
+}
+
+.btn {
+    padding: 10px 15px; /* Button padding */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.save-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+}
+
+.save-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.cancel-btn {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+}
+
+.cancel-btn:hover {
+    background-color: #e53935; /* Darker red on hover */
+}

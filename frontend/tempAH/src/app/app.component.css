@@ -1,0 +1,117 @@
+/* Root component styles */
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  main {
+    flex: 1; /* Allows main content to expand and push footer down */
+  }
+  
+  .footer {
+    background-color: #333;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+    min-height: calc(100vh - (header-height + footer-height)); /* Adjust these heights */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ensure content starts at the top */
+    padding: 20px; /* Optional: add padding for aesthetics */
+  }
+  
+  app-header, app-footer {
+    width: 100%;
+    position: relative; /* Ensure they are positioned correctly */
+  }
+  
+  /* Layout container */
+/* Layout container */
+.app-layout {
+  display: flex;
+  flex-direction: column; /* Stack header above content */
+  height: 100vh; /* Full viewport height */
+}
+
+/* Layout content wrapper */
+.layout-content {
+  display: flex; /* Allow sidebar and main content to be side by side */
+  flex-grow: 1; /* Fill remaining space after header */
+}
+
+/* Header styling */
+app-header {
+  width: 100%; /* Full width for header */
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 220px;
+  background-color: #d4edda; /* Light green background */
+  color: #333; /* Darker text color for contrast */
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Sidebar menu items */
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar-nav li {
+  width: 100%;
+}
+
+.sidebar-nav a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-weight: 500;
+  border-radius: 5px;
+  margin: 5px 10px; /* Adds spacing between menu items */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover and active state */
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background-color: #20be35; /* Bright green for hover/active */
+  color: #ffffff; /* White text for contrast */
+}
+
+/* Main content styling */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5; /* Light background for content area */
+}
+
+/* Sidebar responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}

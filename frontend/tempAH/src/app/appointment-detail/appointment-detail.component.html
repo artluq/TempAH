@@ -1,0 +1,21 @@
+<div class="appointment-details" *ngIf="appointment">
+    <h2>Appointment Details</h2>
+    <div class="appointment-info">
+      <p><strong>Date:</strong> {{ appointment.date | date: 'fullDate' }}</p>
+      <p><strong>Time:</strong> {{ appointment.time }}</p>
+      <p><strong>Service:</strong> {{ appointment.service }}</p>
+      <p><strong>Location:</strong> {{ appointment.location }}</p>
+    </div>
+    <div class="appointment-actions">
+      <button *ngIf="role=='user'">Edit Appointment</button>
+      <button *ngIf="role=='user'">Delete Appointment</button>
+      <button >Back to Appointments</button>
+    </div>
+  </div>
+  
+  <div *ngIf="!appointment" class="no-appointment">
+    <h2>Oops!</h2>
+    <p>It seems like the appointment you're looking for is not found.</p>
+    <button >Go Back to Appointments</button>
+  </div>
+  

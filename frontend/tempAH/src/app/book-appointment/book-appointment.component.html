@@ -1,0 +1,64 @@
+<div >
+  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">  
+    <div class="content-header d-flex">
+      <h2>Schedule an Appointment</h2>
+    </div>
+  <form (ngSubmit)="onScheduleAppointment()">
+    
+
+    <!-- Problem Description Input with AI Solution Generation on Input Change -->
+    <div class="form-group">
+      <label for="problem">Describe Your Problem:</label>
+      <textarea
+        id="problem"
+        [(ngModel)]="problemDescription"
+        (ngModelChange)="generateAISolution($event)"
+        name="problem"
+        rows="4"
+        required>
+      </textarea>
+    </div>
+     <!-- AI-Generated Solution Display -->
+  <div *ngIf="aiGeneratedSolution" class="ai-solution">
+    <h3>Suggested Solution:</h3>
+    <p>{{ aiGeneratedSolution }}</p>
+  </div>
+
+  <div class="form-group">
+    <label for="location">Select Location:</label>
+    <select id="location" [(ngModel)]="selectedLocation" name="location" required>
+      <option *ngFor="let location of locations" [value]="location.name">{{ location.name }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="workshop">Select Workshops:</label>
+    <select id="workshop" [(ngModel)]="selectedWorkshop" name="workshop" required>
+      <option *ngFor="let workshop of workshop" [value]="workshop.name">{{ workshop.name }}</option>
+    </select>
+  </div>
+    <div class="form-group">
+      <label for="service">Select Service:</label>
+      <select id="service" [(ngModel)]="selectedService" name="service" required>
+        <option *ngFor="let service of services" [value]="service.name">{{ service.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Select Date:</label>
+      <input type="date" id="date" [(ngModel)]="appointmentDate" name="date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="time">Select Time:</label>
+      <input type="time" id="time" [(ngModel)]="appointmentTime" name="time" required>
+    </div>
+
+    <button type="submit">Schedule Appointment</button>
+  </form>
+
+ 
+  <div *ngIf="confirmationMessage" class="confirmation-message">
+    <p>{{ confirmationMessage }}</p>
+  </div>
+  </mat-card>
+</div>

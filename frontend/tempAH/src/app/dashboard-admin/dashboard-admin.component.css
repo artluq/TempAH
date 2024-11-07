@@ -1,0 +1,30 @@
+.dashboard-container {
+    padding: 20px;
+  }
+  
+  .stats-section {
+    margin-top: 20px;
+  }
+  
+  .stat-card {
+    display: inline-block;
+    padding: 15px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .stat-card h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .stat-card p {
+    font-size: 24px;
+    color: #007bff;
+  }
+  

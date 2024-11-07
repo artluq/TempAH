@@ -1,0 +1,101 @@
+.dashboard {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.user-info {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.user-info h2 {
+  margin-bottom: 15px;
+}
+
+.appointments {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.appointments h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.appointments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.appointment-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card:hover {
+  transform: translateY(-3px); /* Slight hover effect */
+}
+
+.appointment-details {
+  flex: 1;
+}
+
+.appointment-details strong {
+  color: #333;
+}
+
+.cancel-button {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0; /* Ensures button doesn't stretch */
+  white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+.cancel-button:hover {
+  background-color: #e60000;
+}
+
+.action-buttons {
+  text-align: center;
+}
+
+.btn {
+  background-color: #20be35; /* Primary button color */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #17a629; /* Darker shade on hover */
+}

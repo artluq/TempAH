@@ -1,0 +1,28 @@
+<div *ngIf="appointment">
+    <h2>Edit Appointment</h2>
+    <form (ngSubmit)="saveAppointment()" class="appointment-form">
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input id="date" [(ngModel)]="appointment.date" name="date" required />
+      </div>
+      <div class="form-group">
+        <label for="time">Time:</label>
+        <input id="time" [(ngModel)]="appointment.time" name="time" required />
+      </div>
+      <div class="form-group">
+        <label for="service">Service:</label>
+        <input id="service" [(ngModel)]="appointment.service" name="service" required />
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input id="location" [(ngModel)]="appointment.location" name="location" required />
+      </div>
+      <div class="button-group">
+        <button type="submit" class="btn save-btn">Save Changes</button>
+        <button type="button" (click)="cancelEdit()" class="btn cancel-btn">Cancel</button>
+      </div>
+    </form>
+</div>
+<div *ngIf="!appointment">
+    <p>Appointment not found.</p>
+</div>

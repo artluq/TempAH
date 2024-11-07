@@ -1,0 +1,62 @@
+.user-management-container {
+    padding: 20px;
+  }
+  
+  .btn-create {
+    margin-bottom: 20px;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-table th {
+    background-color: #f3f3f3;
+  }
+  .status-active {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-inactive {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 0 2px; /* Reduced margin to bring icons closer */
+    color: #333;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .icon-button:hover {
+    color: #20be35; /* Highlight color on hover */
+  }
+  
+  .icon-button:focus {
+    outline: none;
+  }
+  
+  .appointments-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap; /* Keeps icons and text on one line */
+  }
+  
+  

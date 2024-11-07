@@ -1,0 +1,128 @@
+.appointment-scheduling-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: #ffffff; /* White background */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .appointment-scheduling-container h2 {
+    font-size: 2rem;
+    color: #333; /* Darker text */
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  select,
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #20be35; /* Orange color */
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #20be35; /* Darker orange on hover */
+  }
+  
+  .confirmation-message {
+    margin-top: 1rem;
+    color: #28a745; /* Green text for confirmation */
+  }
+  
+  /* Profile Card Styling */
+.profile-card {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff; /* Ensure background is white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+/* Profile Details Table */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #000000;
+}
+
+.profile-table td {
+  padding: 8px;
+  vertical-align: top;
+}
+
+.profile-table td:first-child {
+  width: 30%;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Buttons */
+.button, .buttonExcel {
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button {
+  background-color: #443834;
+}
+
+.button:hover {
+  background-color: #73726f;
+}
+
+.buttonExcel {
+  background-color: #1d7a2e;
+}
+
+.buttonExcel:hover {
+  background-color: #155f22;
+}
+
+/* Profile Header */
+h2 {
+  font-size: 20px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  resize: vertical;
+}
+

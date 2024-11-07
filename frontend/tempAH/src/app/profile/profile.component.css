@@ -1,0 +1,62 @@
+/* Profile Card Styling */
+.profile-card {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff; /* Ensure background is white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+  
+  /* Profile Details Table */
+  .profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    color: #000000;
+  }
+  
+  .profile-table td {
+    padding: 8px;
+    vertical-align: top;
+  }
+  
+  .profile-table td:first-child {
+    width: 30%;
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  /* Buttons */
+  .button, .buttonExcel {
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button {
+    background-color: #443834;
+  }
+  
+  .button:hover {
+    background-color: #73726f;
+  }
+  
+  .buttonExcel {
+    background-color: #1d7a2e;
+  }
+  
+  .buttonExcel:hover {
+    background-color: #155f22;
+  }
+  
+  /* Profile Header */
+  h2 {
+    font-size: 20px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+  }
+  
