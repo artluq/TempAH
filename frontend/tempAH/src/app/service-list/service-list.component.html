@@ -1,0 +1,38 @@
+<div >
+  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">
+    <div class="content-header d-flex">
+      <h2>Find a Car Workshop</h2>
+    </div>
+
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Enter location (e.g., Kuala Lumpur)"
+      [(ngModel)]="searchQuery.location"
+      class="search-input"
+      aria-label="Search by location"
+    />
+    <select [(ngModel)]="searchQuery.serviceType" class="search-select" aria-label="Select service type">
+      <option value="">All Services</option>
+      <option value="Oil Change">Oil Change</option>
+      <option value="Tire Rotation">Tire Rotation</option>
+      <option value="Brake Inspection">Brake Inspection</option>
+    </select>
+    <button (click)="searchWorkshops()" class="search-button">Search</button>
+  </div>
+
+  <div *ngIf="filteredWorkshops.length > 0" class="workshops-list">
+    <h3>Available Workshops</h3>
+    <div class="workshop-card" *ngFor="let workshop of filteredWorkshops">
+      <h4>{{ workshop.name }}</h4>
+      <p><strong>Location:</strong> {{ workshop.location }}</p>
+      <p><strong>Rating:</strong> {{ workshop.rating }} ★</p>
+      <button (click)="selectWorkshop(workshop)" class="book-button">Book Appointment</button>
+    </div>
+  </div>
+
+  <div *ngIf="filteredWorkshops.length === 0 && searchPerformed" class="no-results">
+    <p>No workshops found for your search criteria. Please try again.</p>
+  </div>
+  </mat-card>
+</div>

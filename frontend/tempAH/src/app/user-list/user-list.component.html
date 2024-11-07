@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="user-management-container">
+    <h2>User Management</h2>
+  
+    <!-- Button to add a new user -->
+    <button class="btn btn-create" (click)="addUser()">+ Add New User</button>
+  
+    <!-- User List -->
+    <div *ngIf="users && users.length > 0">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <span [ngClass]="user.active ? 'status-active' : 'status-inactive'">
+                {{ user.active ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>
+              <button (click)="editUser(user)" class="icon-button" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="deleteUser(user)" class="icon-button" title="Delete">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              <button (click)="toggleUserStatus(user)" class="icon-button" title="Toggle Status">
+                <i [ngClass]="user.active ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- No Users Message -->
+    <div *ngIf="!users || users.length === 0" class="no-users">
+      <p>No users available. Click "Add New User" to get started.</p>
+    </div>
+  </div>
+  

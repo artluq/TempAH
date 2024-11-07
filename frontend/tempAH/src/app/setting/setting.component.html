@@ -1,0 +1,23 @@
+<div>
+    <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">  
+      <div class="content-header d-flex">
+        <h2>Settings</h2>
+      </div>
+    <div class="setting-item">
+      <label for="notifications">Enable Notifications:</label>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="notificationsEnabled" (change)="toggleNotifications()" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  
+    <div class="setting-item">
+      <label for="newsletter">Subscribe to Newsletter:</label>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="newsletterSubscribed" (change)="toggleNewsletter()" />
+        <span class="slider"></span>
+      </label>
+    </div>
+    </mat-card>
+  </div>
+  

@@ -1,0 +1,115 @@
+    <!-- Slideshow Section -->
+    <div class="slideshow-container">
+        <div class="mySlides fade" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide">
+          <img [src]="slide.image" [alt]="slide.alt" class="slide-image" />
+          <div class="caption">{{ slide.caption }}</div>
+        </div>
+    
+        <!-- Slideshow Controls -->
+        <a class="prev" (click)="prevSlide()">&#10094;</a>
+        <a class="next" (click)="nextSlide()">&#10095;</a>
+      </div>
+    
+    <section class="appointment-scheduling">
+        <div class="container">
+          <h2>About Us</h2>
+          <p class="subtitle">
+            Welcome to tempAH, your trusted partner for all car workshop services. We are dedicated to connecting you with the best car service providers in your area, ensuring you receive top-notch service for your vehicle.
+          </p>
+        </div>
+    </section>
+      <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Our Features</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+            .features-section {
+                padding: 50px 20px;
+                background-color: #fff;
+                text-align: center;
+            }
+            .features-section h2 {
+                margin-bottom: 40px;
+                color: #333;
+            }
+            .feature {
+                display: inline-block;
+                width: 30%;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 10px;
+                border-radius: 8px;
+                background-color: #fff;
+                transition: transform 0.2s;
+            }
+            .feature:hover {
+                transform: scale(1.05);
+            }
+            .feature-icon {
+                font-size: 40px;
+                color: #ff5722;
+                margin-bottom: 20px;
+            }
+            .feature h3 {
+                margin: 10px 0;
+                color: #555;
+            }
+            .feature p {
+                color: #777;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <div class="features-section">
+        <h2>Our Features</h2>
+        <div class="feature">
+            <div class="feature-icon">🔧</div>
+            <h3>Comprehensive Services</h3>
+            <p>From oil changes to engine repairs, we cover a wide range of automotive services.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📅</div>
+            <h3>Easy Online Booking</h3>
+            <p>Schedule your vehicle service easily through our user-friendly online booking system.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📱</div>
+            <h3>Mobile Access</h3>
+            <p>Manage your bookings and check service updates on the go with our mobile-friendly site.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📞</div>
+            <h3>24/7 Customer Support</h3>
+            <p>Get assistance anytime with our dedicated customer support team available round the clock.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">💳</div>
+            <h3>Secure Payments</h3>
+            <p>Pay for your services securely online using various payment methods.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Service History</h3>
+            <p>Access your vehicle's service history and maintenance records with ease.</p>
+        </div>
+    </div>
+    <section class="appointment-scheduling">
+        <div class="container">
+          <h2>Why Choose Us?</h2>
+          <p class="subtitle">
+            With tempAH, you can easily book appointments, compare services, and read reviews from other customers, all in one convenient platform. We prioritize transparency and reliability, ensuring you make informed decisions for your car.
+          </p>
+        </div>
+    </section>
+    </body>
+    </html>
+    

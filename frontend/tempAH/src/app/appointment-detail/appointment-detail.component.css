@@ -1,0 +1,54 @@
+.appointment-details {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  .appointment-info p {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  
+  .appointment-actions {
+    margin-top: 20px;
+  }
+  
+  .appointment-actions button {
+    margin-right: 10px; /* Add space between buttons */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* Blue background */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .appointment-actions button:hover {
+    background-color: #4CAF50; /* Darker blue on hover */
+  }
+  
+  .no-appointment {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .no-appointment h2 {
+    color: #ff4d4d; /* Red color for warning */
+  }
+  
+  .no-appointment button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .no-appointment button:hover {
+    background-color: #0056b3;
+  }
+  

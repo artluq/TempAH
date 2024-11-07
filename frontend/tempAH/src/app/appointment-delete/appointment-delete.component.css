@@ -1,0 +1,50 @@
+.dialog-overlay {
+    position: fixed; /* Cover the entire screen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Center the dialog */
+    align-items: center; /* Center the dialog vertically */
+}
+
+.dialog-content {
+    background: white; /* White background for the dialog */
+    padding: 20px; /* Padding inside the dialog */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.button-group {
+    display: flex; /* Use flexbox for buttons */
+    justify-content: space-between; /* Space buttons evenly */
+    margin-top: 15px; /* Space above buttons */
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 10px 15px; /* Button padding */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.confirm-btn {
+    background-color: #4CAF50; /* Green background for confirm */
+    color: white; /* White text */
+}
+
+.confirm-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.cancel-btn {
+    background-color: #f44336; /* Red background for cancel */
+    color: white; /* White text */
+}
+
+.cancel-btn:hover {
+    background-color: #e53935; /* Darker red on hover */
+}

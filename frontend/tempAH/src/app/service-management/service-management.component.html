@@ -1,0 +1,43 @@
+<div class="service-management-container">
+    <h2>Service Management</h2>
+    
+    <form [formGroup]="serviceForm" (ngSubmit)="editingService ? updateService() : addService()">
+      <div>
+        <label for="name">Service Name:</label>
+        <input id="name" formControlName="name" required />
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" required />
+      </div>
+      <div>
+        <label for="price">Price:</label>
+        <input id="price" formControlName="price" type="number" required />
+      </div>
+      <button type="submit">{{ editingService ? 'Update Service' : 'Add Service' }}</button>
+    </form>
+  
+    <h3>Available Services</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of services">
+          <td>{{ service.name }}</td>
+          <td>{{ service.description }}</td>
+          <td>RM {{ service.price }}</td>
+          <td>
+            <button (click)="editService(service)" class="action-button">Edit</button>
+            <button (click)="deleteService(service.id)" class="action-button">Delete</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

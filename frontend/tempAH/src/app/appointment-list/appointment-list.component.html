@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="appointments-container">
+  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">  
+  <div class="content-header d-flex">
+      <h2>Appointment</h2>
+    </div>
+  
+
+    <div class="action-buttons" style="text-align: right;">
+      <button class="button" style="margin-right: 10px;" (click)="createAppointment()" *ngIf="role === 'user'">+ New Appointment</button>
+    </div>
+    
+    <div class="appointments-list" *ngIf="appointment.length > 0">
+      <table class="appointments-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Service</th>
+            <th>Location</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointment">
+            <td>{{ appointment.date | date: 'shortDate' }}</td>
+            <td>{{ appointment.time }}</td>
+            <td>{{ appointment.service }}</td>
+            <td>{{ appointment.location }}</td>
+            <td>
+                <button (click)="editAppointment(appointment)" title="Edit" class="icon-button" *ngIf="role =='user'">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button (click)="deleteAppointment(appointment)" title="Delete" class="icon-button"  *ngIf="role =='user'">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                <button (click)="viewAppointment(appointment)" title="View Details" class="icon-button">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="appointment.length === 0" class="no-appointments">
+      <p>No appointments found.</p>
+    </div>
+  </mat-card>
+  </div>
+  

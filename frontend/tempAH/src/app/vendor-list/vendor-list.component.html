@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="vendor-management-container">
+    <h2>Vendor Management</h2>
+  
+    <!-- Button to add a new vendor -->
+    <button class="btn btn-create" (click)="addVendor()">+ Add New Vendor</button>
+  
+    <!-- Vendor List -->
+    <div *ngIf="vendors && vendors.length > 0">
+      <table class="vendor-table">
+        <thead>
+          <tr>
+            <th>Vendor Name</th>
+            <th>Service</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vendor of vendors">
+            <td>{{ vendor.name }}</td>
+            <td>{{ vendor.service }}</td>
+            <td>{{ vendor.contact }}</td>
+            <td>
+              <span [ngClass]="vendor.active ? 'status-active' : 'status-inactive'">
+                {{ vendor.active ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>
+              <button (click)="editVendor(vendor)" class="icon-button" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="deleteVendor(vendor)" class="icon-button" title="Delete">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              <button (click)="toggleVendorStatus(vendor)" class="icon-button" title="Toggle Status">
+                <i [ngClass]="vendor.active ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- No Vendors Message -->
+    <div *ngIf="!vendors || vendors.length === 0" class="no-vendors">
+      <p>No vendors available. Click "Add New Vendor" to get started.</p>
+    </div>
+  </div>
+  

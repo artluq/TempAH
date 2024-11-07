@@ -1,0 +1,111 @@
+/* Header container */
+.navbar-logo {
+  height: 40px; /* Adjust height as needed */
+  width: auto;
+}
+
+.navbar {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo or brand link */
+.navbar-brand {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #20be35;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Navbar links */
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav li {
+  display: inline;
+}
+
+.navbar-nav a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.navbar-nav a:hover {
+  background-color: #20be35;
+  color: #333;
+  border-radius: 4px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.class-item, .class-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+/* Login button styling */
+.login-btn {
+  background-color: #20be35;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #ffffff;
+  color: #20be35;
+}
+
+/* Menu toggle button for mobile */
+.menu-toggle {
+  display: none;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  margin-left: auto; /* Pushes the hamburger to the far right */
+}
+
+@media (max-width: 768px) {
+  /* Navbar items hidden on small screens */
+  .navbar-nav {
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    border-radius: 0 0 8px 8px;
+    padding: 10px;
+  }
+
+  .navbar-nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: inline; /* Shows the hamburger icon on small screens */
+  }
+}
