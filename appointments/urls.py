@@ -12,4 +12,5 @@ router.register(r'vendors', views.VendorViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('login/', LoginView.as_view(), name='login'),
 ]
