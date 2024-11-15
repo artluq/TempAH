@@ -41,14 +41,15 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'appointments',
-    'corsheaders', 
-    
-    REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
+    'users',
+    'corsheaders',  
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -82,7 +83,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'TempAH.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
-
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4200',  # Angular app URL
+]
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 

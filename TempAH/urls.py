@@ -28,9 +28,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from users.views import LoginView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('appointments.urls')),  # API endpoint for your app
+    path('login/', LoginView.as_view(), name='login'),
+    path('api/users/', include('users.urls')),
 ]
 

@@ -42,7 +42,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HttpClientModule,
     FooterComponent,
     HeaderComponent,
     ServiceListComponent,
@@ -69,6 +68,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     SidenavComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatCardModule,
     AppRoutingModule,

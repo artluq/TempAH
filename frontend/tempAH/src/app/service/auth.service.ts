@@ -10,7 +10,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedIn.asObservable();
   private userRole: string | null = null;
-  private loginUrl = 'http://localhost:8000/api/login/';
+  private loginUrl = 'http://localhost:8000/api/users/login/';
 
   constructor(private http: HttpClient) {
     const token = sessionStorage.getItem('access_token');
