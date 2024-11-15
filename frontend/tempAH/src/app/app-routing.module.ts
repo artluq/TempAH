@@ -20,6 +20,7 @@ import { SettingComponent } from './setting/setting.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ServiceManagementComponent } from './service-management/service-management.component';
+import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
   // { path: '', component: FrontpageComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'dashboard-admin', component: DashboardAdminComponent },
   { path: 'dashboard-vendor', component: DashboardVendorComponent },
   { path: 'servicemanagement', component: ServiceManagementComponent },

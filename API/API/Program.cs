@@ -36,8 +36,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy => policy.WithOrigins("http://localhost:54136")  // Your Angular app's URL
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
 
 var app = builder.Build();
+
+
+// Enable CORS middleware
+app.UseCors("AllowAngularApp");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

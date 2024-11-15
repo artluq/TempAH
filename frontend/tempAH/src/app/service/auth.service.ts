@@ -11,6 +11,7 @@ export class AuthService {
   loggedIn$ = this.loggedIn.asObservable();
   private userRole: string | null = null;
   private loginUrl = 'http://localhost:8000/api/users/login/';
+  private apiUrl = 'http://localhost:5246/api/Users/Login'; 
 
   constructor(private http: HttpClient) {
     const token = sessionStorage.getItem('access_token');
@@ -22,16 +23,11 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(this.loginUrl, { username, password }).pipe(
-      tap((response: any) => {
-        if (response.access) {
-          sessionStorage.setItem('access_token', response.access);
-          sessionStorage.setItem('role', response.role);
-          this.userRole = response.role;
-          this.loggedIn.next(true);
-        }
-      })
-    );
+    const loginData = {
+      username: username,
+      password: password,
+    };
+    return this.http.post<any>(this.apiUrl, loginData);
   }
 
   logout() {

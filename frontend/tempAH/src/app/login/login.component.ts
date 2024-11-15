@@ -8,8 +8,9 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username = '';
-  password = '';
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
   userRole: string | null = null; 
 
   constructor(private router: Router, private authService: AuthService) {}
@@ -18,14 +19,15 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.authService.login(this.username, this.password).subscribe(
-      (response: any) => {
-        if (response.access) {
-          localStorage.setItem('access_token', response.access);
-          this.router.navigate(['/dashboard']);
-        }
+      (response) => {
+        // Store the JWT token in localStorage or sessionStorage
+        localStorage.setItem('jwtToken', response.token);
+
+        // Navigate to a different page (e.g., dashboard) upon successful login
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
-        alert('Invalid credentials');
+        this.errorMessage = 'Invalid username or password';
       }
     );
   }
