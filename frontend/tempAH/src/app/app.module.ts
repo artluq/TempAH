@@ -38,6 +38,8 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ServiceManagementComponent } from './service-management/service-management.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { ApiService } from './service/api.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     VendorListComponent,
     UserListComponent,
     ServiceManagementComponent,
-    SidenavComponent
+    SidenavComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     HttpClientModule,
@@ -82,7 +85,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatIconModule, 
     MatDialogModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

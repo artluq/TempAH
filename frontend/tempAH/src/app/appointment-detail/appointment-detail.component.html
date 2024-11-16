@@ -7,8 +7,8 @@
       <p><strong>Location:</strong> {{ appointment.location }}</p>
     </div>
     <div class="appointment-actions">
-      <button *ngIf="role=='user'">Edit Appointment</button>
-      <button *ngIf="role=='user'">Delete Appointment</button>
+      <button *ngIf="role==3">Edit Appointment</button>
+      <button *ngIf="role==3">Delete Appointment</button>
       <button >Back to Appointments</button>
     </div>
   </div>

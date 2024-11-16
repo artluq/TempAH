@@ -21,16 +21,18 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ServiceManagementComponent } from './service-management/service-management.component';
 import { AuthGuard } from './service/auth.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   // { path: '', component: FrontpageComponent },
   { path: '', component: Frontpage2Component },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'dashboard-admin', component: DashboardAdminComponent },
-  { path: 'dashboard-vendor', component: DashboardVendorComponent },
+  { path: 'dashboard-vendor', component: DashboardVendorComponent},
   { path: 'servicemanagement', component: ServiceManagementComponent },
   { path: 'serviceslist', component: ServiceListComponent },
   { path: 'bookappointment', component: BookAppointmentComponent },

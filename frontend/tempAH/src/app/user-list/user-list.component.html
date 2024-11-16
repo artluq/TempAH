@@ -1,52 +1,144 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+<!-- User Management Container -->
 <div class="user-management-container">
-    <h2>User Management</h2>
-  
-    <!-- Button to add a new user -->
-    <button class="btn btn-create" (click)="addUser()">+ Add New User</button>
-  
-    <!-- User List -->
-    <div *ngIf="users && users.length > 0">
-      <table class="user-table">
-        <thead>
-          <tr>
-            <th>User Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.role }}</td>
-            <td>
-              <span [ngClass]="user.active ? 'status-active' : 'status-inactive'">
-                {{ user.active ? 'Active' : 'Inactive' }}
-              </span>
-            </td>
-            <td>
-              <button (click)="editUser(user)" class="icon-button" title="Edit">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button (click)="deleteUser(user)" class="icon-button" title="Delete">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-              <button (click)="toggleUserStatus(user)" class="icon-button" title="Toggle Status">
-                <i [ngClass]="user.active ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <h2>User Management</h2>
+
+  <!-- Button to open the Add User Modal -->
+  <button class="btn btn-create" (click)="openAddUserModal()">+ Add New User</button>
+
+  <!-- Add User Modal -->
+<div *ngIf="isAddingUser" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Add New User</h3>
+      <button class="close-button" (click)="closeAddUserModal()">&times;</button>
     </div>
-  
-    <!-- No Users Message -->
-    <div *ngIf="!users || users.length === 0" class="no-users">
-      <p>No users available. Click "Add New User" to get started.</p>
-    </div>
+    <form (ngSubmit)="submitUser()" class="form-modal" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="newUser.fullName" name="name" placeholder="Enter full name" required #name="ngModel">
+        <div *ngIf="name.invalid && name.touched" class="error-message">Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="newUser.username" name="username" placeholder="Enter username" required #username="ngModel">
+        <div *ngIf="username.invalid && username.touched" class="error-message">Username is required</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="newUser.email" name="email" placeholder="Enter email address" required #email="ngModel">
+        <div *ngIf="email.invalid && email.touched" class="error-message">Email is required</div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" [(ngModel)]="newUser.phoneNumber" name="phone" placeholder="Enter phone number" required #phone="ngModel">
+        <div *ngIf="phone.invalid && phone.touched" class="error-message">Phone number is required</div>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" [(ngModel)]="newUser.roleId" name="role" required #role="ngModel">
+          <option value="" disabled selected>Select Role</option>
+          <option value="2">Vendor</option>
+          <option value="3">User</option>
+        </select>
+        <div *ngIf="role.invalid && role.touched" class="error-message">Role is required</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="newUser.passwordHash" name="password" placeholder="Enter password" required #password="ngModel">
+        <div *ngIf="password.invalid && password.touched" class="error-message">Password is required</div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Add User</button>
+        <button type="button" class="btn btn-secondary" (click)="closeAddUserModal()">Cancel</button>
+      </div>
+    </form>
   </div>
-  
+</div>
+
+  <!-- Edit User Modal -->
+<div *ngIf="isEditingUser" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Edit User</h3>
+      <button class="close-button" (click)="closeEditUserModal()">&times;</button>
+    </div>
+    <form (ngSubmit)="updateUser()" class="form-modal">
+      <div class="form-group">
+        <label for="edit-name">Name</label>
+        <input type="text" id="edit-name" [(ngModel)]="selectedUser.fullName" name="edit-name" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-username">Username</label>
+        <input type="text" id="edit-username" [(ngModel)]="selectedUser.username" name="edit-username" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-email">Email</label>
+        <input type="email" id="edit-email" [(ngModel)]="selectedUser.email" name="edit-email" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-phone">Phone Number</label>
+        <input type="tel" id="edit-phone" [(ngModel)]="selectedUser.phoneNumber" name="edit-phone" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-role">Role</label>
+        <select id="edit-role" [(ngModel)]="selectedUser.roleId" name="edit-role" required>
+          <option value="2">Vendor</option>
+          <option value="3">User</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeEditUserModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <!-- User List -->
+<div *ngIf="users && users.length > 0">
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th (click)="sortList('fullName')">User Name</th>
+        <th (click)="sortList('username')">Username</th>
+        <th (click)="sortList('email')">Email</th>
+        <th (click)="sortList('phoneNumber')">Phone</th>
+        <th (click)="sortList('role')">Role</th>
+        <th (click)="sortList('isActive')">Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <span [ngClass]="user.isActive ? 'status-active' : 'status-inactive'">
+            {{ user.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+        <td>
+          <button (click)="editUser(user)" class="icon-button" title="Edit">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="deleteUser(user)" class="icon-button" title="Delete">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          <button (click)="toggleUserStatus(user)" class="icon-button" title="Toggle Status">
+            <i [ngClass]="user.isActive ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <!-- No Users Message -->
+  <div *ngIf="!users || users.length === 0" class="no-users">
+    <p>No users available. Click "Add New User" to get started.</p>
+  </div>
+</div>

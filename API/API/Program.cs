@@ -39,7 +39,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp",
-        policy => policy.WithOrigins("http://localhost:54136")  // Your Angular app's URL
+        policy => policy.WithOrigins("http://localhost:4200")  // Your Angular app's URL
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });

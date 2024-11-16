@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent implements OnInit {
+  today = new Date();
   vendorStats = [
     { label: 'New', count: 1 },
     { label: 'Active', count: 12 },
@@ -19,9 +21,11 @@ export class DashboardAdminComponent implements OnInit {
     { label: 'Inactive', count: 23 },
   ];
 
-  constructor() {}
+  fullname: string | null = null;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Ideally, fetch the stats data from a service here
+    this.fullname = this.authService.getFullname(); // Get fullname
   }
 }

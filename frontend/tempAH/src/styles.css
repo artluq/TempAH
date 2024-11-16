@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+  }
+  
+/* Content Header */
+.content-header {
+background-color: #20be35;
+color: white;
+padding: 5px;
+margin-bottom: 20px;
+height: 30px;
+border-radius: 5px;
+}
+
+button {
+padding: 0.75rem;
+background-color: #269457; 
+color: #ffffff;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s;
+font-weight: bold;
+}
+
+button:hover {
+background-color: #20be35;
+}
+
+

@@ -9,17 +9,21 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedIn.asObservable();
-  private userRole: string | null = null;
+  private userRole: number | null = null;  
+  private fullname: string | null = null; // Store fullname
   private loginUrl = 'http://localhost:8000/api/users/login/';
   private apiUrl = 'http://localhost:5246/api/Users/Login'; 
 
   constructor(private http: HttpClient) {
     const token = sessionStorage.getItem('access_token');
     const role = sessionStorage.getItem('role');
+    const fullname = sessionStorage.getItem('fullname');
     if (token && role) {
       this.loggedIn.next(true);
-      this.userRole = role;
+      this.userRole = parseInt(role, 10);   // Convert role to integer
+      this.fullname = fullname;
     }
+    console.log(this.userRole)
   }
 
   login(username: string, password: string): Observable<any> {
@@ -27,21 +31,40 @@ export class AuthService {
       username: username,
       password: password,
     };
-    return this.http.post<any>(this.apiUrl, loginData);
+    return this.http.post<any>(this.apiUrl, loginData).pipe(
+      tap((response) => {
+        if (response.token && response.role) {
+          sessionStorage.setItem('access_token', response.token);
+          sessionStorage.setItem('role', response.role.toString());
+          sessionStorage.setItem('fullname', response.fullname);
+          this.loggedIn.next(true);  // Emit loggedIn as true
+          this.userRole = response.role;  // Update the role
+          this.fullname = response.fullname;
+          console.log('Logged in and role is:', this.userRole); // Debug
+        }
+      })
+    );
   }
+  
 
   logout() {
     sessionStorage.removeItem('access_token');
     sessionStorage.removeItem('role');
+    sessionStorage.removeItem('fullname'); // Remove fullname
     this.loggedIn.next(false);
     this.userRole = null;
+    this.fullname = null;
+  }
+
+  getUserRole(): number | null {
+    return this.userRole;
+  }
+
+  getFullname(): string | null {
+    return this.fullname;
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn$;
-  }
-
-  getUserRole(): string | null {
-    return this.userRole;
   }
 }

@@ -13,7 +13,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class AppointmentListComponent implements OnInit {
   login = false;
-  role: string | null = null; 
+  role: number | null = null; 
   appointment: Appointment[] = [
     { id: 1, date: '2024-11-10', time: '10:00 AM', service: 'Oil Change', location: 'Workshop A' },
     { id:2, date: '2024-11-15', time: '02:00 PM', service: 'Tire Rotation', location: 'Workshop B' },

@@ -4,19 +4,17 @@
   
   <div class="layout-content">
     <!-- Sidebar Component -->
-    <aside class="sidebar" *ngIf="login && role === 'admin'" >
+    <aside class="sidebar" *ngIf="login && role === 1" >
       <nav class="sidebar-nav">
         <ul>
           <li><a routerLink="/dashboard-admin" routerLinkActive="active">Dashboard</a></li>
           <li><a routerLink="/vendorlist" routerLinkActive="active">Vendor Management</a></li>
           <li><a routerLink="/userlist" routerLinkActive="active">User Management</a></li>
-          <!-- <li><a routerLink="/listbusiness" routerLinkActive="active">Service Management</a></li> -->
           <li><a routerLink="/setting" routerLinkActive="active">Setting</a></li>
-          <li><a href="" (click)="logout(); $event.preventDefault();" *ngIf="login">Log out</a></li>
         </ul>
       </nav>
     </aside>
-    <aside class="sidebar" *ngIf="login && role === 'vendor'" >
+    <aside class="sidebar" *ngIf="login && role === 2" >
       <nav class="sidebar-nav">
         <ul>
           <li><a routerLink="/dashboard-vendor" routerLinkActive="active">Dashboard</a></li>
@@ -24,11 +22,10 @@
           <li><a routerLink="/appointmentList" routerLinkActive="active">Appointment Management</a></li>
           <li><a routerLink="/servicemanagement" routerLinkActive="active">Service Management</a></li>
           <li><a routerLink="/setting" routerLinkActive="active">Settings</a></li>
-          <li><a href="" (click)="logout(); $event.preventDefault();" *ngIf="login">Log out</a></li>
         </ul>
       </nav>
     </aside>
-    <aside class="sidebar" *ngIf="login && role === 'user'" >
+    <aside class="sidebar" *ngIf="login && role === 3" >
       <nav class="sidebar-nav">
         <ul>
           <li><a routerLink="/dashboard" routerLinkActive="active">Home</a></li>
@@ -36,7 +33,6 @@
           <li><a routerLink="/serviceslist" routerLinkActive="active">Find Workshops</a></li>
           <li><a routerLink="/appointmentList" routerLinkActive="active">Appointments</a></li>
           <li><a routerLink="/setting" routerLinkActive="active">Settings</a></li>    
-          <li><a href="" (click)="logout(); $event.preventDefault();" *ngIf="login">Log out</a></li>
 
         </ul>
       </nav>

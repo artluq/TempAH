@@ -12,7 +12,7 @@ export class AppointmentDetailComponent implements OnInit {
   appointmentId: number | undefined;
   appointment: Appointment | null = null; // Use the Appointment type
   login = false;
-  role: string | null = null; 
+  role: number | null = null; 
 
   constructor(private route: ActivatedRoute, private authService: AuthService) {}
 

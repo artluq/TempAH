@@ -25,11 +25,15 @@ public partial class TempahDbContext : DbContext
 
     public virtual DbSet<Service> Services { get; set; }
 
+    public virtual DbSet<State> States { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
-    public virtual DbSet<Workshop> Workshops { get; set; }
+    public virtual DbSet<UvwUserRole> UvwUserRoles { get; set; }
+
+    public virtual DbSet<Vendor> Vendors { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -104,6 +108,15 @@ public partial class TempahDbContext : DbContext
             entity.Property(e => e.ServiceName).HasMaxLength(100);
         });
 
+        modelBuilder.Entity<State>(entity =>
+        {
+            entity.HasKey(e => e.StateId).HasName("PK__State__C3BA3B3A9950D10C");
+
+            entity.ToTable("State");
+
+            entity.Property(e => e.StateName).HasMaxLength(255);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CDFD9E087");
@@ -128,9 +141,26 @@ public partial class TempahDbContext : DbContext
             entity.Property(e => e.Role).HasMaxLength(20);
         });
 
-        modelBuilder.Entity<Workshop>(entity =>
+        modelBuilder.Entity<UvwUserRole>(entity =>
         {
-            entity.HasKey(e => e.WorkshopId).HasName("PK__Workshop__7A008C0A4E6B79B4");
+            entity
+                .HasNoKey()
+                .ToView("uvw_userRole");
+
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.PasswordHash).HasMaxLength(255);
+            entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+            entity.Property(e => e.Role).HasMaxLength(20);
+            entity.Property(e => e.Username).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Vendor>(entity =>
+        {
+            entity.HasKey(e => e.VendorId).HasName("PK__Workshop__7A008C0A4E6B79B4");
+
+            entity.ToTable("Vendor");
 
             entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.City).HasMaxLength(50);
@@ -140,7 +170,7 @@ public partial class TempahDbContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
-            entity.Property(e => e.WorkshopName).HasMaxLength(100);
+            entity.Property(e => e.VendorName).HasMaxLength(100);
         });
 
         OnModelCreatingPartial(modelBuilder);

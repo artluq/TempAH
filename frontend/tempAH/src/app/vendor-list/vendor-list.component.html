@@ -1,52 +1,87 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 <div class="vendor-management-container">
-    <h2>Vendor Management</h2>
-  
-    <!-- Button to add a new vendor -->
-    <button class="btn btn-create" (click)="addVendor()">+ Add New Vendor</button>
-  
-    <!-- Vendor List -->
-    <div *ngIf="vendors && vendors.length > 0">
-      <table class="vendor-table">
-        <thead>
-          <tr>
-            <th>Vendor Name</th>
-            <th>Service</th>
-            <th>Contact</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let vendor of vendors">
-            <td>{{ vendor.name }}</td>
-            <td>{{ vendor.service }}</td>
-            <td>{{ vendor.contact }}</td>
-            <td>
-              <span [ngClass]="vendor.active ? 'status-active' : 'status-inactive'">
-                {{ vendor.active ? 'Active' : 'Inactive' }}
-              </span>
-            </td>
-            <td>
-              <button (click)="editVendor(vendor)" class="icon-button" title="Edit">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button (click)="deleteVendor(vendor)" class="icon-button" title="Delete">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-              <button (click)="toggleVendorStatus(vendor)" class="icon-button" title="Toggle Status">
-                <i [ngClass]="vendor.active ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <!-- No Vendors Message -->
-    <div *ngIf="!vendors || vendors.length === 0" class="no-vendors">
-      <p>No vendors available. Click "Add New Vendor" to get started.</p>
+  <h2>Vendor Management</h2>
+
+  <!-- Button to add a new vendor -->
+  <button class="btn btn-create" (click)="openAddVendorModal()">+ Add New Vendor</button>
+
+  <!-- Add Vendor Modal -->
+  <div *ngIf="isAddingVendor" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Vendor</h3>
+        <button class="close-button" (click)="closeAddVendorModal()">&times;</button>
+      </div>
+      <form (ngSubmit)="submitVendor()" class="form-modal">
+        <div class="form-group">
+          <label for="vendorName">Vendor Name</label>
+          <input type="text" id="vendorName" [(ngModel)]="newVendor.vendorName" name="vendorName" required placeholder="Enter vendor name">
+        </div>
+        <div class="form-group">
+          <label for="contact">Contact</label>
+          <input type="text" id="contact" [(ngModel)]="newVendor.phoneNumber" name="contact" required placeholder="Enter contact number">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" [(ngModel)]="newVendor.email" name="email" required placeholder="Enter email address">
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" [(ngModel)]="newVendor.address" name="address" required placeholder="Enter address">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" [(ngModel)]="newVendor.city" name="city" required placeholder="Enter city">
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add Vendor</button>
+          <button type="button" class="btn btn-secondary" (click)="closeAddVendorModal()">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
-  
+
+  <!-- Vendor List -->
+  <div *ngIf="vendors && vendors.length > 0">
+    <table class="vendor-table">
+      <thead>
+        <tr>
+          <th>Vendor Name</th>
+          <th>Address</th>
+          <th>Contact</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendor of vendors">
+          <td>{{ vendor.vendorName }}</td>
+          <td>{{ vendor.address }}</td>
+          <td>{{ vendor.phoneNumber }}</td>
+          <td>{{ vendor.email }}</td>
+          <td>
+            <span [ngClass]="vendor.isActive ? 'status-active' : 'status-inactive'">
+              {{ vendor.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>
+            <button (click)="editVendor(vendor)" class="icon-button" title="Edit">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button (click)="deleteVendor(vendor)" class="icon-button" title="Delete">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            <button (click)="toggleVendorStatus(vendor)" class="icon-button" title="Toggle Status">
+              <i [ngClass]="vendor.isActive ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Vendors Message -->
+  <div *ngIf="!vendors || vendors.length === 0" class="no-vendors">
+    <p>No vendors available. Click "Add New Vendor" to get started.</p>
+  </div>
+</div>

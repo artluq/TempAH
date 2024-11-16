@@ -23,9 +23,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout(); // Use the AuthService to log out
-    alert('Logged out successfully');
-    this.router.navigate(['/login']);
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      this.authService.logout();  // Use the AuthService to log out
+      alert("Logged out successfully");
+      this.router.navigate(['/']);
+    }
   }
 
   islogin() {
