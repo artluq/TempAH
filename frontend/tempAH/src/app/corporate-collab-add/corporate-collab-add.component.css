@@ -1,138 +1,153 @@
+/* Corporate Partnership Section */
 .corporate-partnership {
-    background-color: #f7f7f7;
-    padding: 40px 20px; /* Add horizontal padding */
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .header h1 {
-    color: #333;
-    font-size: 28px;
-    margin: 0; /* Remove default margin for consistent alignment */
-  }
-  
-  .header p {
-    color: #666;
-    font-size: 16px;
-    margin-top: 10px; /* Add some spacing above */
-  }
-  
+  background-color: #f4f4f4; /* Slightly lighter background */
+  padding: 60px 20px; /* Added more padding for spacing */
+  text-align: center; /* Center align the content */
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  color: #333;
+  font-size: 32px; /* Larger heading for emphasis */
+  margin: 0;
+}
+
+.header p {
+  color: #777; /* Lighter grey for the paragraph */
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.form-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+  max-width: 900px;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.image-section {
+  flex: 1 1 40%; /* Adjusted to allow more space for the form */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.partner-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px; /* Rounded corners for the image */
+}
+
+.form-container {
+  flex: 1 1 60%; /* Adjusted to fit with image section */
+  padding: 20px;
+  text-align: left; /* Align text to the left for better form readability */
+}
+
+h2 {
+  color: #333;
+  font-size: 28px; /* Larger font for section title */
+  margin-bottom: 20px;
+}
+
+p {
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 30px; /* Added spacing below the paragraph */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #20be35; /* Green border on focus */
+  outline: none;
+}
+
+.submit-btn {
+  background-color: #20be35;
+  color: #ffffff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 18px; /* Slightly larger font size */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background-color: #17a629;
+}
+
+.benefits-section {
+  max-width: 800px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.benefits-section h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.benefits-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.benefits-section li {
+  font-size: 16px;
+  color: #555;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
   .form-content {
-    display: flex;
-    align-items: flex-start; /* Align items to the start for better control */
-    justify-content: center;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    overflow: hidden;
-    margin: 0 auto; /* Center the form-content */
-    padding: 20px; /* Add padding for better spacing */
+    flex-direction: column;
   }
-  
+
   .image-section {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f2f2f2;
-    padding: 20px; /* Ensure there’s padding around the image */
+    flex: 1 1 100%; /* Full width image on small screens */
+    margin-bottom: 20px;
   }
-  
-  .partner-image {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
+
   .form-container {
-    flex: 1;
-    padding: 30px; /* Keep padding consistent */
-    text-align: center;
+    flex: 1 1 100%; /* Full width form container on small screens */
   }
-  
-  h2 {
-    color: #333;
-    font-size: 24px;
-    margin: 20px 0 10px; /* Ensure space above and below the title */
-  }
-  
-  p {
-    color: #666;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .submit-btn {
-    background-color: #20be35;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-btn:hover {
-    background-color: #17a629;
-  }
-  
-  .benefits-section {
-    max-width: 800px;
-    margin: 40px auto; /* Center with margin above */
-    text-align: center;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .benefits-section h2 {
-    margin-bottom: 20px;
-  }
-  
-  .benefits-section ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .benefits-section li {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 0;
-  }
-  
-  @media (max-width: 768px) {
-    .form-content {
-      flex-direction: column;
-    }
-  
-    .partner-image {
-      max-width: 100%;
-    }
-  }
-  
+}

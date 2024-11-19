@@ -1,9 +1,15 @@
 /* Profile Card Styling */
 .profile-card {
   padding: 20px;
-  border-radius: 8px;
-  background-color: #ffffff; /* Ensure background is white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  border-radius: 12px; /* Soft corners for a modern feel */
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow for depth */
+  transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.profile-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  transform: translateY(-5px); /* Slight lift effect */
 }
 
 /* Profile Details Table */
@@ -11,28 +17,28 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
-  color: #000000;
+  color: #333; /* Darker text for better readability */
 }
 
 .profile-table td {
-  padding: 8px;
+  padding: 12px; /* Increased padding for better spacing */
   vertical-align: top;
 }
 
 .profile-table td:first-child {
-  width: 30%;
+  width: 35%; /* Increased width for labels */
   font-weight: bold;
-  color: #000000;
+  color: #444; /* Slightly darker label text */
 }
 
 /* Buttons */
 .button, .buttonExcel {
   color: #fff;
-  padding: 10px 20px;
+  padding: 12px 24px; /* More padding for button size */
   border: none;
-  border-radius: 5px;
+  border-radius: 6px; /* Softer rounded corners */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .button {
@@ -53,23 +59,27 @@
 
 /* Profile Header */
 h2 {
-  font-size: 20px;
-  color: #ffffff;
+  font-size: 22px; /* Slightly larger for prominence */
+  color: #333; /* Darker color for better contrast */
   letter-spacing: 1px;
   margin: 0;
   padding: 0;
 }
 
+/* Search Container */
 .search-container {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 15px;
+  margin-bottom: 30px; /* Increased space for separation */
+  justify-content: space-between;
 }
 
 .search-input, .search-select, .search-button {
-  padding: 8px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 6px; /* Softer input corners */
   border: 1px solid #ddd;
+  width: 100%;
+  max-width: 200px; /* Maximum width for inputs */
 }
 
 .search-button {
@@ -82,43 +92,79 @@ h2 {
   background-color: #17a629;
 }
 
+/* Workshops List */
 .workshops-list {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+/* Workshop Card Layout */
+/* Workshop Card Layout */
+.workshop-card {
+  display: flex;
+  align-items: flex-start; /* Align content to top */
+  justify-content: space-between; /* Space between left side and right side */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 15px; /* Add some space between cards */
+}
+
+.workshop-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Left side of the workshop card (workshop details) */
+.workshop-details {
+  flex-grow: 1; /* Take remaining space */
+}
+
+/* Right side of the workshop card (specialist info) */
+.specialist-info {
+  display: flex;
+  align-items: center;
   gap: 15px;
 }
-
-.workshop-card {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.specialist-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  max-height: 120px;
+  border-radius: 100%;
 }
 
-.no-results {
-  text-align: center;
-  color: #888;
+/* Specialist Description */
+.specialist-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+  text-align: justify;
+  max-height: 120px; /* Limit the height to avoid taking too much space */
+  overflow: hidden;  /* Hide any content that exceeds the max-height */
+  word-wrap: break-word;  /* Ensure long words break to the next line */
+  padding-right: 50px; /* Add some space to the right of the text */
+  padding-left: 50px;
 }
 
-.appointment-form {
-  margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f1f1f1;
-}
-
-.book-button, .confirm-button {
+/* Book Appointment Button Styling */
+.book-button {
   background-color: #20be35;
   color: #fff;
   border: none;
-  padding: 10px 15px;
-  margin-top: 10px;
-  border-radius: 4px;
+  padding: 12px 24px;
+  margin-top: 50px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  align-self: flex-start; /* Keep the button at the start of the card */
 }
 
-.book-button:hover, .confirm-button:hover {
+.book-button:hover {
   background-color: #17a629;
 }

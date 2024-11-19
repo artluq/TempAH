@@ -1,113 +1,88 @@
 .frontpage {
-    text-align: center;
-    margin-top: 20%;
-  }
-  
-  .frontpage h1 {
-    font-size: 2.5em;
-    color: #ff9900;
-  }
-  
-  .frontpage p {
-    font-size: 1.2em;
-    margin-top: 10px;
-  }
-  
-  .frontpage button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #333;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .frontpage button:hover {
-    background-color: #ff9900;
-  }
-
-  .appointment-scheduling {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 1rem;
-    background-color: #f5f5f5;
-    text-align: center;
-  }
-  
-  .container {
-    max-width: 600px;
-  }
-  
-  .appointment-scheduling h2 {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .appointment-scheduling .subtitle {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 1.5rem;
-  }
-  
-  .schedule-button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #ff6b00;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .schedule-button:hover {
-    background-color: #e65b00;
-  }
-  
-  /* Appointment Scheduling Section */
-.appointment-scheduling {
   text-align: center;
-  padding: 30px;
+  margin-top: 10%;
+  padding: 2rem;
+}
+
+.frontpage h1 {
+  font-size: 2.8em;
+  color: #ff6600;
+  font-weight: bold;
+}
+
+.frontpage p {
+  font-size: 1.3em;
+  color: #555;
+  margin-top: 10px;
+}
+
+.frontpage button {
+  padding: 12px 25px;
+  font-size: 1.1em;
+  background-color: #333;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.frontpage button:hover {
+  background-color: #ff6600;
+}
+
+/* Appointment Scheduling Section */
+.appointment-scheduling {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.appointment-scheduling .container {
+  max-width: 600px;
+}
+
+.appointment-scheduling h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.appointment-scheduling .subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
 }
 
 .schedule-button {
-  margin-top: 15px;
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #ff6b00;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .schedule-button:hover {
-  background-color: #0056b3;
+  background-color: #e65b00;
 }
 
-/* Slideshow Container */
+/* Slideshow Section */
 .slideshow-container {
   position: relative;
   max-width: 100%;
-  height: 400px; /* Adjust this height as needed */
-  margin: 20px auto;
-  overflow: hidden; /* Ensures images don't overflow the container */
+  height: 400px;
+  margin: 30px auto;
+  overflow: hidden;
 }
-
-/* Slide Image */
-.slide-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the container without stretching */
-  border-radius: 8px;
-}
-
 
 .mySlides {
   display: none;
@@ -117,13 +92,13 @@
   display: block;
 }
 
-/* Image Styling */
 .slide-image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 8px;
 }
 
-/* Caption Styling */
 .caption {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -136,7 +111,6 @@
   border-radius: 0 0 8px 8px;
 }
 
-/* Controls Styling */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -163,4 +137,29 @@
   border-radius: 5px 0 0 5px;
 }
 
+@media (max-width: 768px) {
+  .frontpage h1 {
+      font-size: 2.2em;
+  }
   
+  .frontpage p {
+      font-size: 1.1em;
+  }
+
+  .appointment-scheduling {
+      padding: 2rem 1rem;
+  }
+
+  .appointment-scheduling h2 {
+      font-size: 1.8rem;
+  }
+
+  .schedule-button {
+      font-size: 1rem;
+      padding: 0.8rem 1.2rem;
+  }
+
+  .slideshow-container {
+      height: 300px;
+  }
+}

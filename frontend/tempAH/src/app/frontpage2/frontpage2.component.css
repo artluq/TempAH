@@ -1,61 +1,101 @@
+/* Background Section */
 .background-section {
-    background-image: url('../../assets/background.jpg'); /* Replace with the actual path to your background image */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; /* Makes background cover full viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  background-image: url('../../assets/Untitled design (3).png'); /* Replace with the actual path to your background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px; /* Adding padding for responsiveness */
+}
 
+/* Login Container */
 .login-container {
   max-width: 400px;
   margin: 50px auto;
   padding: 2rem;
-  background-color: #ffffff; /* White background */
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8); /* 30% opaque white */
+  border-radius: 12px; /* Softer rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Softer shadow */
   text-align: center;
-  border-radius: 8px;
-  text-align: center;
+  transition: all 0.3s ease; /* Smooth transitions */
 }
-  
-  
-  .login-container h2 {
-    font-size: 2rem;
-    color: #333; /* Darker text */
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-    text-align: left;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .signup-redirect {
-    margin-top: 1rem;
-  }
-  
-  .signup-redirect a {
-    color: #0fe02b; 
-    text-decoration: none;
-  }
-  
-  .signup-redirect a:hover {
-    text-decoration: underline;
-  }
-  
+
+.login-container:hover {
+  background-color: rgba(255, 255, 255, 0.6); /* 25% opaque on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  transform: translateY(-5px); /* Slight hover lift effect */
+}
+
+.login-container h2 {
+  font-size: 1.75rem; /* Slightly smaller for balance */
+  color: #333; /* Darker text */
+  margin-bottom: 1.5rem;
+  font-family: 'Montserrat', sans-serif; /* Modern font */
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem; /* More spacing between fields */
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem; /* More modern size */
+  color: #555; /* Softer text color */
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd; /* Lighter border */
+  border-radius: 6px; /* Softer rounded corners */
+  background-color: #f9f9f9; /* Light gray background for inputs */
+  font-size: 1rem;
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+input:focus {
+  border-color: #1a73e8; /* Primary blue border on focus */
+  background-color: #fff; /* White background on focus */
+  outline: none;
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.3); /* Subtle shadow */
+}
+
+/* Sign-Up Redirect */
+.signup-redirect {
+  margin-top: 1rem;
+}
+
+.signup-redirect a {
+  color: #1a73e8; /* Use a primary blue color for links */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-redirect a:hover {
+  text-decoration: underline;
+}
+
+/* Button Styling (Optional: add if you need buttons) */
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a73e8; /* Primary color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #1666c1; /* Darker blue on hover */
+}

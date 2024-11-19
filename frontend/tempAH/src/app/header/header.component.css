@@ -6,28 +6,34 @@
 
 .navbar {
   background-color: #ffffff;
-  color: #000000;
+  color: #333333; /* Slightly darker text for better contrast */
   padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Softer shadow for a more minimalist feel */
+  font-family: 'Montserrat', sans-serif; /* Apply consistent font */
 }
 
 /* Logo or brand link */
 .navbar-brand {
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: 600; /* Slightly lighter bold */
   color: #20be35;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #1a7032; /* Darker green on hover */
 }
 
 /* Navbar links */
 .navbar-nav {
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 20px; /* Increased gap for a more airy design */
   margin: 0;
   padding: 0;
 }
@@ -37,43 +43,36 @@
 }
 
 .navbar-nav a {
-  color: #000000;
+  color: #333333; /* Slightly darker text for better readability */
   text-decoration: none;
   font-size: 1em;
   padding: 8px 12px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 6px; /* Softer rounded corners */
 }
 
 /* Hover effect */
 .navbar-nav a:hover {
   background-color: #20be35;
-  color: #333;
-  border-radius: 4px;
-}
-
-.container {
-  padding: 20px;
-}
-
-.class-item, .class-details {
-  background-color: #f9f9f9;
-  padding: 20px;
-  margin: 10px 0;
+  color: white;
+  border-radius: 6px;
 }
 
 /* Login button styling */
 .login-btn {
   background-color: #20be35;
-  color: #ffffff;
+  color: white;
   padding: 8px 12px;
-  border-radius: 4px;
+  border-radius: 6px; /* Softer rounded corners */
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
 }
 
 .login-btn:hover {
   background-color: #ffffff;
   color: #20be35;
+  border: 1px solid #20be35; /* Add border for a more defined button */
 }
 
 /* Menu toggle button for mobile */
@@ -82,9 +81,14 @@
   font-size: 1.5em;
   background: none;
   border: none;
-  color: #000000;
+  color: #333333;
   cursor: pointer;
   margin-left: auto; /* Pushes the hamburger to the far right */
+  transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  color: #20be35; /* Green hover effect */
 }
 
 @media (max-width: 768px) {
@@ -96,9 +100,9 @@
     position: absolute;
     top: 60px;
     right: 0;
-    width: 200px;
-    border-radius: 0 0 8px 8px;
+    width: 100%; /* Make it full-width on mobile */
     padding: 10px;
+    border-radius: 0 0 8px 8px;
   }
 
   .navbar-nav.open {
@@ -107,5 +111,10 @@
 
   .menu-toggle {
     display: inline; /* Shows the hamburger icon on small screens */
+  }
+
+  .navbar-nav a {
+    padding: 12px 20px; /* Increase padding for better tap targets */
+    text-align: center;
   }
 }
