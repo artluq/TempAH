@@ -1,6 +1,6 @@
 import pandas as pd
 #from transformers import pipeline
-from typing import Dic
+from typing import Dict
 from langchain import HuggingFaceHub
 from datetime import datetime
 
