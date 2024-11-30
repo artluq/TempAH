@@ -18,10 +18,9 @@ Database
 
 Artificial Intelligence
 - HuggingFace
-    - Token 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
     - pip install langchain-huggingface
     - pip install huggingface-hub
     - pip install -U langchain-huggingface
 - Pandas
 - Groq
-    - Token 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
+    - pip install groq
