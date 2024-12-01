@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 
 @Component({
   selector: 'app-book-appointment',
@@ -8,31 +10,34 @@ import { Component } from '@angular/core';
 export class BookAppointmentComponent {
   selectedLocation!: string;
   selectedWorkshop!: string;
-  selectedService!: string;
   appointmentDate!: string;
   appointmentTime!: string;
-  problemDescription: string = ''; // User input for problem description
   confirmationMessage!: string;
-  aiGeneratedSolution!: string; // AI-generated solution
+  aiGeneratedSolution!: string;
 
   locations = [{ name: 'Kuala Lumpur' }, { name: 'Jalan Ampang' }];
-  services = [{ name: 'Oil Change' }, { name: 'Tire Rotation' }, { name: 'Brake Inspection' }];
   workshop = [{ name: 'Workshop A' }, { name: 'Workshop B' }];
 
+  constructor(private dialog: MatDialog) {}
+
   onScheduleAppointment() {
+    if (!this.aiGeneratedSolution) {
+      alert('Please complete the AI Car Diagnostic first');
+      return;
+    }
     this.confirmationMessage = 'Your appointment has been scheduled!';
   }
 
-  generateAISolution(problemDescription: string) {
-    this.problemDescription = problemDescription;
+  openAIDiagnostic() {
+    const dialogRef = this.dialog.open(AiDiagnosticDialogComponent, {
+      width: '600px',
+      disableClose: true
+    });
 
-    // Basic AI response based on the problem description
-    if (problemDescription.toLowerCase().includes('engine')) {
-      this.aiGeneratedSolution = 'It seems you may have an engine issue. We recommend a complete diagnostic check at Workshop A.';
-    } else if (problemDescription.toLowerCase().includes('tire')) {
-      this.aiGeneratedSolution = 'It sounds like a tire problem. Consider our Tire Rotation or Replacement service at Workshop B.';
-    } else {
-      this.aiGeneratedSolution = 'Thank you for describing the problem. Based on your description, we recommend consulting with our specialist.';
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.aiGeneratedSolution = result.analysis;
+      }
+    });
   }
 }

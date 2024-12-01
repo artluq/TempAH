@@ -1,12 +1,12 @@
 <div >
-  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">  
+  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">
     <div class="content-header d-flex">
       <h2>Schedule an Appointment</h2>
     </div>
   <form (ngSubmit)="onScheduleAppointment()">
-    
 
-    <!-- Problem Description Input with AI Solution Generation on Input Change -->
+    <!--The idea is wanted to have different pop-up evaluation form -->
+    <!-- Problem Description Input with AI Solution Generation on Input Change
     <div class="form-group">
       <label for="problem">Describe Your Problem:</label>
       <textarea
@@ -18,12 +18,13 @@
         required>
       </textarea>
     </div>
-     <!-- AI-Generated Solution Display -->
+    -->
+     <!-- AI-Generated Solution Display
   <div *ngIf="aiGeneratedSolution" class="ai-solution">
     <h3>Suggested Solution:</h3>
     <p>{{ aiGeneratedSolution }}</p>
   </div>
-
+  -->
   <div class="form-group">
     <label for="location">Select Location:</label>
     <select id="location" [(ngModel)]="selectedLocation" name="location" required>
@@ -53,10 +54,17 @@
       <input type="time" id="time" [(ngModel)]="appointmentTime" name="time" required>
     </div>
 
+    <!-- AI Diagnostic Assistant with Evaluation Form -->
+    <div class="form-group">
+      <button mat-raised-button color="primary" (click)="openAIDiagnostic()">
+        AI Diagnostic Assistant
+      </button>
+    </div>
+
     <button type="submit">Schedule Appointment</button>
   </form>
 
- 
+
   <div *ngIf="confirmationMessage" class="confirmation-message">
     <p>{{ confirmationMessage }}</p>
   </div>
