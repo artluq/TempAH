@@ -12,7 +12,7 @@ export class AiDiagnosticService {
 
   constructor(private http: HttpClient) {}
 
-  getDiagnostic(problemDescription: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/diagnose`, { problemDescription });
+  getDiagnostic(responses: { [key: string]: string }) {
+    return this.http.post(`${this.apiUrl}/diagnose`, { responses });
   }
 }
