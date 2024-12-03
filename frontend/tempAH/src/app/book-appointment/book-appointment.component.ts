@@ -10,6 +10,7 @@ import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/
 export class BookAppointmentComponent {
   selectedLocation!: string;
   selectedWorkshop!: string;
+  selectedService!: string;
   appointmentDate!: string;
   appointmentTime!: string;
   confirmationMessage!: string;
@@ -17,6 +18,12 @@ export class BookAppointmentComponent {
 
   locations = [{ name: 'Kuala Lumpur' }, { name: 'Jalan Ampang' }];
   workshop = [{ name: 'Workshop A' }, { name: 'Workshop B' }];
+  services = [
+    { name: 'Oil Change' },
+    { name: 'Brake Service' },
+    { name: 'Tire Rotation' },
+    { name: 'Engine Tune-up' }
+  ];
 
   constructor(private dialog: MatDialog) {}
 
