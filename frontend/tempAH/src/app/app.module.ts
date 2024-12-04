@@ -40,14 +40,14 @@ import { ServiceManagementComponent } from './service-management/service-managem
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ApiService } from './service/api.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
+// import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    AiDiagnosticDialogComponent,
+    // AiDiagnosticDialogComponent,
     ServiceListComponent,
     FrontpageComponent,
     LoginComponent,

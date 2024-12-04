@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
+// import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 
 @Component({
   selector: 'app-book-appointment',
@@ -36,15 +36,15 @@ export class BookAppointmentComponent {
   }
 
   openAIDiagnostic() {
-    const dialogRef = this.dialog.open(AiDiagnosticDialogComponent, {
-      width: '600px',
-      disableClose: true
-    });
+    // const dialogRef = this.dialog.open(AiDiagnosticDialogComponent, {
+    //   width: '600px',
+    //   disableClose: true
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.aiGeneratedSolution = result.analysis;
-      }
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     this.aiGeneratedSolution = result.analysis;
+    //   }
+    // });
   }
 }
