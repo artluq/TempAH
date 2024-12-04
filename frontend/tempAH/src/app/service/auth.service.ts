@@ -12,7 +12,8 @@ export class AuthService {
   private userRole: number | null = null;  
   private fullname: string | null = null; // Store fullname
   private loginUrl = 'http://localhost:8000/api/users/login/';
-  private apiUrl = 'http://localhost:5246/api/Users/Login'; 
+  // private apiUrl = 'http://localhost:5246/api/Users/Login'; 
+  private apiUrl = 'https://api.lgm.gov.my/API_Tempah/api/Users/Login'; 
 
   constructor(private http: HttpClient) {
     const token = sessionStorage.getItem('access_token');

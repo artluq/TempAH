@@ -9,7 +9,7 @@ import { Vendor } from '../model/vendor.model';
 })
 export class ApiService {
 
-  private apiUrl = 'http://localhost:5246/api';  // Replace with your actual backend URL
+  private apiUrl = 'https://api.lgm.gov.my/API_Tempah/api/';  // Replace with your actual backend URL
 
   constructor(private http: HttpClient) {}
 
