@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointment } from '../model/appointment.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-appointment-update',

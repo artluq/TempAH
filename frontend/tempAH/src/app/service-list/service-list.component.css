@@ -1,117 +1,34 @@
-/* Profile Card Styling */
-.profile-card {
-  padding: 20px;
-  border-radius: 12px; /* Soft corners for a modern feel */
-  background-color: #ffffff; /* White background */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow for depth */
-  transition: all 0.3s ease; /* Smooth hover transition */
-}
-
-.profile-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-  transform: translateY(-5px); /* Slight lift effect */
-}
-
-/* Profile Details Table */
-.profile-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 16px;
-  color: #333; /* Darker text for better readability */
-}
-
-.profile-table td {
-  padding: 12px; /* Increased padding for better spacing */
-  vertical-align: top;
-}
-
-.profile-table td:first-child {
-  width: 35%; /* Increased width for labels */
-  font-weight: bold;
-  color: #444; /* Slightly darker label text */
-}
-
-/* Buttons */
-.button, .buttonExcel {
-  color: #fff;
-  padding: 12px 24px; /* More padding for button size */
-  border: none;
-  border-radius: 6px; /* Softer rounded corners */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button {
-  background-color: #443834;
-}
-
-.button:hover {
-  background-color: #73726f;
-}
-
-.buttonExcel {
-  background-color: #1d7a2e;
-}
-
-.buttonExcel:hover {
-  background-color: #155f22;
-}
-
-/* Profile Header */
-h2 {
-  font-size: 22px; /* Slightly larger for prominence */
-  color: #333; /* Darker color for better contrast */
-  letter-spacing: 1px;
-  margin: 0;
-  padding: 0;
-}
-
-/* Search Container */
-.search-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px; /* Increased space for separation */
-  justify-content: space-between;
-}
-
-.search-input, .search-select, .search-button {
-  padding: 10px;
-  border-radius: 6px; /* Softer input corners */
-  border: 1px solid #ddd;
-  width: 100%;
-  max-width: 200px; /* Maximum width for inputs */
-}
-
-.search-button {
-  background-color: #20be35;
-  color: #fff;
-  cursor: pointer;
-}
-
-.search-button:hover {
-  background-color: #17a629;
-}
-
 /* Workshops List */
 .workshops-list {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap; /* Allow cards to wrap to the next row if they exceed the width */
+  gap: 20px; /* Space between cards */
+  justify-content: flex-start; /* Align items to the left */
+  color: #73605B; /* Base color for text */
+}
+
+/* Workshop Card Container */
+.workshop-card-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap */
+  gap: 20px; /* Space between each card */
+  justify-content: flex-start; /* Ensure cards are aligned to the left */
 }
 
 /* Workshop Card Layout */
-/* Workshop Card Layout */
 .workshop-card {
   display: flex;
-  align-items: flex-start; /* Align content to top */
+  flex-direction: row; /* Horizontal layout */
+  align-items: flex-start; /* Align content to the top */
   justify-content: space-between; /* Space between left side and right side */
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 15px;
+  border: 1px solid #D09683; /* Light brown border */
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  margin-bottom: 15px; /* Add some space between cards */
+  width: calc(33% - 20px); /* Three cards per row */
+  box-sizing: border-box; /* Include padding and borders in width calculation */
 }
 
 .workshop-card:hover {
@@ -119,46 +36,51 @@ h2 {
   transform: translateY(-5px);
 }
 
-/* Left side of the workshop card (workshop details) */
+/* Left side: Workshop details */
 .workshop-details {
   flex-grow: 1; /* Take remaining space */
+  margin-right: 20px; /* Space between details and specialist info */
+  color: #330000; /* Dark red for details */
 }
 
-/* Right side of the workshop card (specialist info) */
+/* Right side: Specialist info */
 .specialist-info {
   display: flex;
+  flex-direction: column; /* Stack the image and description vertically */
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
+
+/* Specialist Image */
 .specialist-image img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  max-height: 120px;
+  max-height: 100px;
   border-radius: 100%;
+  border: 2px solid #D09683; /* Adding border to the image */
 }
 
 /* Specialist Description */
 .specialist-description {
   font-size: 0.9rem;
-  color: #666;
+  color: #73605B; /* Soft brown for text */
   margin: 0;
   line-height: 1.5;
   text-align: justify;
-  max-height: 120px; /* Limit the height to avoid taking too much space */
-  overflow: hidden;  /* Hide any content that exceeds the max-height */
-  word-wrap: break-word;  /* Ensure long words break to the next line */
-  padding-right: 50px; /* Add some space to the right of the text */
+  max-height: 120px; /* Limit the height */
+  overflow: hidden; /* Hide overflowing text */
+  word-wrap: break-word;
+  padding-right: 50px; /* Add some space */
   padding-left: 50px;
 }
 
-/* Book Appointment Button Styling */
+/* Book Appointment Button */
 .book-button {
-  background-color: #20be35;
+  background-color: #330000; /* Dark Red */
   color: #fff;
   border: none;
   padding: 12px 24px;
-  margin-top: 50px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -166,5 +88,80 @@ h2 {
 }
 
 .book-button:hover {
-  background-color: #17a629;
+  background-color: #5c0000; /* Lighter red on hover */
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  color: #73605B; /* Base color for the search container */
+}
+
+/* Enter Location Input */
+.search-input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #D09683; /* Border with light brown color */
+  width: 100%;
+  max-width: 300px; /* Adjust the width */
+  background-color: #ffffff;
+  color: #330000; /* Dark red text */
+  font-size: 16px;
+}
+
+.search-input:focus {
+  border-color: #73605B; /* Focused border color */
+  outline: none;
+}
+
+/* All Services Dropdown */
+.search-select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #D09683; /* Border with light brown color */
+  background-color: #ffffff;
+  color: #330000; /* Dark red text */
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.search-select:focus {
+  border-color: #73605B; /* Focused border color */
+  outline: none;
+}
+
+/* Search Button for "Enter Location" and "All Services" */
+.search-button {
+  background-color: #330000; /* Dark Red */
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #5c0000; /* Lighter red on hover */
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-input,
+  .search-select,
+  .search-button {
+    width: 100%; /* Ensure they fill the width */
+    max-width: 100%;
+  }
 }

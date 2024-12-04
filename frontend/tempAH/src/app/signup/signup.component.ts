@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { User } from '../model/user.model';  // Make sure you import User interface
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',

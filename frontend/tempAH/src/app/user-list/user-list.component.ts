@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { User } from '../model/user.model';  // Import the User interface
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',

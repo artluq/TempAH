@@ -1,23 +1,22 @@
 /* Footer container */
 .footer {
-    background-color: #333; /* Dark background for footer */
-    color: #ffffff; /* Light text color */
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    font-size: 0.9em;
-  }
-  
-  /* Footer links */
-  .footer a {
-    color: #20be35; /* Orange color for links */
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-  }
-  
-  /* Hover effect */
-  .footer a:hover {
-    color: #ffffff; /* Light color when hovered */
-  }
-  
+  background-image: linear-gradient(45deg, #333, #73605B); /* Two-tone gradient for footer */
+  color: #ffffff; /* Light text color */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  font-size: 0.9em;
+}
+
+/* Footer links */
+.footer a {
+  color: #D09683; /* Light beige color for links */
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.footer a:hover {
+  color: #ffffff; /* Light color when hovered */
+}

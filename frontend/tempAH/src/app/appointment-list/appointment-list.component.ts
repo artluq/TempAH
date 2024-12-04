@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AppointmentDeleteComponent } from '../appointment-delete/appointment-delete.component';
 import { MatDialog } from '@angular/material/dialog'; // Make sure to import MatDialog
 import { AuthService } from '../service/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-appointment-list',
