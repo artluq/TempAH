@@ -4,6 +4,7 @@
       <h2>Find a Car Workshop</h2>
     </div>
 
+    <!-- Search Section -->
     <div class="search-container">
       <input
         type="text"
@@ -21,30 +22,38 @@
       <button (click)="searchWorkshops()" class="search-button">Search</button>
     </div>
 
+    <!-- Available Workshops -->
     <div *ngIf="filteredWorkshops.length > 0" class="workshops-list">
       <h3>Available Workshops</h3>
-      <div class="workshop-card" *ngFor="let workshop of filteredWorkshops">
-        <div class="workshop-details">
-          <h4>{{ workshop.name }}</h4>
-          <p><strong>Location:</strong> {{ workshop.location }}</p>
-          <p><strong>Rating:</strong> {{ workshop.rating }} ★</p>
-        </div>
-        <!-- Specialist Info Section -->
-        <div class="specialist-info">
-          <div class="specialist-image">
-            <img [src]="workshop.image" alt="{{ workshop.name }} Image" class="workshop-image" />
-          </div>
       
-          <div class="specialist-description">
-            <p>{{ workshop.description }}</p>
+      <!-- Loop through each workshop to display the card layout horizontally -->
+      <div class="workshop-card-container">
+        <div class="workshop-card" *ngFor="let workshop of filteredWorkshops">
+          
+          <!-- Left side: Workshop details -->
+          <div class="workshop-details">
+            <h4>{{ workshop.name }}</h4>
+            <p><strong>Location:</strong> {{ workshop.location }}</p>
+            <p><strong>Rating:</strong> {{ workshop.rating }} ★</p>
           </div>
-        </div>
 
-        <!-- Booking button -->
-        <button (click)="selectWorkshop(workshop)" class="book-button">Book Appointment</button>
+          <!-- Right side: Specialist info and description -->
+          <div class="specialist-info">
+            <div class="specialist-image">
+              <img [src]="workshop.image" alt="{{ workshop.name }} Image" class="workshop-image" />
+            </div>
+            <div class="specialist-description">
+              <p>{{ workshop.description }}</p>
+            </div>
+          </div>
+
+          <!-- Book Appointment Button -->
+          <button (click)="selectWorkshop(workshop)" class="book-button">Book Appointment</button>
+        </div>
       </div>
     </div>
 
+    <!-- No results found message -->
     <div *ngIf="filteredWorkshops.length === 0 && searchPerformed" class="no-results">
       <p>No workshops found for your search criteria. Please try again.</p>
     </div>

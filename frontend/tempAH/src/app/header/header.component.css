@@ -1,120 +1,109 @@
-/* Header container */
-.navbar-logo {
-  height: 40px; /* Adjust height as needed */
-  width: auto;
-}
-
-.navbar {
-  background-color: #ffffff;
-  color: #333333; /* Slightly darker text for better contrast */
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Softer shadow for a more minimalist feel */
-  font-family: 'Montserrat', sans-serif; /* Apply consistent font */
-}
-
-/* Logo or brand link */
-.navbar-brand {
-  font-size: 1.5em;
-  font-weight: 600; /* Slightly lighter bold */
-  color: #20be35;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.navbar-brand:hover {
-  color: #1a7032; /* Darker green on hover */
-}
-
-/* Navbar links */
-.navbar-nav {
-  list-style: none;
-  display: flex;
-  gap: 20px; /* Increased gap for a more airy design */
+/* Global Styles */
+body, html {
   margin: 0;
   padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #330000;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(45deg, #330000, #73605B); /* Two-tone gradient */
+  padding: 15px 20px;
+  color: #D09683; /* Light beige text */
+}
+
+.navbar-brand a {
+  font-size: 28px;
+  font-weight: bold;
+  color: #D09683;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding-left: 0;
 }
 
 .navbar-nav li {
-  display: inline;
+  display: inline-block;
 }
 
-.navbar-nav a {
-  color: #333333; /* Slightly darker text for better readability */
+.navbar-nav li a {
+  color: #D09683;
+  font-size: 16px;
   text-decoration: none;
-  font-size: 1em;
-  padding: 8px 12px;
+  padding: 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 6px; /* Softer rounded corners */
 }
 
-/* Hover effect */
-.navbar-nav a:hover {
-  background-color: #20be35;
+.navbar-nav li a:hover {
+  background-color: #73605B; /* Soft brown hover */
   color: white;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
-/* Login button styling */
-.login-btn {
-  background-color: #20be35;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px; /* Softer rounded corners */
-  font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 1rem;
-}
-
-.login-btn:hover {
-  background-color: #ffffff;
-  color: #20be35;
-  border: 1px solid #20be35; /* Add border for a more defined button */
-}
-
-/* Menu toggle button for mobile */
 .menu-toggle {
-  display: none;
-  font-size: 1.5em;
+  font-size: 28px;
   background: none;
   border: none;
-  color: #333333;
+  color: #D09683;
   cursor: pointer;
-  margin-left: auto; /* Pushes the hamburger to the far right */
-  transition: color 0.3s ease;
+  display: none; /* Hidden on larger screens */
 }
 
-.menu-toggle:hover {
-  color: #20be35; /* Green hover effect */
+/* For the Right-aligned Nav Items (Logged-in State) */
+.navbar-nav.ms-auto {
+  margin-left: auto;
 }
 
+.nav-item {
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: #D09683;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #73605B;
+}
+
+.nav-link i {
+  margin-right: 5px;
+}
+
+/* Mobile Responsive Menu */
 @media (max-width: 768px) {
-  /* Navbar items hidden on small screens */
   .navbar-nav {
-    display: none;
-    flex-direction: column;
-    background-color: #ffffff;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%; /* Make it full-width on mobile */
-    padding: 10px;
-    border-radius: 0 0 8px 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      display: none; /* Hidden by default */
+      width: 100%;
   }
 
   .navbar-nav.open {
-    display: flex;
+      display: flex;
   }
 
   .menu-toggle {
-    display: inline; /* Shows the hamburger icon on small screens */
+      display: inline-block;
   }
 
-  .navbar-nav a {
-    padding: 12px 20px; /* Increase padding for better tap targets */
-    text-align: center;
+  .navbar-nav li {
+      width: 100%;
+  }
+
+  .navbar-nav li a {
+      padding: 15px;
+      width: 100%;
+      text-align: left;
   }
 }
