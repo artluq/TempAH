@@ -9,11 +9,6 @@
     &#9776; <!-- Hamburger icon -->
   </button>
   <ul class="navbar-nav" [ngClass]="{ 'open': menuOpen }" *ngIf="!login">
-    <li><a routerLink="/serviceslist">Find Workshops & Appointments</a></li>
-    <li><a (click)="bookappointment(); $event.preventDefault();" *ngIf="login">Book An Appointment</a></li>
-    <li><a routerLink="/listbusiness">List Your Business</a></li>
-    <!-- <li><a routerLink="/corporateAdd">Corporate Collab</a></li>  -->
-    <li><a routerLink="/aboutUs">About Us</a></li>
     <li><a (click)="islogin(); $event.preventDefault();" class="login-btn">Login</a></li>
   </ul>
 

@@ -96,7 +96,6 @@
   position: relative;
   max-width: 100%;
   height: 400px; /* Adjust this height as needed */
-  margin: 20px auto;
   overflow: hidden; /* Ensures images don't overflow the container */
 }
 

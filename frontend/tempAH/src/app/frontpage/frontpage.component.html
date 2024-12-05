@@ -1,15 +1,24 @@
     <!-- Slideshow Section -->
   <div class="slideshow-container">
     <div class="mySlides fade" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide">
-      <img [src]="slide.image" [alt]="slide.alt" class="slide-image" />
-      <div class="caption">{{ slide.caption }}</div>
+      <img [src]="slide.image"  class="slide-image" />
     </div>
 
     <!-- Slideshow Controls -->
     <a class="prev" (click)="prevSlide()">&#10094;</a>
     <a class="next" (click)="nextSlide()">&#10095;</a>
   </div>
-
+  <nav class="navbar">
+    <ul class="navbar-nav" >
+        <li><a routerLink="/serviceslist">Find Workshops & Appointments</a></li>
+        <li><a (click)="bookappointment(); $event.preventDefault();" >Book An Appointment</a></li>
+        <li><a routerLink="/listbusiness">List Your Business</a></li>
+        <!-- <li><a routerLink="/corporateAdd">Corporate Collab</a></li>  -->
+        <li><a routerLink="/aboutUs">About Us</a></li>
+        <li><a (click)="islogin(); $event.preventDefault();" class="login-btn">Book an Appointment</a></li>
+      </ul>
+  </nav>
+  
 <section class="appointment-scheduling">
     <div class="container">
       <h2>Book a workshop tailored to your needs, completely free</h2>

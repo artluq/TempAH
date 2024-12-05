@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class FrontpageComponent  implements OnInit {
   slides = [
-    { image: 'assets/slide1.png', caption: 'Efficient & Reliable Car Service', alt: 'Car Service Image' },
-    { image: 'assets/slide2.jpg', caption: '24/7 Online Booking for Your Convenience', alt: 'Online Booking Image' },
-    { image: 'assets/slide3.jpeg', caption: 'Client Reminders and Notifications', alt: 'Client Reminders Image' }
+    { image: 'assets/slide1.png'},
+    { image: 'assets/slide2.jpg'},
+    { image: 'assets/slide3.jpeg'}
   ];
   currentSlide = 0;
 
@@ -39,5 +39,21 @@ export class FrontpageComponent  implements OnInit {
   prevSlide() {
     this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
   }
-  
+  bookappointment(){
+    this.router.navigate(['/bookappointment']);
+  }
+
+  logout() {
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      this.authService.logout();  // Use the AuthService to log out
+      alert("Logged out successfully");
+      this.router.navigate(['/']);
+    }
+  }
+
+  islogin() {
+    this.router.navigate(['/login']);
+  }
+
 }

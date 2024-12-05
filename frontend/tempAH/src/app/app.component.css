@@ -23,7 +23,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Ensure content starts at the top */
-  padding: 20px; /* Optional: add padding for aesthetics */
 }
 
 app-header, app-footer {
