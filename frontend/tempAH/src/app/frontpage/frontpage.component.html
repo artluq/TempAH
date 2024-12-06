@@ -1,116 +1,99 @@
-    <!-- Slideshow Section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TempAH Landing Page</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Slideshow Section -->
   <div class="slideshow-container">
     <div class="mySlides fade" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide">
-      <img [src]="slide.image"  class="slide-image" />
+      <img [src]="slide.image" class="slide-image" />
     </div>
-
     <!-- Slideshow Controls -->
     <a class="prev" (click)="prevSlide()">&#10094;</a>
     <a class="next" (click)="nextSlide()">&#10095;</a>
   </div>
-  <nav class="navbar">
-    <ul class="navbar-nav" >
-        <li><a routerLink="/serviceslist">Find Workshops & Appointments</a></li>
-        <li><a routerLink="/listbusiness">List Your Business</a></li>
-        <!-- <li><a routerLink="/corporateAdd">Corporate Collab</a></li>  -->
-        <li><a routerLink="/aboutUs">About Us</a></li>
-        <li><a (click)="bookAnAppointment(); $event.preventDefault();" class="bookAnAppointment" >Book an Appointment</a></li>
-      </ul>
-  </nav>
-  
-<section class="appointment-scheduling">
-    <div class="container">
-      <h2>Book a workshop tailored to your needs, completely free</h2>
-      <p class="subtitle">
-        Looking for expert mechanics to handle your vehicle? Our booking system connects you with workshops staffed by skilled professionals, ensuring top-notch service for all your automotive needs. Easily find and book a workshop that fits your schedule—free of charge and hassle-free.
-      </p>
-      <button class="schedule-button" (click)="onScheduleClick()">Get Started</button>
-    </div>
-  </section>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Features</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .features-section {
-            padding: 50px 20px;
-            background-color: #fff;
-            text-align: center;
-        }
-        .features-section h2 {
-            margin-bottom: 40px;
-            color: #333;
-        }
-        .feature {
-            display: inline-block;
-            width: 30%;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            border-radius: 8px;
-            background-color: #fff;
-            transition: transform 0.2s;
-        }
-        .feature:hover {
-            transform: scale(1.05);
-        }
-        .feature-icon {
-            font-size: 40px;
-            color: #ff5722;
-            margin-bottom: 20px;
-        }
-        .feature h3 {
-            margin: 10px 0;
-            color: #555;
-        }
-        .feature p {
-            color: #777;
-        }
-    </style>
-</head>
-<body>
 
-<div class="features-section">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li><a href="#why-gocar-garage">Why GoCar Garage</a></li>
+      <li><a href="#how-to-book" class="how-to-book-btn">How to Book</a></li>
+      <li><a href="#service-packages">Our Features</a></li>
+      <li><a href="#garages-near-you">Garages Near You</a></li>
+      <li><a href="#get-a-quote">Get A Quote</a></li>
+    </ul>
+    <div class="book-an-appointment-container">
+      <a href="#book-appointment" class="bookAnAppointment">Book an Appointment</a>
+    </div>
+  </nav>
+
+  <!-- Features Section -->
+  <section class="features-section">
     <h2>Our Features</h2>
     <div class="feature">
-        <div class="feature-icon">🔧</div>
-        <h3>Comprehensive Services</h3>
-        <p>From oil changes to engine repairs, we cover a wide range of automotive services.</p>
+      <h2>Expert Mechanics</h2>
+      <p>Find skilled professionals for all your vehicle needs.</p>
     </div>
     <div class="feature">
-        <div class="feature-icon">📅</div>
-        <h3>Easy Online Booking</h3>
-        <p>Schedule your vehicle service easily through our user-friendly online booking system.</p>
+      <h2>Easy Booking</h2>
+      <p>Book appointments effortlessly with our user-friendly system.</p>
     </div>
     <div class="feature">
-        <div class="feature-icon">📱</div>
-        <h3>Mobile Access</h3>
-        <p>Manage your bookings and check service updates on the go with our mobile-friendly site.</p>
+      <h2>Quality Service</h2>
+      <p>Experience top-notch service and customer care.</p>
     </div>
-    <div class="feature">
-        <div class="feature-icon">📞</div>
-        <h3>24/7 Customer Support</h3>
-        <p>Get assistance anytime with our dedicated customer support team available round the clock.</p>
-    </div>
-    <div class="feature">
-        <div class="feature-icon">💳</div>
-        <h3>Secure Payments</h3>
-        <p>Pay for your services securely online using various payment methods.</p>
-    </div>
-    <div class="feature">
-        <div class="feature-icon">📊</div>
-        <h3>Service History</h3>
-        <p>Access your vehicle's service history and maintenance records with ease.</p>
-    </div>
-</div>
+  </section>
 
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial">
+      <p>"TempAH is amazing! The booking process was smooth and easy."</p>
+      <p>- John Doe</p>
+    </div>
+    <div class="testimonial">
+      <p>"Great service and professional mechanics. Highly recommend!"</p>
+      <p>- Jane Smith</p>
+    </div>
+  </section>
+
+  <!-- How to Book Section -->
+  <section id="how-to-book" class="how-to-book-section">
+    <h2>How to Book</h2>
+    <ol>
+      <li>
+        <span class="step-icon">1</span>
+        <div class="step-details">
+          <h3>Select Service</h3>
+          <p>Choose a service from our high-quality partner garages and select from products or packages offered.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-icon">2</span>
+        <div class="step-details">
+          <h3>Schedule Service</h3>
+          <p>Schedule your service for either walk-in or door-to-door pick up and drop off using GoValet.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-icon">3</span>
+        <div class="step-details">
+          <h3>Track Status</h3>
+          <p>Track the status of your service and receive updates on proposed work and repairs carried out.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-icon">4</span>
+        <div class="step-details">
+          <h3>Make Payment</h3>
+          <p>Make payment and collect your car or await delivery by GoValet. All done!</p>
+        </div>
+      </li>
+    </ol>
+  </section>  
 </body>
 </html>
