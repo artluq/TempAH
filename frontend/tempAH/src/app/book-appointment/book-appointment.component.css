@@ -1,128 +1,108 @@
-.appointment-scheduling-container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 2rem;
-    background-color: #ffffff; /* White background */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-
-  .appointment-scheduling-container h2 {
-    font-size: 2rem;
-    color: #333; /* Darker text */
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-    text-align: left;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-
-  select,
-  input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #20be35; /* Orange color */
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
-  }
-
-  button:hover {
-    background-color: #20be35; /* Darker orange on hover */
-  }
-
-  .confirmation-message {
-    margin-top: 1rem;
-    color: #28a745; /* Green text for confirmation */
-  }
-
-  /* Profile Card Styling */
-.profile-card {
+.appointment-page {
   padding: 20px;
-  border-radius: 8px;
-  background-color: #ffffff; /* Ensure background is white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  font-family: Arial, sans-serif;
 }
 
-/* Profile Details Table */
-.profile-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 16px;
-  color: #000000;
+.search-header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.profile-table td {
-  padding: 8px;
-  vertical-align: top;
+.search-header h1 {
+  font-size: 24px;
+  color: #333;
 }
 
-.profile-table td:first-child {
-  width: 30%;
-  font-weight: bold;
-  color: #000000;
+.form-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-/* Buttons */
-.button, .buttonExcel {
-  color: #fff;
+.search-inputs input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.search-inputs .search-date {
+  width: 150px;
+}
+
+.search-button {
+  background-color: #20be35;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.button {
-  background-color: #443834;
+.search-button:hover {
+  background-color: #199429;
 }
 
-.button:hover {
-  background-color: #73726f;
+.workshop-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.buttonExcel {
-  background-color: #1d7a2e;
+.workshop-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-.buttonExcel:hover {
-  background-color: #155f22;
+.workshop-card:hover {
+  transform: scale(1.05);
 }
 
-/* Profile Header */
-h2 {
-  font-size: 20px;
-  color: #ffffff;
-  letter-spacing: 1px;
-  margin: 0;
-  padding: 0;
-}
-
-textarea {
+.workshop-image {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family: inherit;
-  resize: vertical;
+  height: 150px;
+  object-fit: cover;
 }
 
+.workshop-info {
+  padding: 15px;
+}
+
+.workshop-info h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.workshop-info p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.book-button {
+  background-color: #20be35;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.book-button:hover {
+  background-color: #199429;
+}
+
+.confirmation-message {
+  margin-top: 20px;
+  color: #28a745;
+  font-size: 16px;
+  text-align: center;
+}

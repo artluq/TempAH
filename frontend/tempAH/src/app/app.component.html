@@ -25,25 +25,54 @@
         </ul>
       </nav>
     </aside>
-    <aside class="sidebar" *ngIf="login && role === 3" >
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a routerLink="/dashboard" routerLinkActive="active">Home</a></li>
-          <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
-          <li><a routerLink="/serviceslist" routerLinkActive="active">Find Workshops</a></li>
-          <li><a routerLink="/appointmentList" routerLinkActive="active">Appointments</a></li>
-          <li><a routerLink="/setting" routerLinkActive="active">Settings</a></li>    
+    <aside
+  class="sidebar"
+  [class.collapsed]="isCollapsed"
+  (mouseenter)="toggleSidebar(false)"
+  (mouseleave)="toggleSidebar(true)"
+  *ngIf="login && role === 3">
+  <nav class="sidebar-nav">
+    <ul>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <i class="fa fa-home"></i>
+          <span class="label">Home</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/serviceslist"  routerLinkActive="active">
+          <i class="fa fa-calendar"></i>
+          <span class="label">Appointment</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/appointmentList" routerLinkActive="active">
+          <i class="fa fa-calendar"></i>
+          <span class="label">History</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/profile" routerLinkActive="active">
+          <i class="fa fa-user"></i>
+          <span class="label">Profile</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/setting" routerLinkActive="active">
+          <i class="fa fa-cog"></i>
+          <span class="label">Settings</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
 
-        </ul>
-      </nav>
-    </aside>
 
     <!-- Main Content Wrapper -->
-    <div class="main-content">
+    <div class="main-content" [class.front-page]="isFrontPage">
       <main class="container">
         <router-outlet></router-outlet>
       </main>
-    
     </div>
   </div>
   <app-footer></app-footer>

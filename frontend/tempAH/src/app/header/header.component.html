@@ -9,19 +9,52 @@
     &#9776; <!-- Hamburger icon -->
   </button>
   <ul class="navbar-nav" [ngClass]="{ 'open': menuOpen }" *ngIf="!login">
-    <li><a (click)="islogin(); $event.preventDefault();" class="login-btn">Login</a></li>
+    <li><a (click)="islogin(); $event.preventDefault();" class="login">Login</a></li>
   </ul>
-
-  <ul class="navbar-nav ms-auto pe-4" *ngIf="login">
+    
+  <ul class="navbar-nav" *ngIf="login">
     <li class="nav-item">
-      <a class="nav-link" role="button">
+      <!-- <a class="nav-link" role="button">
         <i class="fa-solid fa-user fa-fw"></i> Profile
-      </a>
+      </a> -->
     </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="logout()" role="button">
+    <li>
+      <a (click)="logout()" role="button">
         <i class="fa-solid fa-sign-out-alt fa-fw"></i> Log Out
       </a>
     </li>
   </ul>
 </nav>
+<div class="modal" *ngIf="isLoginModalOpen">
+  <div class="modal-content">
+    <span class="close-btn" (click)="closeModal()">&times;</span>
+    <div class="login-container">
+      <h2 style="color: var(--dark-orange);;">Log In to Your Account</h2>
+      <form (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label for="username">Username or Email:</label>
+          <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button type="submit">Log In</button>
+      </form>
+
+      <div class="signup-redirect">
+        <p>Don't have an account? <a href="/signup">Sign up</a></p>
+      </div>
+      <div class="forgot-password">
+        <p><a href="/forgot-password">Forgot your password?</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+

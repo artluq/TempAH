@@ -1,19 +1,45 @@
+/* Ensure body uses full height and uses Flexbox for layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures full viewport height */
+}
+
+/* App Layout to use Flexbox */
+.app-layout {
+    flex: 1; /* Takes up remaining space between header and footer */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Layout content area */
+.layout-content {
+    display: flex;
+    flex: 1; /* Ensure content area takes up remaining space */
+}
+
+/* Front Page Styling */
 .frontpage {
     text-align: center;
-    margin-top: 20%;
-  }
-  
-  .frontpage h1 {
+    margin-top: 0;
+}
+
+.frontpage h1 {
     font-size: 2.5em;
     color: #ff9900;
-  }
-  
-  .frontpage p {
+}
+
+.frontpage p {
     font-size: 1.2em;
     margin-top: 10px;
-  }
-  
-  .frontpage button {
+}
+
+.frontpage button {
     padding: 10px 20px;
     font-size: 1em;
     background-color: #333;
@@ -22,39 +48,83 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .frontpage button:hover {
-    background-color: #ff9900;
-  }
+}
 
-  .appointment-scheduling {
+.frontpage button:hover {
+    background-color: #ff9900;
+}
+
+/* Slideshow Section */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    height: 400px; /* Adjust this height as needed */
+    overflow: hidden; /* Ensures images don't overflow the container */
+}
+
+/* Slide Image */
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without stretching */
+    border-radius: 8px;
+}
+
+/* Slideshow Controls */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+/* Appointment Scheduling Section */
+.appointment-scheduling {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 3rem 1rem;
     background-color: #f5f5f5;
     text-align: center;
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 600px;
-  }
-  
-  .appointment-scheduling h2 {
+}
+
+.appointment-scheduling h2 {
     font-size: 2.2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 1rem;
-  }
-  
-  .appointment-scheduling .subtitle {
+}
+
+.appointment-scheduling .subtitle {
     font-size: 1.1rem;
     color: #666;
     margin-bottom: 1.5rem;
-  }
-  
-  .schedule-button {
+}
+
+.schedule-button {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
@@ -64,49 +134,145 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .schedule-button:hover {
-    background-color: #e65b00;
-  }
-  
-  /* Appointment Scheduling Section */
-.appointment-scheduling {
-  text-align: center;
-  padding: 30px;
-}
-
-.schedule-button {
-  margin-top: 15px;
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .schedule-button:hover {
-  background-color: #0056b3;
+    background-color: #e65b00;
 }
 
-/* Slideshow Container */
+/* Feature Section */
+.features-section {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.features-section h2 {
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.feature {
+    display: inline-block;
+    width: 30%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+
+.feature:hover {
+    transform: scale(1.05);
+}
+
+.feature-icon {
+    font-size: 40px;
+    color: #ff5722;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    margin: 10px 0;
+    color: #555;
+}
+
+.feature p {
+    color: #777;
+}
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: center; /* Center the navbar items */
+  align-items: center;
+  background: #ffffff;
+  padding: 15px 20px;
+  color: var(--light-orange);
+}
+
+.navbar-nav {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding-left: 0;
+  justify-content: center; /* Center the navbar items horizontally */
+}
+
+.navbar-nav li {
+  display: inline-block;
+}
+
+.navbar-nav li a {
+  color: var(--dark-blue);
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav li a:hover {
+  background-color: var(--orange); /* Soft brown hover */
+  color: white;
+  border-radius: 5px;
+}
+
+.navbar .navbar-nav .bookAnAppointment {
+  background-color: orange; /* Set your preferred background color */
+  color: white; /* Set the text color for better contrast */
+  padding: 10px 15px; /* Adjust padding for better spacing */
+  border-radius: 5px; /* Optional: add rounded corners */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.navbar .navbar-nav .bookAnAppointment:hover {
+  background-color: darkorange; /* Optional: change the color on hover */
+}
+
+
+/* For the Right-aligned Nav Items (Logged-in State) */
+.navbar-nav.ms-auto {
+  margin-left: auto;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+/* Mobile Responsive Menu */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none; /* Hidden by default */
+    width: 100%;
+  }
+
+  .navbar-nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .navbar-nav li {
+    width: 100%;
+  }
+
+  .navbar-nav li a {
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+  }
+}
+/* Slideshow Section */
 .slideshow-container {
   position: relative;
   max-width: 100%;
-  height: 400px; /* Adjust this height as needed */
-  overflow: hidden; /* Ensures images don't overflow the container */
+  height: 400px;
+  overflow: hidden;
 }
-
-/* Slide Image */
-.slide-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the container without stretching */
-  border-radius: 8px;
-}
-
 
 .mySlides {
   display: none;
@@ -116,26 +282,13 @@
   display: block;
 }
 
-/* Image Styling */
 .slide-image {
   width: 100%;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 8px; */
 }
 
-/* Caption Styling */
-.caption {
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px 0;
-  font-size: 18px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border-radius: 0 0 8px 8px;
-}
-
-/* Controls Styling */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -162,4 +315,29 @@
   border-radius: 5px 0 0 5px;
 }
 
+@media (max-width: 768px) {
+  .frontpage h1 {
+      font-size: 2.2em;
+  }
   
+  .frontpage p {
+      font-size: 1.1em;
+  }
+
+  .appointment-scheduling {
+      padding: 2rem 1rem;
+  }
+
+  .appointment-scheduling h2 {
+      font-size: 1.8rem;
+  }
+
+  .schedule-button {
+      font-size: 1rem;
+      padding: 0.8rem 1.2rem;
+  }
+
+  .slideshow-container {
+      height: 300px;
+  }
+}

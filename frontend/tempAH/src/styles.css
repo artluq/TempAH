@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* Global color variables */
+:root {
+  --orange: #ffa701 ;
+  --light-orange: #ffe8be ;
+  --dark-orange: #ffa600 ;
+  --dark-blue: #2E4057 ;
+  --ligt-yellow: #F4F1DE;
+  --white: #ffffff;
+  --black: #000000;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -31,107 +40,7 @@ font-weight: bold;
 }
 
 button:hover {
-background-color: #20be35;
+background-color: #ffffff;
 }
 
 
-/* Navbar Styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(45deg, #330000, #73605B); /* Two-tone gradient */
-  padding: 15px 20px;
-  color: #D09683; /* Light beige text */
-}
-
-.navbar-brand a {
-  font-size: 28px;
-  font-weight: bold;
-  color: #D09683;
-  text-decoration: none;
-}
-
-.navbar-nav {
-  list-style-type: none;
-  display: flex;
-  gap: 20px;
-  padding-left: 0;
-}
-
-.navbar-nav li {
-  display: inline-block;
-}
-
-.navbar-nav li a {
-  color: #D09683;
-  font-size: 16px;
-  text-decoration: none;
-  padding: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.navbar-nav li a:hover {
-  background-color: #73605B; /* Soft brown hover */
-  color: white;
-  border-radius: 5px;
-}
-
-.menu-toggle {
-  font-size: 28px;
-  background: none;
-  border: none;
-  color: #D09683;
-  cursor: pointer;
-  display: none; /* Hidden on larger screens */
-}
-
-/* For the Right-aligned Nav Items (Logged-in State) */
-.navbar-nav.ms-auto {
-  margin-left: auto;
-}
-
-.nav-item {
-  margin-left: 20px;
-}
-
-.nav-link {
-  color: #D09683;
-  cursor: pointer;
-}
-
-.nav-link:hover {
-  color: #73605B;
-}
-
-.nav-link i {
-  margin-right: 5px;
-}
-
-/* Mobile Responsive Menu */
-@media (max-width: 768px) {
-  .navbar-nav {
-      flex-direction: column;
-      align-items: flex-start;
-      display: none; /* Hidden by default */
-      width: 100%;
-  }
-
-  .navbar-nav.open {
-      display: flex;
-  }
-
-  .menu-toggle {
-      display: inline-block;
-  }
-
-  .navbar-nav li {
-      width: 100%;
-  }
-
-  .navbar-nav li a {
-      padding: 15px;
-      width: 100%;
-      text-align: left;
-  }
-}

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -13,13 +13,21 @@ export class AppComponent implements OnInit {
   login = false;
   role: number | null = null;
   fullname: string | null = null; 
+  isCollapsed = true; // Start in collapsed state
+  isFrontPage: boolean = false;
+
   constructor(
     private router: Router,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.isFrontPage = this.router.url === '/'; 
+    });
+
     this.authService.loggedIn$.subscribe(loggedIn => {
       this.login = loggedIn;
       if (loggedIn) {
@@ -45,6 +53,9 @@ export class AppComponent implements OnInit {
     }
   }
   
+  toggleSidebar(state: boolean) {
+    this.isCollapsed = state;
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;

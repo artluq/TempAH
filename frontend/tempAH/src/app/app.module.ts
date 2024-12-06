@@ -37,7 +37,6 @@ import { SettingComponent } from './setting/setting.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ServiceManagementComponent } from './service-management/service-management.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { ApiService } from './service/api.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
@@ -69,7 +68,6 @@ import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/a
     VendorListComponent,
     UserListComponent,
     ServiceManagementComponent,
-    SidenavComponent,
     ForgotPasswordComponent
   ],
   imports: [

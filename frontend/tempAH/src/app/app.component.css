@@ -31,86 +31,150 @@ app-header, app-footer {
 }
 
 /* Layout container */
-/* Layout container */
 .app-layout {
-display: flex;
-flex-direction: column; /* Stack header above content */
-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column; /* Stack header above content */
+  height: 100vh; /* Full viewport height */
 }
 
 /* Layout content wrapper */
 .layout-content {
-display: flex; /* Allow sidebar and main content to be side by side */
-flex-grow: 1; /* Fill remaining space after header */
+  display: flex;
+  flex-grow: 1; /* Allow layout content to fill remaining height */
 }
 
 /* Header styling */
 app-header {
-width: 100%; /* Full width for header */
+  width: 100%; /* Full width for header */
+  height: 80px; /* Adjust header height as needed */
+  background-color: #2c3e50; /* Example header background */
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /* Sidebar styling */
 .sidebar {
-width: 220px;
-background-color: #d4edda; /* Light green background */
-color: #333; /* Darker text color for contrast */
-padding-top: 20px;
-display: flex;
-flex-direction: column;
-align-items: center;
+  width: 60px; /* Default collapsed width */
+  background-color: #2c3e50; /* Consistent sidebar background */
+  color: white;
+  height: calc(100vh - 80px); /* Subtract header height */
+  overflow-y: auto; /* Enable scrolling for sidebar content */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  position: fixed;
+  top: 80px; /* Push below the header (match header height) */
+  left: 0;
+  z-index: 1000;
+  transition: width 0.3s ease;
 }
 
-/* Sidebar menu items */
+/* Sidebar collapsed and expanded states */
+.sidebar.collapsed {
+  width: 60px; /* Collapsed state width */
+}
+
+.sidebar:not(.collapsed) {
+  width: 200px; /* Expanded state width */
+}
+
+/* Sidebar navigation */
 .sidebar-nav ul {
-list-style: none;
-padding: 0;
-width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar-nav li {
-width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-nav li:hover {
+  background-color: #34495e;
 }
 
 .sidebar-nav a {
-display: block;
-color: #333;
-text-decoration: none;
-padding: 12px 20px;
-font-weight: 500;
-border-radius: 5px;
-margin: 5px 10px; /* Adds spacing between menu items */
-transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Hover and active state */
-.sidebar-nav a:hover,
-.sidebar-nav a.active {
-background-color: #20be35; /* Bright green for hover/active */
-color: #ffffff; /* White text for contrast */
+.sidebar-nav a i {
+  font-size: 20px;
+  width: 30px; /* Ensure icons are aligned */
+  text-align: center;
+}
+
+.sidebar-nav a .label {
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:not(.collapsed) .sidebar-nav a .label {
+  opacity: 1; /* Show text when expanded */
+}
+
+/* Sidebar scroll styling */
+.sidebar::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #34495e; /* Scrollbar thumb color */
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: #2c3e50; /* Scrollbar track color */
 }
 
 /* Main content styling */
 .main-content {
-flex-grow: 1;
-display: flex;
-flex-direction: column;
-background-color: #f5f5f5; /* Light background for content area */
+  margin-left: 60px; /* Default margin matching collapsed sidebar width */
+  margin-top: 80px; /* Push content below the header */
+  flex-grow: 1; /* Allow main content to expand */
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.front-page {
+  margin-left: 0;
+}
+
+
+/* Adjust margin when sidebar is expanded */
+.sidebar:not(.collapsed) ~ .main-content {
+  margin-left: 200px; /* Match expanded sidebar width */
 }
 
 /* Sidebar responsiveness */
 @media (max-width: 768px) {
-.sidebar {
-  position: fixed;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  z-index: 100;
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0; /* Reset margin for mobile view */
+  }
 }
 
-.sidebar.open {
-  transform: translateX(0);
-}
-
-.main-content {
-  margin-left: 0;
-}
+/* Optional: Fix any white gaps for scrolling */
+body {
+  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }

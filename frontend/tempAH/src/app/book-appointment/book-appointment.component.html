@@ -1,72 +1,43 @@
-<div >
-  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">
-    <div class="content-header d-flex">
-      <h2>Schedule an Appointment</h2>
-    </div>
-  <form (ngSubmit)="onScheduleAppointment()">
-
-    <!--The idea is wanted to have different pop-up evaluation form -->
-    <!-- Problem Description Input with AI Solution Generation on Input Change
-    <div class="form-group">
-      <label for="problem">Describe Your Problem:</label>
-      <textarea
-        id="problem"
-        [(ngModel)]="problemDescription"
-        (ngModelChange)="generateAISolution($event)"
-        name="problem"
-        rows="4"
-        required>
-      </textarea>
-    </div>
-    -->
-     <!-- AI-Generated Solution Display
-  <div *ngIf="aiGeneratedSolution" class="ai-solution">
-    <h3>Suggested Solution:</h3>
-    <p>{{ aiGeneratedSolution }}</p>
+<div class="appointment-page">
+  <div class="search-header">
+    <h1>Find the Best Workshops for Your Car</h1>
+    <form (ngSubmit)="onSearch()">
+      <div class="form-group search-inputs">
+        <input
+          type="date"
+          [(ngModel)]="appointmentDate"
+          name="date"
+          placeholder="Select Date"
+          class="search-date"
+        />
+        <input
+          type="text"
+          [(ngModel)]="searchKeyword"
+          name="keyword"
+          placeholder="Enter Location or Workshop Name"
+          class="search-keyword"
+        />
+        <button type="submit" class="search-button">Search</button> 
+        <button mat-raised-button color="primary" (click)="openAIDiagnostic()">
+          AI Diagnostic Assistant
+        </button>
+      </div>
+    </form>
   </div>
-  -->
-  <div class="form-group">
-    <label for="location">Select Location:</label>
-    <select id="location" [(ngModel)]="selectedLocation" name="location" required>
-      <option *ngFor="let location of locations" [value]="location.name">{{ location.name }}</option>
-    </select>
+
+  <div class="workshop-list">
+    <div class="workshop-card" *ngFor="let workshop of workshops">
+      <img [src]="workshop.image" alt="{{ workshop.name }}" class="workshop-image" />
+      <div class="workshop-info">
+        <h3>{{ workshop.name }}</h3>
+        <p>{{ workshop.address }}</p>
+        <p>Rating: {{ workshop.rating }} ★</p>
+        <button (click)="bookWorkshop(workshop)" class="book-button">Book Now</button>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="workshop">Select Workshops:</label>
-    <select id="workshop" [(ngModel)]="selectedWorkshop" name="workshop" required>
-      <option *ngFor="let workshop of workshop" [value]="workshop.name">{{ workshop.name }}</option>
-    </select>
-  </div>
-    <div class="form-group">
-      <label for="service">Select Service:</label>
-      <select id="service" [(ngModel)]="selectedService" name="service" required>
-        <option *ngFor="let service of services" [value]="service.name">{{ service.name }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="date">Select Date:</label>
-      <input type="date" id="date" [(ngModel)]="appointmentDate" name="date" required>
-    </div>
-
-    <div class="form-group">
-      <label for="time">Select Time:</label>
-      <input type="time" id="time" [(ngModel)]="appointmentTime" name="time" required>
-    </div>
-
-    <!-- AI Diagnostic Assistant with Evaluation Form -->
-    <div class="form-group">
-      <button mat-raised-button color="primary" (click)="openAIDiagnostic()">
-        AI Diagnostic Assistant
-      </button>
-    </div>
-
-    <button type="submit">Schedule Appointment</button>
-  </form>
-
 
   <div *ngIf="confirmationMessage" class="confirmation-message">
     <p>{{ confirmationMessage }}</p>
   </div>
-  </mat-card>
 </div>

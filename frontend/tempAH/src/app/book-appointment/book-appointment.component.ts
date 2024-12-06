@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
-// import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 
 @Component({
   selector: 'app-book-appointment',
@@ -9,31 +8,64 @@ import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/
   styleUrls: ['./book-appointment.component.css']
 })
 export class BookAppointmentComponent {
-  selectedLocation!: string;
-  selectedWorkshop!: string;
-  selectedService!: string;
   appointmentDate!: string;
-  appointmentTime!: string;
+  searchKeyword: string = '';
   confirmationMessage!: string;
   aiGeneratedSolution!: string;
 
-  locations = [{ name: 'Kuala Lumpur' }, { name: 'Jalan Ampang' }];
-  workshop = [{ name: 'Workshop A' }, { name: 'Workshop B' }];
-  services = [
-    { name: 'Oil Change' },
-    { name: 'Brake Service' },
-    { name: 'Tire Rotation' },
-    { name: 'Engine Tune-up' }
+  // Example workshop data (replace this with API data in a real implementation)
+  workshops = [
+    {
+      id: 1,
+      name: 'Workshop A',
+      address: '123 Jalan Ampang, Kuala Lumpur',
+      rating: 4.5,
+      image: 'https://via.placeholder.com/250x150?text=Workshop+A'
+    },
+    {
+      id: 2,
+      name: 'Workshop B',
+      address: '456 Jalan Bukit Bintang, Kuala Lumpur',
+      rating: 4.2,
+      image: 'https://via.placeholder.com/250x150?text=Workshop+B'
+    },
+    {
+      id: 3,
+      name: 'Workshop C',
+      address: '789 Jalan Cheras, Kuala Lumpur',
+      rating: 4.8,
+      image: 'https://via.placeholder.com/250x150?text=Workshop+C'
+    }
   ];
+
+  filteredWorkshops = [...this.workshops]; // Copy of workshops for filtering
 
   constructor(private dialog: MatDialog) {}
 
-  onScheduleAppointment() {
-    if (!this.aiGeneratedSolution) {
-      alert('Please complete the AI Car Diagnostic first');
-      return;
-    }
-    this.confirmationMessage = 'Your appointment has been scheduled!';
+  /**
+   * Filters workshops based on the selected date and search keyword.
+   */
+  onSearch(): void {
+    this.filteredWorkshops = this.workshops.filter(workshop => {
+      const matchesDate = this.appointmentDate
+        ? true // Optionally, filter based on date availability
+        : true; // Example assumes all dates are valid
+      const matchesKeyword = this.searchKeyword
+        ? workshop.name.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+          workshop.address.toLowerCase().includes(this.searchKeyword.toLowerCase())
+        : true;
+
+      return matchesDate && matchesKeyword;
+    });
+  }
+
+  /**
+   * Handles booking a workshop.
+   * @param workshop The workshop to book.
+   */
+  bookWorkshop(workshop: any): void {
+    // Placeholder functionality for booking a workshop
+    this.confirmationMessage = `Your appointment at ${workshop.name} has been booked!`;
   }
 
   openAIDiagnostic() {

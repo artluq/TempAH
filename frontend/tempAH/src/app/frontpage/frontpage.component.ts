@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class FrontpageComponent  implements OnInit {
   slides = [
-    { image: 'assets/slide1.png'},
-    { image: 'assets/slide2.jpg'},
-    { image: 'assets/slide3.jpeg'}
+    { image: 'assets/Banner1.png'},
+    { image: 'assets/Banner2.png'},
+    { image: 'assets/Banner3.png'}
   ];
   currentSlide = 0;
 
@@ -52,8 +52,8 @@ export class FrontpageComponent  implements OnInit {
     }
   }
 
-  islogin() {
-    this.router.navigate(['/login']);
+  bookAnAppointment() {
+    this.router.navigate(['/bookappointment']);
   }
 
 }
