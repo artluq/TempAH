@@ -7,12 +7,18 @@
 
 /* Dashboard */
 .dashboard {
-  padding: 20px;
+  padding: 30px;
   max-width: 100%;
   margin: 0 auto;
-  background-color: var(--white);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--light-beige);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .dashboard-header {
@@ -20,11 +26,18 @@
   margin-bottom: 30px;
 }
 
+.dashboard-header h2 {
+  font-size: 28px;
+  color: var(--dark-blue);
+  font-weight: 700;
+}
+
+/* User Info Section */
 .user-info {
   margin-bottom: 30px;
-  padding: 15px;
-  background-color: var(--light-beige);
-  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -33,10 +46,11 @@
   color: var(--dark-blue);
 }
 
+/* Appointments Section */
 .appointments {
-  padding: 15px;
+  padding: 20px;
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -44,7 +58,7 @@
 .appointments h2 {
   margin-bottom: 20px;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 24px;
   color: var(--dark-blue);
 }
 
@@ -58,57 +72,71 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 20px;
   margin: 10px 0;
   background-color: var(--light-beige);
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .appointment-card:hover {
-  transform: translateY(-3px); /* Slight hover effect */
+  transform: translateY(-5px); /* Slight hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .appointment-details {
   flex: 1;
+  margin-right: 20px;
+  color: var(--dark-blue);
 }
 
 .appointment-details strong {
   color: var(--dark-blue);
+  font-weight: 600;
 }
 
+/* Cancel Button */
 .cancel-button {
   background-color: var(--orange);
   color: var(--light-beige);
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  flex-shrink: 0; /* Ensures button doesn't stretch */
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 14px;
+  font-weight: 600;
   white-space: nowrap; /* Prevents button text from wrapping */
 }
 
 .cancel-button:hover {
   background-color: var(--dark-blue);
   color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
 .action-buttons {
   text-align: center;
 }
 
+/* Primary Button */
 .btn {
   background-color: var(--orange); /* Primary button color */
   color: var(--light-beige);
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   margin: 5px;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .btn:hover {
   background-color: var(--dark-blue); /* Darker shade on hover */
   color: var(--light-beige);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
