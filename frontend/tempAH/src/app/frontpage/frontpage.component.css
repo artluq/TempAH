@@ -56,7 +56,7 @@ button:hover {
 .book-an-appointment-container {
   position: absolute;
   bottom: 170px; /* Adjust this value as needed */
-  left: 52%;
+  left: 50%;
   transform: translateX(-50%);
 }
 

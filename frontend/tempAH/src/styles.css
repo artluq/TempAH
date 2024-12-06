@@ -8,6 +8,7 @@
   --ligt-yellow: #F4F1DE;
   --white: #ffffff;
   --black: #000000;
+  --light-beige: #F4F1DE;
 }
 
 html, body { height: 100%; }
@@ -19,18 +20,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   
 /* Content Header */
-.content-header {
-background-color: #20be35;
-color: white;
-padding: 5px;
-margin-bottom: 20px;
-height: 30px;
-border-radius: 5px;
-}
-
 button {
 padding: 0.75rem;
-background-color: #269457; 
+background-color: var(--dark-blue);; 
 color: #ffffff;
 border: none;
 border-radius: 4px;
@@ -40,7 +32,7 @@ font-weight: bold;
 }
 
 button:hover {
-background-color: #ffffff;
+background-color: var (--light-beige);
 }
 
 

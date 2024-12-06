@@ -1,34 +1,105 @@
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+}
+
+/* General styling for the entire profile card */
+.profile-card {
+  padding: 20px;
+  background-color: var(--light-beige);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Content header styling */
+.content-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--dark-blue);
+}
+
+/* Search container styling */
+.search-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  color: var(--dark-blue);
+}
+
+.search-input, .search-select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--orange);
+  background-color: var(--light-beige);
+  color: var(--dark-blue);
+  font-size: 16px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 300px;
+}
+
+.search-select {
+  width: 100%;
+  max-width: 200px;
+}
+
+.search-button {
+  background-color: var(--orange);
+  color: var(--light-beige);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+}
+
 /* Workshops List */
 .workshops-list {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next row if they exceed the width */
-  gap: 20px; /* Space between cards */
-  justify-content: flex-start; /* Align items to the left */
-  color: #73605B; /* Base color for text */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  color: var(--dark-blue);
+}
+
+.workshops-list h3 {
+  width: 100%;
+  color: var(--dark-blue);
+  margin-bottom: 20px;
 }
 
 /* Workshop Card Container */
 .workshop-card-container {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap */
-  gap: 20px; /* Space between each card */
-  justify-content: flex-start; /* Ensure cards are aligned to the left */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 /* Workshop Card Layout */
 .workshop-card {
   display: flex;
-  flex-direction: row; /* Horizontal layout */
-  align-items: flex-start; /* Align content to the top */
-  justify-content: space-between; /* Space between left side and right side */
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
   padding: 15px;
-  border: 1px solid #D09683; /* Light brown border */
+  border: 1px solid var(--orange);
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: var(--light-beige);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  width: calc(33% - 20px); /* Three cards per row */
-  box-sizing: border-box; /* Include padding and borders in width calculation */
+  width: calc(33% - 20px);
+  box-sizing: border-box;
 }
 
 .workshop-card:hover {
@@ -38,15 +109,15 @@
 
 /* Left side: Workshop details */
 .workshop-details {
-  flex-grow: 1; /* Take remaining space */
-  margin-right: 20px; /* Space between details and specialist info */
-  color: #330000; /* Dark red for details */
+  flex-grow: 1;
+  margin-right: 20px;
+  color: var(--dark-blue);
 }
 
 /* Right side: Specialist info */
 .specialist-info {
   display: flex;
-  flex-direction: column; /* Stack the image and description vertically */
+  flex-direction: column;
   align-items: center;
   gap: 10px;
 }
@@ -58,97 +129,43 @@
   object-fit: cover;
   max-height: 100px;
   border-radius: 100%;
-  border: 2px solid #D09683; /* Adding border to the image */
+  border: 2px solid var(--orange);
 }
 
 /* Specialist Description */
 .specialist-description {
   font-size: 0.9rem;
-  color: #73605B; /* Soft brown for text */
+  color: var(--dark-blue);
   margin: 0;
   line-height: 1.5;
   text-align: justify;
-  max-height: 120px; /* Limit the height */
-  overflow: hidden; /* Hide overflowing text */
+  max-height: 120px;
+  overflow: hidden;
   word-wrap: break-word;
-  padding-right: 50px; /* Add some space */
-  padding-left: 50px;
+  padding: 0 50px;
 }
 
 /* Book Appointment Button */
 .book-button {
-  background-color: #330000; /* Dark Red */
-  color: #fff;
+  background-color: var(--orange);
+  color: var(--light-beige);
   border: none;
   padding: 12px 24px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-start; /* Keep the button at the start of the card */
+  align-self: flex-start;
 }
 
 .book-button:hover {
-  background-color: #5c0000; /* Lighter red on hover */
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
 }
 
-/* Search Container */
-.search-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
-  justify-content: space-between;
-  color: #73605B; /* Base color for the search container */
-}
-
-/* Enter Location Input */
-.search-input {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #D09683; /* Border with light brown color */
-  width: 100%;
-  max-width: 300px; /* Adjust the width */
-  background-color: #ffffff;
-  color: #330000; /* Dark red text */
-  font-size: 16px;
-}
-
-.search-input:focus {
-  border-color: #73605B; /* Focused border color */
-  outline: none;
-}
-
-/* All Services Dropdown */
-.search-select {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #D09683; /* Border with light brown color */
-  background-color: #ffffff;
-  color: #330000; /* Dark red text */
-  font-size: 16px;
-  width: 100%;
-  max-width: 200px;
-}
-
-.search-select:focus {
-  border-color: #73605B; /* Focused border color */
-  outline: none;
-}
-
-/* Search Button for "Enter Location" and "All Services" */
-.search-button {
-  background-color: #330000; /* Dark Red */
-  color: #fff;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  max-width: 200px;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: #5c0000; /* Lighter red on hover */
+/* No results found message */
+.no-results {
+  text-align: center;
+  color: var(--dark-blue);
 }
 
 /* Responsive Adjustments */
@@ -161,7 +178,11 @@
   .search-input,
   .search-select,
   .search-button {
-    width: 100%; /* Ensure they fill the width */
+    width: 100%;
     max-width: 100%;
+  }
+
+  .workshop-card {
+    width: 100%;
   }
 }

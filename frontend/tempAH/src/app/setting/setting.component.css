@@ -1,118 +1,149 @@
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+}
 
-  .setting-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-size: 16px;
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #007bff;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  /* Profile Card Styling */
-.profile-card {
-  padding: 20px;
+/* Setting Item */
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--light-beige);
   border-radius: 8px;
-  background-color: #ffffff; /* Ensure background is white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.setting-item:hover {
+  background-color: var(--orange);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+label {
+  font-size: 18px;
+  color: var(--dark-blue);
+  font-weight: 600;
+}
+
+/* Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--dark-blue);
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--light-beige);
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--orange);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Profile Card Styling */
+.profile-card {
+  padding: 30px;
+  border-radius: 15px;
+  background-color: var(--light-beige);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
 }
 
 /* Profile Details Table */
 .profile-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 16px;
-  color: #000000;
+  font-size: 18px;
+  color: var(--dark-blue);
 }
 
 .profile-table td {
-  padding: 8px;
+  padding: 12px;
   vertical-align: top;
+  border-bottom: 1px solid var(--orange);
 }
 
 .profile-table td:first-child {
-  width: 30%;
+  width: 35%;
   font-weight: bold;
-  color: #000000;
+  color: var(--dark-blue);
 }
 
 /* Buttons */
 .button, .buttonExcel {
-  color: #fff;
-  padding: 10px 20px;
+  color: var(--light-beige);
+  padding: 12px 25px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .button {
-  background-color: #443834;
+  background-color: var(--orange);
 }
 
 .button:hover {
-  background-color: #73726f;
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
 }
 
 .buttonExcel {
-  background-color: #1d7a2e;
+  background-color: var(--dark-blue);
 }
 
 .buttonExcel:hover {
-  background-color: #155f22;
+  background-color: var(--orange);
+  transform: translateY(-3px);
 }
 
 /* Profile Header */
 h2 {
-  font-size: 20px;
-  color: #ffffff;
+  font-size: 26px;
+  color: var(--dark-blue);
   letter-spacing: 1px;
   margin: 0;
   padding: 0;
+  font-weight: 700;
 }
-

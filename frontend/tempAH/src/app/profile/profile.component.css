@@ -1,62 +1,124 @@
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+}
+
 /* Profile Card Styling */
 .profile-card {
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #ffffff; /* Ensure background is white */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  padding: 30px;
+  border-radius: 15px;
+  background-color: var(--light-beige);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-  
-  /* Profile Details Table */
-  .profile-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-    color: #000000;
-  }
-  
-  .profile-table td {
-    padding: 8px;
-    vertical-align: top;
-  }
-  
-  .profile-table td:first-child {
-    width: 30%;
-    font-weight: bold;
-    color: #000000;
-  }
-  
-  /* Buttons */
-  .button, .buttonExcel {
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .button {
-    background-color: #443834;
-  }
-  
-  .button:hover {
-    background-color: #73726f;
-  }
-  
-  .buttonExcel {
-    background-color: #1d7a2e;
-  }
-  
-  .buttonExcel:hover {
-    background-color: #155f22;
-  }
-  
-  /* Profile Header */
-  h2 {
-    font-size: 20px;
-    color: #ffffff;
-    letter-spacing: 1px;
-    margin: 0;
-    padding: 0;
-  }
-  
+
+.profile-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--orange);
+}
+
+h2 {
+  font-size: 26px;
+  color: var(--dark-blue);
+  font-weight: 700;
+}
+
+/* Profile Details Section */
+.profile-details {
+  margin-bottom: 30px;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  color: var(--dark-blue);
+}
+
+.profile-table td {
+  padding: 12px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--orange);
+}
+
+.profile-table td:first-child {
+  width: 35%;
+  font-weight: bold;
+}
+
+/* Form Styling */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.profile-form label {
+  display: flex;
+  flex-direction: column;
+  color: var(--dark-blue);
+  font-weight: 600;
+}
+
+.profile-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid var(--dark-blue);
+  background-color: var(--light-beige);
+  color: var(--dark-blue);
+  font-size: 16px;
+}
+
+.profile-form input:focus {
+  border-color: var(--orange);
+  outline: none;
+  background-color: var(--light-beige);
+  box-shadow: 0 0 10px rgba(255, 167, 1, 0.5);
+}
+
+/* Action Buttons */
+.action-buttons {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.button, .buttonExcel {
+  color: var(--light-beige);
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.button {
+  background-color: var(--orange);
+}
+
+.button:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
+}
+
+.buttonExcel {
+  background-color: var(--dark-blue);
+}
+
+.buttonExcel:hover {
+  background-color: var(--orange);
+  transform: translateY(-3px);
+}

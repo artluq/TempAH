@@ -1,8 +1,16 @@
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+}
+
+/* Dashboard */
 .dashboard {
   padding: 20px;
   max-width: 100%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: var(--white);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -15,26 +23,29 @@
 .user-info {
   margin-bottom: 30px;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: var(--light-beige);
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .user-info h2 {
   margin-bottom: 15px;
+  color: var(--dark-blue);
 }
 
 .appointments {
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: var(--white);
   border-radius: 8px;
   margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .appointments h2 {
   margin-bottom: 20px;
   text-align: center;
   font-size: 1.5em;
-  color: #333;
+  color: var(--dark-blue);
 }
 
 .appointments ul {
@@ -49,7 +60,7 @@
   justify-content: space-between;
   padding: 15px;
   margin: 10px 0;
-  background-color: #f9f9f9;
+  background-color: var(--light-beige);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -63,12 +74,12 @@
 }
 
 .appointment-details strong {
-  color: #333;
+  color: var(--dark-blue);
 }
 
 .cancel-button {
-  background-color: #ff4d4d;
-  color: #fff;
+  background-color: var(--orange);
+  color: var(--light-beige);
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
@@ -78,7 +89,8 @@
 }
 
 .cancel-button:hover {
-  background-color: #e60000;
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
 }
 
 .action-buttons {
@@ -86,8 +98,8 @@
 }
 
 .btn {
-  background-color: #20be35; /* Primary button color */
-  color: #ffffff;
+  background-color: var(--orange); /* Primary button color */
+  color: var(--light-beige);
   border: none;
   padding: 10px 20px;
   margin: 5px;
@@ -97,5 +109,6 @@
 }
 
 .btn:hover {
-  background-color: #17a629; /* Darker shade on hover */
+  background-color: var(--dark-blue); /* Darker shade on hover */
+  color: var(--light-beige);
 }
