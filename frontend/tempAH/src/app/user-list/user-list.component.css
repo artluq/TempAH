@@ -1,65 +1,109 @@
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+  --card-bg: #ffffff;
+  --text-dark: #333;
+  --text-light: #888;
+  --highlight: #007bff;
+  --status-active: #20be35;
+  --status-inactive: red;
+}
+
+/* User Management Container */
 .user-management-container {
-    padding: 20px;
-  }
-  
-  .btn-create {
-    margin-bottom: 20px;
-  }
-  
-  .user-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .user-table th,
-  .user-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .user-table th {
-    background-color: #f3f3f3;
-  }
-  .status-active {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .status-inactive {
-    color: red;
-    font-weight: bold;
-  }
-  
-  .icon-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1em;
-    margin: 0 2px; /* Reduced margin to bring icons closer */
-    color: #333;
-    transition: color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  .icon-button:hover {
-    color: #20be35; /* Highlight color on hover */
-  }
-  
-  .icon-button:focus {
-    outline: none;
-  }
-  
-  .appointments-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    white-space: nowrap; /* Keeps icons and text on one line */
-  }
-  
-  /* Modal Overlay */
+  padding: 30px;
+  background-color: var(--light-beige);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Create Button Styling */
+.btn-create {
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-create:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
+}
+
+/* User Table Styling */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th,
+.user-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--orange);
+}
+
+.user-table th {
+  background-color: var(--orange);
+  color: var(--light-beige);
+  font-weight: bold;
+}
+
+/* Status Styling */
+.status-active {
+  color: var(--status-active);
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: var(--status-inactive);
+  font-weight: bold;
+}
+
+/* Icon Button Styling */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin: 0 2px;
+  color: var(--text-dark);
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-button:hover {
+  color: var(--status-active);
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
+/* Appointments Table Styling */
+.appointments-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--orange);
+  white-space: nowrap;
+}
+
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -75,11 +119,11 @@
 
 /* Modal Content */
 .modal-content {
-  background: white;
-  border-radius: 8px;
+  background: var(--card-bg);
+  border-radius: 12px;
   width: 400px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -93,15 +137,16 @@
 
 .modal-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
+  color: var(--dark-blue);
 }
 
 .close-button {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
-  color: #999;
+  color: var(--text-light);
 }
 
 /* Form Styling */
@@ -113,14 +158,16 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: var(--dark-blue);
 }
 
 .form-modal input, .form-modal select {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 10px;
+  border: 1px solid var(--text-light);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--dark-blue);
 }
 
 .modal-footer {
@@ -130,21 +177,32 @@
 }
 
 .btn {
-  padding: 8px 12px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s;
 }
 
 .btn-primary {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--highlight);
+  color: var(--light-beige);
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--text-light);
+  color: var(--light-beige);
+}
+
+.btn-secondary:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
 }
 
 /* Fade In Animation */

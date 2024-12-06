@@ -1,26 +1,38 @@
 /* Global color variables */
-.content-header {
-  background-color: #20be35;
-  color: white;
-  padding: 5px;
-  margin-bottom: 20px;
-  height: 30px;
-  border-radius: 5px;
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
 }
 
+/* Content Header */
+.content-header {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Button Styling */
 button {
-  padding: 0.75rem;
-  background-color: #269457; 
-  color: var(--white);
+  padding: 10px 20px;
+  background-color: var(--orange); 
+  color: var(--light-beige);
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
   font-weight: bold;
 }
 
 button:hover {
-  background-color: var(--white);
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
 /* Navbar */
@@ -28,8 +40,10 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--white); /* Light background */
-  padding: 15px 20px;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-nav {
@@ -42,17 +56,18 @@ button:hover {
 .navbar-nav li a {
   font-size: 16px;
   text-decoration: none;
-  padding: 10px;
+  padding: 10px 15px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  color: var(--dark-blue); /* Dark Blue */
+  color: var(--dark-blue);
 }
 
 .navbar-nav li a:hover {
-  background-color: var(--orange); /* Bright Orange */
-  color: var(--white);
+  background-color: var(--orange);
+  color: var(--light-beige);
   border-radius: 5px;
 }
 
+/* Book Appointment Button */
 .book-an-appointment-container {
   position: absolute;
   bottom: 170px; /* Adjust this value as needed */
@@ -61,15 +76,18 @@ button:hover {
 }
 
 .bookAnAppointment {
-  background-color: var(--orange); /* Bright Orange */
-  color: var(--white);
-  padding: 10px 15px;
-  border-radius: 5px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  padding: 10px 20px;
+  border-radius: 8px;
   text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .bookAnAppointment:hover {
-  background-color: var(--dark-blue); /* Dark Blue */
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
 /* Slideshow */
@@ -78,6 +96,8 @@ button:hover {
   max-width: 100%;
   height: 400px;
   overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .mySlides {
@@ -99,11 +119,13 @@ button:hover {
   position: absolute;
   top: 50%;
   padding: 16px;
-  color: var(--white);
+  color: var(--light-beige);
   font-size: 24px;
   transition: 0.3s;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
+  border-radius: 8px;
+  user-select: none;
+  transform: translateY(-50%);
 }
 
 .prev {
@@ -116,81 +138,87 @@ button:hover {
 
 /* Features Section */
 .features-section {
-  padding: 60px 10px;
-  background-color: var(--white);
+  padding: 60px 20px;
+  background-color: var(--light-beige);
   text-align: center;
 }
 
 .features-section h2 {
   margin-bottom: 40px;
-  color: var(--dark-blue); /* Dark Blue */
+  color: var(--dark-blue);
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .feature {
   display: inline-block;
   width: 30%;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  border-radius: 8px;
-  background-color: var(--light-orange);
-  transition: transform 0.2s;
+  border-radius: 12px;
+  background-color: var(--white);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .feature:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .feature-icon {
   font-size: 40px;
-  color: var(--orange); /* Bright Orange */
+  color: var(--orange);
   margin-bottom: 20px;
 }
 
 .feature h3 {
-  color: var(--dark-blue); /* Dark Blue */
+  color: var(--dark-blue);
   margin: 10px 0;
 }
 
 .feature p {
-  color: var(--dark-blue); /* Soft Brown */
+  color: var(--dark-blue);
 }
 
 /* Testimonials Section */
 .testimonials-section {
-  padding: 50px 20px;
-  background-color: var(--white); /* Light Beige */
+  padding: 60px 20px;
+  background-color: var(--white);
   text-align: center;
 }
 
 .testimonials-section h2 {
   margin-bottom: 40px;
-  color: var(--dark-blue); /* Dark Blue */
+  color: var(--dark-blue);
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .testimonial {
   display: inline-block;
   width: 30%;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  border-radius: 8px;
-  background-color: var(--light-orange);
-  transition: transform 0.2s;
+  border-radius: 12px;
+  background-color: var(--light-beige);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .testimonial:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .testimonial p {
-  color: var(--dark-blue); /* Dark Blue */
+  color: var(--dark-blue);
 }
 
 /* How to Book Section */
 .how-to-book-section {
   padding: 60px 20px;
-  background-color: var(--white);
+  background-color: var(--light-beige);
   text-align: center;
 }
 
@@ -198,6 +226,7 @@ button:hover {
   font-size: 2.5rem;
   margin-bottom: 40px;
   color: var(--dark-blue);
+  font-weight: bold;
 }
 
 .how-to-book-section ol {
@@ -213,9 +242,9 @@ button:hover {
 .how-to-book-section ol li {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  background-color: var(--light-orange);
+  background-color: var(--white);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   display: flex;
@@ -245,26 +274,25 @@ button:hover {
   color: var(--dark-blue);
 }
 
-
 /* Footer */
 .footer {
-  background-image: linear-gradient(45deg, var(--dark-blue), var(--orange)); /* Dark Blue to Bright Orange gradient */
-  color: var(--light-yellow); /* Light Beige */
+  background-image: linear-gradient(45deg, var(--dark-blue), var(--orange));
+  color: var(--light-beige);
   padding: 20px;
   text-align: center;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   font-size: 0.9em;
 }
 
 .footer a {
-  color: var(--light-yellow); /* Light Beige color for links */
+  color: var(--light-beige);
   text-decoration: none;
   margin: 0 10px;
   transition: color 0.3s ease;
 }
 
 .footer a:hover {
-  color: var(--orange); /* Bright Orange when hovered */
+  color: var(--orange);
 }
 
 /* Mobile Responsive Design */
@@ -272,7 +300,7 @@ button:hover {
   .navbar-nav {
     flex-direction: column;
     align-items: flex-start;
-    display: none; /* Hidden by default */
+    display: none;
     width: 100%;
   }
 
@@ -291,6 +319,6 @@ button:hover {
 
   .features-section .feature,
   .testimonials-section .testimonial {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%;
   }
 }
