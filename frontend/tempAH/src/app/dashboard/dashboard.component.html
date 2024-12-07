@@ -1,29 +1,31 @@
 <div class="dashboard-container">
-    <header class="dashboard-header">
-      <h1>Hello, {{ username }}! </h1>
-      <p>Here's your dashboard.</p>
-      <p>Your dashboard for managing appointments and services.</p>
-    </header>
-    <nav class="dashboard-nav">
-      <ul><section class="dashboard">
+  <header class="dashboard-header">
+    <h1>Hello, {{ username }}!</h1>
+    <p>Here's your dashboard.</p>
+    <p>Your dashboard for managing appointments and services.</p>
+  </header>
+  <nav class="dashboard-nav">
+    <ul>
+      <section class="dashboard">
         <div class="appointments">
           <h2>Your Upcoming Appointments</h2>
           <ul>
-              <li *ngFor="let appointment of upcomingAppointments" class="appointment-card">
-                  <div class="appointment-details">
-                      <p><strong>Date:</strong> {{ appointment.date | date:'longDate' }}</p>
-                      <p><strong>Service:</strong> {{ appointment.service }}</p>
-                      <p><strong>Location:</strong> {{ appointment.location }}</p>
-                  </div>
-                  <button class="cancel-button">Cancel Appointment</button>
-              </li>
+            <li *ngFor="let appointment of upcomingAppointments" class="appointment-card">
+              <div class="appointment-details">
+                <p><strong>Date:</strong> {{ appointment.bookingDate | date:'longDate' }}</p>
+                <p><strong>Slot:</strong> {{ appointment.slot }}</p>
+                <p><strong>Service:</strong> {{ appointment.serviceTitle}}</p>
+                <p><strong>Price:</strong> RM {{ appointment.priceRange }}</p>
+              </div>
+              <button class="cancel-button">Cancel Appointment</button>
+            </li>
           </ul>
-      </div>
-        <div class="action-buttons">
-            <button class="btn">Book New Appointment</button>
-            <button class="btn">Log Out</button>
         </div>
-    </section>
-      </ul>
-    </nav>
-  
+        <div class="action-buttons">
+          <button class="btn" (click)="bookNewAppointment()">Book New Appointment</button>
+          <button class="btn">Log Out</button>
+        </div>
+      </section>
+    </ul>
+  </nav>
+</div>

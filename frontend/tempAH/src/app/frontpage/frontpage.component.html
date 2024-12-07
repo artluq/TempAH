@@ -23,12 +23,46 @@
       <li><a href="#how-to-book" class="how-to-book-btn">How to Book</a></li>
       <li><a href="#service-packages">Our Features</a></li>
       <li><a href="#garages-near-you">Garages Near You</a></li>
+      <ul class="navbar-nav" [ngClass]="{ 'open': menuOpen }" *ngIf="!login">
+        <li><a (click)="islogin()" class="login">Login</a></li>
+      </ul>
     </ul>
     <div class="book-an-appointment-container">
       <a href="/serviceslist" class="bookAnAppointment">Book an Appointment</a>
     </div>
   </nav>
-
+  <div class="modal" *ngIf="isLoginModalOpen">
+    <div class="modal-content">
+      <span class="close-btn" (click)="closeModal()">&times;</span>
+      <div class="login-container">
+        <h2 style="color: var(--dark-orange);;">Log In to Your Account</h2>
+        <form (ngSubmit)="onLogin()">
+          <div class="form-group">
+            <label for="username">Username or Email:</label>
+            <input type="text" id="username" [(ngModel)]="username" name="username" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" [(ngModel)]="password" name="password" required>
+          </div>
+  
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+  
+          <button type="submit">Log In</button>
+        </form>
+  
+        <div class="signup-redirect">
+          <p>Don't have an account? <a href="/signup">Sign up</a></p>
+        </div>
+        <div class="forgot-password">
+          <p><a href="/forgot-password">Forgot your password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Features Section -->
   <section class="features-section">
     <h2>Our Features</h2>
@@ -93,5 +127,7 @@
       </li>
     </ol>
   </section>  
+  
+  
 </body>
 </html>

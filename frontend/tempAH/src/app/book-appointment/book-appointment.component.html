@@ -1,43 +1,38 @@
-<div class="appointment-page">
-  <div class="search-header">
-    <h1>Find the Best Workshops for Your Car</h1>
-    <form (ngSubmit)="onSearch()">
-      <div class="form-group search-inputs">
-        <input
-          type="date"
-          [(ngModel)]="appointmentDate"
-          name="date"
-          placeholder="Select Date"
-          class="search-date"
-        />
-        <input
-          type="text"
-          [(ngModel)]="searchKeyword"
-          name="keyword"
-          placeholder="Enter Location or Workshop Name"
-          class="search-keyword"
-        />
-        <button type="submit" class="search-button">Search</button> 
-        <button mat-raised-button color="primary" (click)="openAIDiagnostic()">
-          AI Diagnostic Assistant
-        </button>
-      </div>
-    </form>
-  </div>
+<div class="booking-container">
+  <h2>Book Appointment  </h2>
+  <h3>{{ selectedService.serviceTitle }}  </h3>
+  <p>{{ selectedService.description }}</p>
+  <p>{{ selectedService.details }}</p>
 
-  <div class="workshop-list">
-    <div class="workshop-card" *ngFor="let workshop of workshops">
-      <img [src]="workshop.image" alt="{{ workshop.name }}" class="workshop-image" />
-      <div class="workshop-info">
-        <h3>{{ workshop.name }}</h3>
-        <p>{{ workshop.address }}</p>
-        <p>Rating: {{ workshop.rating }} ★</p>
-        <button (click)="bookWorkshop(workshop)" class="book-button">Book Now</button>
-      </div>
+  <form (ngSubmit)="bookAppointment(bookingForm.value)" #bookingForm="ngForm">
+    <label for="date">Preferred Date</label>
+    <input
+      type="date"
+      id="date"
+      name="date"
+      ngModel
+      required
+      [min]="today"
+    />
+
+    <label for="slot">Available Slot</label>
+    <div class="slot-buttons">
+      <button
+        type="button"
+        *ngFor="let slot of availableSlots"
+        [ngClass]="{ selected: selectedSlot === slot }"
+        (click)="selectSlot(slot)"
+        class="slot-btn"
+      >
+        {{ slot }}
+      </button>
     </div>
-  </div>
 
-  <div *ngIf="confirmationMessage" class="confirmation-message">
-    <p>{{ confirmationMessage }}</p>
-  </div>
+    <label for="comments">Additional Comments</label>
+    <textarea id="comments" name="comments" ngModel></textarea>
+
+    <button type="submit" [disabled]="!bookingForm.valid || !selectedSlot" class="btn btn-primary">
+      Confirm Booking
+    </button>
+  </form>
 </div>

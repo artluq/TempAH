@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user.model';  // Import the User interface
 import { Vendor } from '../model/vendor.model';
 import { Service, ServiceDetail } from '../model/services.model';
+import { Booking, ViewBooking } from '../model/appointment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -81,5 +82,20 @@ export class ApiService {
   AddServiceDetails(service: ServiceDetail): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Service`, service);
   }
+  //---------------------------BOOKING--------------------------------------------
+  AddBookAppointment(booking: Booking): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/Bookings`, booking);
+  }
 
+  getBookAppointment(): Observable<ViewBooking[]> {
+    let userid = sessionStorage.getItem('userid'); 
+    console.log(userid)
+    return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/user/` + userid)
+  }
+
+  getBookAppointmentbyVendor(): Observable<ViewBooking[]> {
+    let userid = sessionStorage.getItem('userid'); 
+    console.log(userid)
+    return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/vendor/` + userid)
+  }
 }

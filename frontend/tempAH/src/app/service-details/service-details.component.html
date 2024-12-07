@@ -14,13 +14,16 @@
         <span class="badge">Best Seller</span>
       </div>
       <p class="service-description">{{ service.description }}</p>
-      <p><strong>Details:</strong> {{ service.details }}</p>
-      <p><strong>Price Range:</strong> <span class="price">{{ service.priceRange }}</span></p>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li *ngFor="let detail of toArray(service.details)">
+          <div [innerHTML]="detail"></div>  <!-- Render the formatted HTML -->
+        </li>
+      </ul>
+      <p><strong>Price Range:</strong> <span class="price">RM {{ service.priceRange }}</span></p>
 
       <div class="cta-container">
-        <button (click)="selectService(service)" class="btn btn-primary cta-button">
-          Book Now
-        </button>
+        <button (click)="selectService(service)" class="btn btn-primary">Book Now</button>
         <p class="cta-note">Hurry! Only a few slots left.</p>
       </div>
     </div>

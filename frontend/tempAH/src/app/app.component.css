@@ -68,11 +68,11 @@ app-header {
   width: 60px; /* Default collapsed width */
   background-color: var(--dark-blue); /* Updated color */
   color: var(--light-beige); /* Updated color */
-  height: calc(100vh - 80px); /* Subtract header height */
+  height: 100%; /* Subtract header height */
   overflow-y: auto; /* Enable scrolling for sidebar content */
   overflow-x: hidden; /* Hide horizontal overflow */
   position: fixed;
-  top: 80px; /* Push below the header (match header height) */
+  top: 0; /* Push below the header (match header height) */
   left: 0;
   z-index: 1000;
   transition: width 0.3s ease;
@@ -146,7 +146,7 @@ app-header {
 /* Main content styling */
 .main-content {
   margin-left: 60px; /* Default margin matching collapsed sidebar width */
-  margin-top: 80px; /* Push content below the header */
+  margin-top: 0; /* Push content below the header */
   flex-grow: 1; /* Allow main content to expand */
   display: flex;
   flex-direction: column;

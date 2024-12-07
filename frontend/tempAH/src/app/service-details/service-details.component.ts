@@ -3,6 +3,7 @@ import { ApiService } from '../service/api.service';
 import { ServiceDetail } from '../model/services.model';
 import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-details',
@@ -14,7 +15,7 @@ export class ServiceDetailsComponent {
   selectedService: any = null;
   aiGeneratedSolution!: string;
 
-  constructor(private Service: ApiService, private dialog: MatDialog) {}
+  constructor(private Service: ApiService, private dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.getServices();
@@ -25,7 +26,7 @@ export class ServiceDetailsComponent {
     this.Service.getServiceDetails().subscribe(
       (response: any) => {
         this.services = response;
-        // this.formatDetails();
+        this.formatDetails();
       },
       (error) => {
         console.error('Error fetching services:', error);
@@ -33,20 +34,47 @@ export class ServiceDetailsComponent {
     );
   }
 
-  // formatDetails() {
-  //   this.services = this.services.map(service => {
-  //     if (service.details && typeof service.details === 'string') {
-  //       service.details = service.details.split(';'); // Convert semicolon-separated string to array
-  //     }
-  //     return service;
-  //   });
-  // }
+  formatDetails(): void {
+    this.services = this.services.map(service => {
+      service.details = this.formatBoldText(service.details);  // Format bold text
+      return service;
+    });
+  }
+
+  toArray(details: string | string[]): string[] {
+    if (Array.isArray(details)) {
+      return details;
+    } else if (typeof details === 'string') {
+      return details.split(';');
+    }
+    return [];
+  }
+
+  formatBoldText(details: string | string[]): string[] {
+    if (Array.isArray(details)) {
+      return details.map(detail => this.applyBold(detail));
+    } else if (typeof details === 'string') {
+      return details.split(';').map(detail => this.applyBold(detail));
+    }
+    return [];
+  }
+
+  applyBold(detail: string): string {
+    const boldPattern = /\*\*(.*?)\*\*/g;  // Regex to match text between ** and **
+    return detail.replace(boldPattern, '<strong>$1</strong>');  // Wrap the matched text in <strong> tags
+  }
+  
   // Handle selecting a service
   selectService(service: any): void {
     this.selectedService = service;
     console.log('Service selected:', service);
-    // You can now proceed to book the appointment for the selected service
-    // or navigate to another page for further steps.
+    sessionStorage.setItem('selectedService', JSON.stringify(service));
+    const isLoggedIn = sessionStorage.getItem('access_token'); // Check login status
+    if (isLoggedIn) {
+      this.router.navigate(['/bookappointment'], { state: { service } }); // Pass service details
+    } else {
+      this.router.navigate(['/login'], { queryParams: { returnUrl: '/bookappointment' } });
+    }
   }
 
   openAIDiagnostic() {

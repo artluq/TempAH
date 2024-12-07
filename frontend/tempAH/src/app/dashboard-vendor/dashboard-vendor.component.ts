@@ -1,6 +1,8 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../service/api.service';
+import { ViewBooking } from '../model/appointment.model';
 
 @Component({
   selector: 'app-dashboard-vendor',
@@ -8,27 +10,20 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./dashboard-vendor.component.css']
 })
 export class DashboardVendorComponent implements OnInit {
-  vendorStats = [
-    { label: 'New', count: 10 },
-    { label: 'Active', count: 120 },
-    { label: 'Inactive', count: 45 },
-  ];
+ 
+  upcomingAppointments: ViewBooking[] = []; // Store the fetched appointments
 
-  userStats = [
-    { label: 'New', count: 25 },
-    { label: 'Active', count: 300 },
-    { label: 'Inactive', count: 75 },
-  ];
+  constructor(private bookingService: ApiService) {}
 
-
-  // Upcoming Appointments Data
-  upcomingAppointments = [
-    { date: '2024-11-10', time: '10:00 AM', service: 'Oil Change', customer: 'customer A' },
-    { date: '2024-11-15', time: '02:00 PM', service: 'Tire Rotation', customer: 'customer B' },
-    // Add more appointments as needed
-  ];
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Fetch appointments for the vendor when the component is initialized
+    this.bookingService.getBookAppointmentbyVendor().subscribe(
+      (appointments: ViewBooking[]) => {
+        this.upcomingAppointments = appointments; // Update the upcoming appointments
+      },
+      (error) => {
+        console.error('Error fetching appointments:', error); // Handle error
+      }
+    );
+  }
 }

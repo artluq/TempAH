@@ -32,10 +32,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let appointment of upcomingAppointments">
-            <td>{{ appointment.date | date: 'shortDate' }}</td>
-            <td>{{ appointment.time }}</td>
-            <td>{{ appointment.service }}</td>
-            <td>{{ appointment.customer }}</td>
+            <td>{{ appointment.bookingDate | date: 'shortDate' }}</td>
+            <td>{{ appointment.slot }}</td>
+            <td>{{ appointment.serviceName }}</td>
+            <td>{{ appointment.userId }}</td>
           </tr>
         </tbody>
       </table>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { FormsModule } from '@angular/forms';
 
@@ -12,15 +12,19 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
+  returnUrl: string = '/dashboard';
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthService,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     // Clear authentication data when the login page is loaded
+    // Retrieve the returnUrl from the query parameters, if present
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     sessionStorage.clear();
     localStorage.clear();
     (this.authService as any).loggedIn.next(false); // Notify logout state if needed
@@ -29,9 +33,11 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
+        console.log(response.userid)
         // Store the token and role in localStorage
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('role', response.role.toString());
+        sessionStorage.setItem('userid', response.userid);
 
         // Notify AuthService about the login state
         // this.authService.loggedIn$.next(true);
@@ -56,7 +62,7 @@ export class LoginComponent implements OnInit {
     } else if (role === 2) {
       this.router.navigate(['/dashboard-vendor']);
     } else if (role === 3) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigateByUrl(this.returnUrl);
     }
   }
 }

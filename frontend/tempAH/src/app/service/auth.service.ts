@@ -10,9 +10,9 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedIn.asObservable();
   private userRole: number | null = null;  
-  private fullname: string | null = null; // Store fullname
+  private fullname: string | null = null;
+  private userid: number | null = null; 
   private loginUrl = 'http://localhost:8000/api/users/login/';
-  // private apiUrl = 'http://localhost:5246/api/Users/Login'; 
   private apiUrl = 'https://api.lgm.gov.my/API_Tempah/api/Users/Login'; 
 
   constructor(private http: HttpClient) {
@@ -38,6 +38,7 @@ export class AuthService {
           sessionStorage.setItem('access_token', response.token);
           sessionStorage.setItem('role', response.role.toString());
           sessionStorage.setItem('fullname', response.fullname);
+          sessionStorage.setItem('userid', response.userid);
           this.loggedIn.next(true);  // Emit loggedIn as true
           this.userRole = response.role;  // Update the role
           this.fullname = response.fullname;
@@ -63,6 +64,10 @@ export class AuthService {
 
   getFullname(): string | null {
     return this.fullname;
+  }
+
+  getUserId(): number | null {
+    return this.userid;
   }
 
   isLoggedIn(): Observable<boolean> {

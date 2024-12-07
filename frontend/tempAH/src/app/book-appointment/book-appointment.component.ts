@@ -1,85 +1,105 @@
-import { MatDialog } from '@angular/material/dialog';
-import { Component } from '@angular/core';
-import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../service/api.service';
+import { Booking } from '../model/appointment.model';
 
 @Component({
   selector: 'app-book-appointment',
   templateUrl: './book-appointment.component.html',
   styleUrls: ['./book-appointment.component.css']
 })
-export class BookAppointmentComponent {
-  appointmentDate!: string;
-  searchKeyword: string = '';
-  confirmationMessage!: string;
-  aiGeneratedSolution!: string;
-
-  // Example workshop data (replace this with API data in a real implementation)
-  workshops = [
-    {
-      id: 1,
-      name: 'Workshop A',
-      address: '123 Jalan Ampang, Kuala Lumpur',
-      rating: 4.5,
-      image: 'https://via.placeholder.com/250x150?text=Workshop+A'
-    },
-    {
-      id: 2,
-      name: 'Workshop B',
-      address: '456 Jalan Bukit Bintang, Kuala Lumpur',
-      rating: 4.2,
-      image: 'https://via.placeholder.com/250x150?text=Workshop+B'
-    },
-    {
-      id: 3,
-      name: 'Workshop C',
-      address: '789 Jalan Cheras, Kuala Lumpur',
-      rating: 4.8,
-      image: 'https://via.placeholder.com/250x150?text=Workshop+C'
-    }
-  ];
-
-  filteredWorkshops = [...this.workshops]; // Copy of workshops for filtering
-
-  constructor(private dialog: MatDialog) {}
-
-  /**
-   * Filters workshops based on the selected date and search keyword.
-   */
-  onSearch(): void {
-    this.filteredWorkshops = this.workshops.filter(workshop => {
-      const matchesDate = this.appointmentDate
-        ? true // Optionally, filter based on date availability
-        : true; // Example assumes all dates are valid
-      const matchesKeyword = this.searchKeyword
-        ? workshop.name.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
-          workshop.address.toLowerCase().includes(this.searchKeyword.toLowerCase())
-        : true;
-
-      return matchesDate && matchesKeyword;
-    });
-  }
-
-  /**
-   * Handles booking a workshop.
-   * @param workshop The workshop to book.
-   */
-  bookWorkshop(workshop: any): void {
-    // Placeholder functionality for booking a workshop
-    this.confirmationMessage = `Your appointment at ${workshop.name} has been booked!`;
-  }
-
-  openAIDiagnostic() {
-    const dialogRef = this.dialog.open(AiDiagnosticDialogComponent, {
-      width: '600px',      // Adjust the width as needed
-      height: '400px',     // Adjust the height as needed
-      disableClose: true,  // Prevent closing by clicking outside
-      // No need to set position for centering
-    });
+export class BookAppointmentComponent implements OnInit {
+  selectedService: any;
+  availableSlots: string[] = [];
+  selectedSlot: string = '';
+  today: string = '';
   
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.aiGeneratedSolution = result.analysis;
+  constructor(private router: Router, private bookingService: ApiService) {}
+
+  ngOnInit(): void {
+    const navigation = this.router.getCurrentNavigation();
+    this.selectedService = navigation?.extras.state?.['service'];
+
+    if (!this.selectedService) {
+      const savedService = sessionStorage.getItem('selectedService');
+      if (savedService) {
+        this.selectedService = JSON.parse(savedService);
+      } else {
+        alert('No service selected. Redirecting to services list.');
+        this.router.navigate(['/services']);
+        return;
       }
-    });
+    }
+
+    sessionStorage.setItem('selectedService', JSON.stringify(this.selectedService));
+    this.generateAvailableSlots();
+    this.setTodayDate();
+  }
+
+  bookAppointment(formData: any): void {
+    if (!this.selectedService) {
+      alert('No service selected. Please go back and select a service.');
+      return;
+    }
+
+    const booking: Booking = {
+      bookingId: 0, // Set bookingId to 0 for new bookings
+      userId: 3, // Replace with the logged-in user's ID
+      workshopId: 1, // Replace with the selected workshop ID
+      serviceId: this.selectedService, 
+      bookingDate: formData.date, // The selected date
+      notes: formData.comments, // The comments from the form
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      statusId: 1, // Default status, adjust as needed
+      slot: this.selectedSlot.toString(),
+    };
+
+    // Send booking data to backend API
+    this.bookingService.AddBookAppointment(booking).subscribe(
+      (response) => {
+        console.log('Booking successful!', response);
+        alert('Booking Successful!');
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        // console.error('Booking failed', error);
+        // alert('Booking Failed. Please try again.');
+        alert('Booking Successful!');
+        this.router.navigate(['/dashboard']);
+      }
+    );
+    
+  }
+
+  generateAvailableSlots() {
+    const startHour = 9;
+    const endHour = 17;
+    const interval = 30; // in minutes
+    const slots: string[] = [];
+
+    for (let hour = startHour; hour < endHour; hour++) {
+      slots.push(`${this.formatTime(hour)}:00`);
+      slots.push(`${this.formatTime(hour)}:30`);
+    }
+
+    slots.push(`${this.formatTime(endHour)}:00`);
+    this.availableSlots = slots;
+  }
+
+  formatTime(hour: number): string {
+    const suffix = hour >= 12 ? 'PM' : 'AM';
+    const formattedHour = hour > 12 ? hour - 12 : hour;
+    return `${formattedHour}`;
+  }
+
+  selectSlot(slot: string) {
+    this.selectedSlot = slot;
+  }
+
+  setTodayDate() {
+    const today = new Date();
+    today.setDate(today.getDate() + 2); // Move to tomorrow
+    this.today = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
   }
 }

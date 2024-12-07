@@ -34,7 +34,7 @@ export class AppointmentListComponent implements OnInit {
   }
 
   createAppointment() {
-    this.router.navigate(['/bookappointment']); 
+    this.router.navigate(['/serviceslist']); 
   }
 
   viewAppointment(appointment: Appointment) {

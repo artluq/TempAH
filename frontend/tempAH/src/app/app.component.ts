@@ -33,7 +33,11 @@ export class AppComponent implements OnInit {
         '/#garages-near-you',
         '/#get-a-quote',
         '/serviceslist',
-        '/servicesdetails'
+        '/servicesdetails',
+        '/signup',
+        '/forgot-password',
+        '/login',
+        '/login?returnUrl=%2Fbookappointment'
       ];
       this.isFrontPage = frontPageRoutes.includes(this.router.url);
     });

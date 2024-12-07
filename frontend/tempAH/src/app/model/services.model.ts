@@ -11,7 +11,7 @@ export interface Service {
     serviceId: number;
     serviceTitle: string;
     description: string;
-    details: string;
+    details: string | string[];
     priceRange: number;
     isActive: boolean;
   }
