@@ -1,0 +1,21 @@
+<div class="service-list-container">
+    <h2>Available Services at Tempah</h2>
+  
+    <div *ngIf="services && services.length > 0; else noServices">
+      <div *ngFor="let service of services" class="service-item">
+        <h3>{{ service.serviceTitle }}</h3>
+        <p><strong>Description:</strong> {{ service.description }}</p>
+        <p><strong>Details:</strong> {{ service.details }}</p>
+        <p><strong>Price Range:</strong> {{ service.priceRange }}</p>
+        
+        <button (click)="selectService(service)" class="btn btn-primary">
+          Select this Service
+        </button>
+      </div>
+    </div>
+  
+    <ng-template #noServices>
+      <p>No services available at the moment.</p>
+    </ng-template>
+  </div>
+  

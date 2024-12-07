@@ -39,7 +39,7 @@ export class ServiceListComponent implements OnInit {
     { 
       name: 'Garage 51', 
       location: 'Shah Alam', 
-      rating: 4.3, 
+      rating: 4.5, 
       services: ['Oil Change', 'Brake Inspection', 'Transmission Service'],
       image: '../../assets/slide3.jpeg',
       description: 'Specializing in transmission services and brake inspections with a customer satisfaction focus.'
@@ -84,7 +84,7 @@ export class ServiceListComponent implements OnInit {
 
   selectWorkshop(workshop: any) {
     if (this.login == true) {
-      this.router.navigate(['/bookappointment']);
+      this.router.navigate(['/servicesdetails']);
     } else {
       this.router.navigate(['/login']);
     }
@@ -94,4 +94,17 @@ export class ServiceListComponent implements OnInit {
     this.appointment = { date: '', time: '' };
     this.selectedWorkshop = null;
   }
+    // Function to get the number of stars based on the rating
+    getStars(rating: number): boolean[] {
+      const fullStars = Math.floor(rating);
+      const halfStars = rating % 1 !== 0 ? 1 : 0;
+      const emptyStars = 5 - (fullStars + halfStars);
+  
+      // Return an array of true (full star), false (empty star), or half (half star)
+      return [
+        ...Array(fullStars).fill(true),
+        ...Array(halfStars).fill(false),
+        ...Array(emptyStars).fill(false)
+      ];
+    }
 }

@@ -29,12 +29,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let service of services">
-          <td>{{ service.name }}</td>
+          <td>{{ service.serviceName }}</td>
           <td>{{ service.description }}</td>
           <td>RM {{ service.price }}</td>
           <td>
             <button (click)="editService(service)" class="action-button">Edit</button>
-            <button (click)="deleteService(service.id)" class="action-button">Delete</button>
+            <button (click)="deleteService(service.serviceId)" class="action-button">Delete</button>
             </td>
         </tr>
       </tbody>

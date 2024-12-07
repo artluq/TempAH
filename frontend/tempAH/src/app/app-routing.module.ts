@@ -22,6 +22,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ServiceManagementComponent } from './service-management/service-management.component';
 import { AuthGuard } from './service/auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 const routes: Routes = [
   // { path: '', component: FrontpageComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'dashboard-vendor', component: DashboardVendorComponent},
   { path: 'servicemanagement', component: ServiceManagementComponent },
   { path: 'serviceslist', component: ServiceListComponent },
+  { path: 'servicesdetails', component: ServiceDetailsComponent },
   { path: 'bookappointment', component: BookAppointmentComponent },
   { path: 'listbusiness', component: ListBusinessComponent },
   { path: 'corporateAdd', component: CorporateCollabAddComponent },

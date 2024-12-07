@@ -40,6 +40,7 @@ import { ServiceManagementComponent } from './service-management/service-managem
 import { ApiService } from './service/api.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/a
     VendorListComponent,
     UserListComponent,
     ServiceManagementComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ServiceDetailsComponent
   ],
   imports: [
     HttpClientModule,

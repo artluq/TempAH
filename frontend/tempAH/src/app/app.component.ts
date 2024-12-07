@@ -25,7 +25,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe(() => {
-      this.isFrontPage = this.router.url === '/'; 
+      const frontPageRoutes = [
+        '/',
+        '/#why-gocar-garage',
+        '/#how-to-book',
+        '/#service-packages',
+        '/#garages-near-you',
+        '/#get-a-quote'
+      ];
+      this.isFrontPage = frontPageRoutes.includes(this.router.url);
     });
 
     this.authService.loggedIn$.subscribe(loggedIn => {

@@ -25,26 +25,29 @@
     <!-- Available Workshops -->
     <div *ngIf="filteredWorkshops.length > 0" class="workshops-list">
       <h3>Available Workshops</h3>
-      
-      <!-- Loop through each workshop to display the card layout horizontally -->
+
+      <!-- Loop through each workshop to display the card layout -->
       <div class="workshop-card-container">
         <div class="workshop-card" *ngFor="let workshop of filteredWorkshops">
-          
-          <!-- Left side: Workshop details -->
-          <div class="workshop-details">
-            <h4>{{ workshop.name }}</h4>
-            <p><strong>Location:</strong> {{ workshop.location }}</p>
-            <p><strong>Rating:</strong> {{ workshop.rating }} ★</p>
+
+          <!-- Workshop Image -->
+          <div class="workshop-image-container">
+            <img [src]="workshop.image" alt="{{ workshop.name }} Image" class="workshop-image" />
           </div>
 
-          <!-- Right side: Specialist info and description -->
-          <div class="specialist-info">
-            <div class="specialist-image">
-              <img [src]="workshop.image" alt="{{ workshop.name }} Image" class="workshop-image" />
+          <!-- Workshop Details -->
+          <div class="workshop-details">
+            <h4>{{ workshop.name }}</h4>
+            
+            <!-- Rating Display -->
+            <div class="workshop-rating">
+              <span *ngFor="let star of getStars(workshop.rating)" class="fa fa-star"></span>
+              <!-- <span *ngFor="let star of getStars(workshop.rating)" class="star">&#9733;</span> -->
+              <span class="rating-number">{{ workshop.rating }}</span>
             </div>
-            <div class="specialist-description">
-              <p>{{ workshop.description }}</p>
-            </div>
+            
+            <p class="workshop-description">{{ workshop.description }}</p>
+            <p class="workshop-location"><strong>Location:</strong> {{ workshop.location }}</p>
           </div>
 
           <!-- Book Appointment Button -->

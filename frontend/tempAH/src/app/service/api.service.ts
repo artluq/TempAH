@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user.model';  // Import the User interface
 import { Vendor } from '../model/vendor.model';
+import { Service, ServiceDetail } from '../model/services.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private apiUrl = 'https://api.lgm.gov.my/API_Tempah/api/';  // Replace with your actual backend URL
+  private apiUrl = 'https://api.lgm.gov.my/API_Tempah/api';  // Replace with your actual backend URL
 
   constructor(private http: HttpClient) {}
 
@@ -67,5 +68,14 @@ export class ApiService {
 
   updateVendor(user: any) {
     return this.http.put<any>(`${this.apiUrl}/Vendors/${user.userId}`, user);
+  }
+
+  //---------------------------SERVICES--------------------------------------------
+  getService(): Observable<Service[]> {
+    return this.http.get<Service[]>(`${this.apiUrl}/Service`);
+  }
+
+  getServiceDetails(): Observable<ServiceDetail[]> {
+    return this.http.get<ServiceDetail[]>(`${this.apiUrl}/ServiceDetails`);
   }
 }

@@ -29,15 +29,15 @@ export class ServiceManagementComponent implements OnInit {
   loadServices() {
     // Dummy data for services; in real scenario, this will be fetched from a backend API
     this.services = [
-      { id: 1, name: 'Oil Change', description: 'Full oil change service', price: 30 },
-      { id: 2, name: 'Brake Inspection', description: 'Check brake system', price: 20 }
+      { serviceId: 1, serviceName: 'Oil Change', description: 'Full oil change service', price: 30 },
+      { serviceId: 2, serviceName: 'Brake Inspection', description: 'Check brake system', price: 20 }
     ];
   }
 
   addService() {
     const newService: Service = {
-      id: this.services.length + 1,
-      name: this.serviceForm.value.name,
+      serviceId: this.services.length + 1,
+      serviceName: this.serviceForm.value.name,
       description: this.serviceForm.value.description,
       price: this.serviceForm.value.price
     };
@@ -49,7 +49,7 @@ export class ServiceManagementComponent implements OnInit {
   editService(service: Service) {
     this.editingService = service;
     this.serviceForm.setValue({
-      name: service.name,
+      name: service.serviceName,
       description: service.description,
       price: service.price
     });
@@ -57,7 +57,7 @@ export class ServiceManagementComponent implements OnInit {
 
   updateService() {
     if (this.editingService) {
-      this.editingService.name = this.serviceForm.value.name;
+      this.editingService.serviceName = this.serviceForm.value.name;
       this.editingService.description = this.serviceForm.value.description;
       this.editingService.price = this.serviceForm.value.price;
       this.serviceForm.reset();
@@ -66,6 +66,6 @@ export class ServiceManagementComponent implements OnInit {
   }
 
   deleteService(serviceId: number) {
-    this.services = this.services.filter(service => service.id !== serviceId);
+    this.services = this.services.filter(service => service.serviceId !== serviceId);
   }
 }

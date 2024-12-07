@@ -4,27 +4,88 @@
   
   <div class="layout-content">
     <!-- Sidebar Component -->
-    <aside class="sidebar" *ngIf="login && role === 1" >
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a routerLink="/dashboard-admin" routerLinkActive="active">Dashboard</a></li>
-          <li><a routerLink="/vendorlist" routerLinkActive="active">Vendor Management</a></li>
-          <li><a routerLink="/userlist" routerLinkActive="active">User Management</a></li>
-          <li><a routerLink="/setting" routerLinkActive="active">Setting</a></li>
-        </ul>
-      </nav>
-    </aside>
-    <aside class="sidebar" *ngIf="login && role === 2" >
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a routerLink="/dashboard-vendor" routerLinkActive="active">Dashboard</a></li>
-          <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
-          <li><a routerLink="/appointmentList" routerLinkActive="active">Appointment Management</a></li>
-          <li><a routerLink="/servicemanagement" routerLinkActive="active">Service Management</a></li>
-          <li><a routerLink="/setting" routerLinkActive="active">Settings</a></li>
-        </ul>
-      </nav>
-    </aside>
+   <!-- Admin Sidebar (role === 1) -->
+<aside
+class="sidebar"
+[class.collapsed]="isCollapsed"
+(mouseenter)="toggleSidebar(false)"
+(mouseleave)="toggleSidebar(true)"
+*ngIf="login && role === 1"
+>
+<nav class="sidebar-nav">
+  <ul>
+    <li>
+      <a routerLink="/dashboard-admin" routerLinkActive="active">
+        <i class="fa fa-tachometer-alt"></i>
+        <span class="label">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/vendorlist" routerLinkActive="active">
+        <i class="fa fa-users"></i>
+        <span class="label">Vendor Management</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/userlist" routerLinkActive="active">
+        <i class="fa fa-user-cog"></i>
+        <span class="label">User Management</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/setting" routerLinkActive="active">
+        <i class="fa fa-cogs"></i>
+        <span class="label">Settings</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</aside>
+
+<!-- Vendor Sidebar (role === 2) -->
+<aside
+class="sidebar"
+[class.collapsed]="isCollapsed"
+(mouseenter)="toggleSidebar(false)"
+(mouseleave)="toggleSidebar(true)"
+*ngIf="login && role === 2"
+>
+<nav class="sidebar-nav">
+  <ul>
+    <li>
+      <a routerLink="/dashboard-vendor" routerLinkActive="active">
+        <i class="fa fa-tachometer-alt"></i>
+        <span class="label">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/profile" routerLinkActive="active">
+        <i class="fa fa-user"></i>
+        <span class="label">Profile</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/appointmentList" routerLinkActive="active">
+        <i class="fa fa-calendar-alt"></i>
+        <span class="label">Appointment Management</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/servicemanagement" routerLinkActive="active">
+        <i class="fa fa-cogs"></i>
+        <span class="label">Service Management</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/setting" routerLinkActive="active">
+        <i class="fa fa-cog"></i>
+        <span class="label">Settings</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</aside>
+
     <aside
   class="sidebar"
   [class.collapsed]="isCollapsed"

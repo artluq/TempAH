@@ -70,10 +70,12 @@ export class BookAppointmentComponent {
 
   openAIDiagnostic() {
     const dialogRef = this.dialog.open(AiDiagnosticDialogComponent, {
-      width: '600px',
-      disableClose: true
+      width: '600px',      // Adjust the width as needed
+      height: '400px',     // Adjust the height as needed
+      disableClose: true,  // Prevent closing by clicking outside
+      // No need to set position for centering
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.aiGeneratedSolution = result.analysis;
