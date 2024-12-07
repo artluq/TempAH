@@ -12,7 +12,9 @@ export class FrontpageComponent  implements OnInit {
   slides = [
     { image: 'assets/Banner1.png'},
     { image: 'assets/Banner2.png'},
-    { image: 'assets/Banner3.png'}
+    { image: 'assets/Banner3.png'},
+    { image: 'assets/Banner4.png'},
+
   ];
   currentSlide = 0;
 
