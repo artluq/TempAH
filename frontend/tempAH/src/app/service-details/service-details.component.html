@@ -1,6 +1,9 @@
 <div class="service-list-container">
     <h2>Available Services at Tempah</h2>
-  
+    <button mat-raised-button color="primary" (click)="openAIDiagnostic()">
+      AI Diagnostic Assistant
+    </button>
+    <br>  <br>
     <div *ngIf="services && services.length > 0; else noServices">
       <div *ngFor="let service of services" class="service-item">
         <h3>{{ service.serviceTitle }}</h3>

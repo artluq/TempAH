@@ -83,11 +83,12 @@ export class ServiceListComponent implements OnInit {
   }
 
   selectWorkshop(workshop: any) {
-    if (this.login == true) {
-      this.router.navigate(['/servicesdetails']);
-    } else {
-      this.router.navigate(['/login']);
-    }
+    // if (this.login == true) {
+    //   this.router.navigate(['/servicesdetails']);
+    // } else {
+    //   this.router.navigate(['/login']);
+    // }
+    this.router.navigate(['/servicesdetails']);
   }
 
   resetBooking() {

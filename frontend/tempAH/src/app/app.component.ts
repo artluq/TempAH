@@ -31,7 +31,9 @@ export class AppComponent implements OnInit {
         '/#how-to-book',
         '/#service-packages',
         '/#garages-near-you',
-        '/#get-a-quote'
+        '/#get-a-quote',
+        '/serviceslist',
+        '/servicesdetails'
       ];
       this.isFrontPage = frontPageRoutes.includes(this.router.url);
     });
