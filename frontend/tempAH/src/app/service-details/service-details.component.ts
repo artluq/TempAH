@@ -25,6 +25,7 @@ export class ServiceDetailsComponent {
     this.Service.getServiceDetails().subscribe(
       (response: any) => {
         this.services = response;
+        // this.formatDetails();
       },
       (error) => {
         console.error('Error fetching services:', error);
@@ -32,6 +33,14 @@ export class ServiceDetailsComponent {
     );
   }
 
+  // formatDetails() {
+  //   this.services = this.services.map(service => {
+  //     if (service.details && typeof service.details === 'string') {
+  //       service.details = service.details.split(';'); // Convert semicolon-separated string to array
+  //     }
+  //     return service;
+  //   });
+  // }
   // Handle selecting a service
   selectService(service: any): void {
     this.selectedService = service;

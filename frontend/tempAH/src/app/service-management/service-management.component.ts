@@ -1,71 +1,92 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Service } from '../model/services.model';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Service, ServiceDetail } from '../model/services.model'; // Adjust path as necessary
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-service-management',
   templateUrl: './service-management.component.html',
-  styleUrls: ['./service-management.component.css']
+  styleUrls: ['./service-management.component.css'],
 })
 export class ServiceManagementComponent implements OnInit {
-  services: Service[] = [];
   serviceForm: FormGroup;
-  editingService: Service | null = null;
+  services: Service[] = [];
+  serviceDetails: ServiceDetail[] = [];
+  editingService: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: ApiService) {
     this.serviceForm = this.fb.group({
-      name: [''],
-      description: [''],
-      price: [0]
+      serviceId: [null, Validators.required],
+      serviceTitle: ['', Validators.required],
+      description: ['', Validators.required],
+      details: ['', Validators.required],
+      priceRange: [null, [Validators.required, Validators.min(0)]],
     });
   }
 
   ngOnInit(): void {
-    // Load initial services
-    this.loadServices();
+    this.loadAvailableServices();
+    this.loadDropdownOptions();
   }
 
-  loadServices() {
-    // Dummy data for services; in real scenario, this will be fetched from a backend API
-    this.services = [
-      { serviceId: 1, serviceName: 'Oil Change', description: 'Full oil change service', price: 30 },
-      { serviceId: 2, serviceName: 'Brake Inspection', description: 'Check brake system', price: 20 }
-    ];
+  loadAvailableServices(): void {
+    this.service.getServiceDetails().subscribe(
+      (data: ServiceDetail[]) => {
+        this.serviceDetails = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching service options:', error);
+      }
+    );
   }
 
-  addService() {
-    const newService: Service = {
-      serviceId: this.services.length + 1,
-      serviceName: this.serviceForm.value.name,
-      description: this.serviceForm.value.description,
-      price: this.serviceForm.value.price
-    };
-
-    this.services.push(newService);
-    this.serviceForm.reset();
+  loadDropdownOptions(): void {
+    this.service.getService().subscribe(
+      (data: Service[]) => {
+        this.services = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching services:', error);
+      }
+    );
   }
 
-  editService(service: Service) {
-    this.editingService = service;
-    this.serviceForm.setValue({
-      name: service.serviceName,
-      description: service.description,
-      price: service.price
-    });
-  }
+addService(): void {
+  const newService = this.serviceForm.value;
+  newService.isActive = true;
+  this.service.AddServiceDetails(newService).subscribe(
+    (response) => {
+      // Handle success
+      console.log('Service added successfully:', response);
 
-  updateService() {
-    if (this.editingService) {
-      this.editingService.serviceName = this.serviceForm.value.name;
-      this.editingService.description = this.serviceForm.value.description;
-      this.editingService.price = this.serviceForm.value.price;
+      // Reload the service list after adding the new service
+      this.loadAvailableServices();
+
+      // Optionally, reset the form
       this.serviceForm.reset();
-      this.editingService = null;
+    },
+    (error) => {
+      // Handle error
+      console.error('Error adding service:', error);
     }
+  );
+}
+
+  
+
+  editService(service: any): void {
+    this.editingService = true;
+    this.serviceForm.patchValue(service);
   }
 
-  deleteService(serviceId: number) {
-    this.services = this.services.filter(service => service.serviceId !== serviceId);
+  updateService(): void {
+    const updatedService = this.serviceForm.value;
+    
+  }
+
+  deleteService(serviceId: number): void {
+    
   }
 }

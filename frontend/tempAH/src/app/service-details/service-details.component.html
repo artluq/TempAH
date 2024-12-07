@@ -1,24 +1,35 @@
 <div class="service-list-container">
-    <h2>Available Services at Tempah</h2>
-    <button mat-raised-button color="primary" (click)="openAIDiagnostic()">
-      AI Diagnostic Assistant
-    </button>
-    <br>  <br>
-    <div *ngIf="services && services.length > 0; else noServices">
-      <div *ngFor="let service of services" class="service-item">
+  <h2>Discover Top-Quality Services for Your Car</h2>
+  <p class="intro-text">
+    From diagnostics to repairs, we've got everything your car needs. Take advantage of our limited-time offers!
+  </p>
+  <button mat-raised-button color="primary" (click)="openAIDiagnostic()" class="ai-button">
+    <span class="icon">🤖</span> AI Diagnostic Assistant
+  </button>
+  <br /><br />
+  <div *ngIf="services && services.length > 0; else noServices">
+    <div *ngFor="let service of services" class="service-item">
+      <div class="service-header">
         <h3>{{ service.serviceTitle }}</h3>
-        <p><strong>Description:</strong> {{ service.description }}</p>
-        <p><strong>Details:</strong> {{ service.details }}</p>
-        <p><strong>Price Range:</strong> {{ service.priceRange }}</p>
-        
-        <button (click)="selectService(service)" class="btn btn-primary">
-          Select this Service
+        <span class="badge">Best Seller</span>
+      </div>
+      <p class="service-description">{{ service.description }}</p>
+      <p><strong>Details:</strong> {{ service.details }}</p>
+      <p><strong>Price Range:</strong> <span class="price">{{ service.priceRange }}</span></p>
+
+      <div class="cta-container">
+        <button (click)="selectService(service)" class="btn btn-primary cta-button">
+          Book Now
         </button>
+        <p class="cta-note">Hurry! Only a few slots left.</p>
       </div>
     </div>
-  
-    <ng-template #noServices>
-      <p>No services available at the moment.</p>
-    </ng-template>
   </div>
-  
+
+  <ng-template #noServices>
+    <div class="no-services">
+      <p>No services available at the moment. Check back soon!</p>
+      <img src="assets/images/no-services.png" alt="No services available" />
+    </div>
+  </ng-template>
+</div>

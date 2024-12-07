@@ -72,10 +72,14 @@ export class ApiService {
 
   //---------------------------SERVICES--------------------------------------------
   getService(): Observable<Service[]> {
-    return this.http.get<Service[]>(`${this.apiUrl}/Service`);
+    return this.http.get<Service[]>(`${this.apiUrl}/Services`);
   }
 
   getServiceDetails(): Observable<ServiceDetail[]> {
     return this.http.get<ServiceDetail[]>(`${this.apiUrl}/ServiceDetails`);
   }
+  AddServiceDetails(service: ServiceDetail): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/Service`, service);
+  }
+
 }
