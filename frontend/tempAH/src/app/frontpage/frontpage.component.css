@@ -53,12 +53,32 @@ button:hover {
   padding: 0;
 }
 
+/* Applying Modern Font to Specific Headings */
+.how-to-book-section h2,
+.features-section h2,
+.navbar-nav li a,
+.login-container h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Adjust to desired weight */
+}
+
+/* Optional: If you want to apply it globally to all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
 .navbar-nav li a {
   font-size: 16px;
   text-decoration: none;
   padding: 10px 15px;
   transition: background-color 0.3s ease, color 0.3s ease;
   color: var(--dark-blue);
+}
+/* Applying Modern Font to the "Book an Appointment" Button */
+.bookAnAppointment {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* You can adjust the weight if needed */
 }
 
 .navbar-nav li a:hover {
