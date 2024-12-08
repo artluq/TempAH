@@ -4,7 +4,7 @@
   <form [formGroup]="serviceForm" (ngSubmit)="editingService ? updateService() : addService()">
     <div>
       <label for="serviceDropdown">Select Service:</label>
-      <select id="serviceDropdown" formControlName="serviceId" required>
+      <select id="serviceDropdown" formControlName="serviceId">
         <option *ngFor="let service of services" [value]="service.serviceId">
           {{ service.serviceName }}
         </option>

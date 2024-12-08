@@ -111,3 +111,33 @@ tbody tr:hover {
 tbody tr:hover td {
   color: var(--light-beige);
 }
+/* Dropdown Styling */
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--dark-blue);
+  border-radius: 8px;
+  background-color: var(--light-beige);
+  color: var(--dark-blue);
+  font-size: 16px;
+  appearance: none; /* Removes the default browser styling */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%232E4057"><polygon points="0,0 20,0 10,10"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+select:focus {
+  border-color: var(--orange);
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 167, 1, 0.5);
+}
+
+/* Option Styling */
+option {
+  padding: 12px;
+  background-color: var(--light-beige);
+  color: var(--dark-blue);
+  font-size: 16px;
+}

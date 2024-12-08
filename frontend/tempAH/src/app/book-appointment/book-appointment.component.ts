@@ -32,6 +32,7 @@ export class BookAppointmentComponent implements OnInit {
     }
 
     sessionStorage.setItem('selectedService', JSON.stringify(this.selectedService));
+    console.log(this.selectedService.serviceDetailId)
     this.generateAvailableSlots();
     this.setTodayDate();
   }
@@ -45,28 +46,31 @@ export class BookAppointmentComponent implements OnInit {
     const booking: Booking = {
       bookingId: 0, // Set bookingId to 0 for new bookings
       userId: 3, // Replace with the logged-in user's ID
-      workshopId: 1, // Replace with the selected workshop ID
-      serviceId: this.selectedService, 
+      workshopId: 2, // Replace with the selected workshop ID
+      serviceId: this.selectedService.serviceDetailId, 
       bookingDate: formData.date, // The selected date
       notes: formData.comments, // The comments from the form
       createdAt: new Date(),
       updatedAt: new Date(),
-      statusId: 1, // Default status, adjust as needed
+      statusId: 1,
+      status: '',
       slot: this.selectedSlot.toString(),
     };
+    
 
     // Send booking data to backend API
     this.bookingService.AddBookAppointment(booking).subscribe(
       (response) => {
+        console.log(booking)
         console.log('Booking successful!', response);
         alert('Booking Successful!');
         this.router.navigate(['/dashboard']);
       },
       (error) => {
-        // console.error('Booking failed', error);
-        // alert('Booking Failed. Please try again.');
-        alert('Booking Successful!');
-        this.router.navigate(['/dashboard']);
+        console.error('Booking failed', error);
+        alert('Booking Failed. Please try again.');
+        // alert('Booking Successful!');
+        // this.router.navigate(['/dashboard']);
       }
     );
     

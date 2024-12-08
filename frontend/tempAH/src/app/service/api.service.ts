@@ -80,8 +80,9 @@ export class ApiService {
     return this.http.get<ServiceDetail[]>(`${this.apiUrl}/ServiceDetails`);
   }
   AddServiceDetails(service: ServiceDetail): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/Service`, service);
+    return this.http.post<any>(`${this.apiUrl}/Services`, service);
   }
+
   //---------------------------BOOKING--------------------------------------------
   AddBookAppointment(booking: Booking): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Bookings`, booking);

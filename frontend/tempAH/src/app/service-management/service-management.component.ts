@@ -56,6 +56,7 @@ export class ServiceManagementComponent implements OnInit {
 addService(): void {
   const newService = this.serviceForm.value;
   newService.isActive = true;
+  console.log(newService)
   this.service.AddServiceDetails(newService).subscribe(
     (response) => {
       // Handle success

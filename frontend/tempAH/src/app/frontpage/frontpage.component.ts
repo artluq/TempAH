@@ -62,7 +62,8 @@ export class FrontpageComponent  implements OnInit {
   }
 
   islogin() {
-    this.isLoginModalOpen = true;
+    // this.isLoginModalOpen = true;
+    this.router.navigate(['/login']);
   }
 
   closeModal() {

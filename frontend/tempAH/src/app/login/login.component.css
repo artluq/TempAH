@@ -1,72 +1,128 @@
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+  --text-dark: #333;
+  --text-medium: #666;
+}
+
+/* General Styles for Create Account Page */
 .login-container {
   max-width: 400px;
   margin: 50px auto;
-  padding: 2rem;
-  background-color: #ffffff; /* White background */
-  border-radius: 8px;
+  padding: 30px;
+  background-color: var(--light-beige);
+  border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.login-container h2 {
+.login-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
   font-size: 2rem;
-  color: #333; /* Darker text */
-  margin-bottom: 1.5rem;
+  color: var(--orange);
+  font-weight: 700;
 }
 
 .form-group {
-  margin-bottom: 1rem;
-  text-align: left;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #333; /* Matching text color */
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark-blue);
 }
 
 input {
-  width: 94%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  color: #333; /* Ensures text is dark */
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid var(--dark-blue);
+  border-radius: 8px;
+  background-color: var(--light-beige);
+  color: var(--text-dark);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:hover {
+  border-color: var(--orange);
 }
 
 input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 10px rgba(255, 167, 1, 0.5);
   outline: none;
-  border-color: #63b4d4; /* Light blue focus effect */
-  box-shadow: 0 0 5px rgba(99, 180, 212, 0.5); /* Soft focus glow */
+  background-color: #fff5e6; /* Subtle background color change for better visibility */
 }
 
 button {
   width: 100%;
-  padding: 0.75rem;
-  background-color: #20be35; /* Blue background */
-  color: white;
+  padding: 12px;
+  font-size: 18px;
+  color: var(--light-beige);
+  background-color: var(--orange);
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
 }
 
 button:hover {
-  background-color: #17a629; /* Darker blue on hover */
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
 }
 
-.signup-redirect {
-  margin-top: 1rem;
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
-.signup-redirect a {
-  color: #63b4d4; /* Blue link color */
-  text-decoration: none;
+.success-message {
+  color: green;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.login-redirect {
+  text-align: center;
+  margin-top: 20px;
   font-size: 1rem;
+  color: var(--text-medium);
 }
 
-.signup-redirect a:hover {
+.login-redirect a {
+  color: var(--orange);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-redirect a:hover {
+  color: var(--dark-blue);
   text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  label, input, button {
+    font-size: 14px;
+  }
 }

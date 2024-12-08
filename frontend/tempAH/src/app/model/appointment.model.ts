@@ -16,6 +16,7 @@ export interface Booking {
   createdAt: Date; // Use string type for date if it's in ISO format
   updatedAt: Date; // Use string type for date if it's in ISO format
   statusId: number;
+  status: string;
   slot: string;
 }
 
