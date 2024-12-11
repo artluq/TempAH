@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   constructor(private bookingService: ApiService, private router: Router, private authService: AuthService,) {}
 
   ngOnInit() {
-    this.username = sessionStorage.getItem('username') || 'User'; 
+    this.username = sessionStorage.getItem('fullname') || 'User'; 
     this.userid = sessionStorage.getItem('userid') || 'userid'; 
 
     // Fetch upcoming appointments from the API
@@ -50,4 +50,26 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
+
+  viewAppointment(id: number) {
+    // Logic to view appointment details
+    console.log('Viewing appointment', id);
+    this.router.navigate(['/appointment', id]); // Example route
+  }
+  
+  cancelAppointment(id: number) {
+    const confirmed = window.confirm('Are you sure you want to cancel this appointment?');
+    if (confirmed) {
+      // this.bookingService.cancelAppointment(id).subscribe(
+      //   () => {
+      //     alert('Appointment canceled successfully');
+      //     this.upcomingAppointments = this.upcomingAppointments.filter(app => app.id !== id);
+      //   },
+      //   (error) => {
+      //     console.error('Error canceling appointment:', error);
+      //   }
+      // );
+    }
+  }
+  
 }

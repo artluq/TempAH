@@ -1,142 +1,99 @@
-/* Global color variables */
-:root {
-  --orange: #ffa701;
-  --dark-blue: #2E4057;
-  --light-beige: #F4F1DE;
-}
-
-/* Dashboard */
-.dashboard {
-  padding: 30px;
-  max-width: 100%;
+.dashboard-container {
+  max-width: 800px;
   margin: 0 auto;
-  background-color: var(--light-beige);
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dashboard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
 .dashboard-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-.dashboard-header h2 {
-  font-size: 28px;
-  color: var(--dark-blue);
-  font-weight: 700;
+.dashboard-header h1 {
+  font-size: 24px;
+  color: #4CAF50;
 }
 
-/* User Info Section */
-.user-info {
-  margin-bottom: 30px;
+.dashboard-main {
   padding: 20px;
-  background-color: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.user-info h2 {
-  margin-bottom: 15px;
-  color: var(--dark-blue);
-}
-
-/* Appointments Section */
-.appointments {
-  padding: 20px;
-  background-color: var(--white);
-  border-radius: 12px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .appointments h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 24px;
-  color: var(--dark-blue);
+  font-size: 20px;
+  color: #4CAF50;
 }
 
-.appointments ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.appointment-card {
+.appointments-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  margin: 10px 0;
-  background-color: var(--light-beige);
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.appointment-card:hover {
-  transform: translateY(-5px); /* Slight hover effect */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.appointments-header h2 {
+  font-size: 20px;
+  color: #4CAF50;
 }
 
-.appointment-details {
-  flex: 1;
-  margin-right: 20px;
-  color: var(--dark-blue);
-}
-
-.appointment-details strong {
-  color: var(--dark-blue);
-  font-weight: 600;
-}
-
-/* Cancel Button */
-.cancel-button {
-  background-color: var(--orange);
-  color: var(--light-beige);
+.book-btn {
+  background-color: #4CAF50;
+  color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap; /* Prevents button text from wrapping */
-}
-
-.cancel-button:hover {
-  background-color: var(--dark-blue);
-  color: var(--light-beige);
-  transform: translateY(-3px);
-}
-
-.action-buttons {
-  text-align: center;
-}
-
-/* Primary Button */
-.btn {
-  background-color: var(--orange); /* Primary button color */
-  color: var(--light-beige);
-  border: none;
-  padding: 12px 25px;
-  margin: 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   font-size: 16px;
-  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: var(--dark-blue); /* Darker shade on hover */
-  color: var(--light-beige);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+.book-btn:hover {
+  background-color: #45a049;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.appointment-table th,
+.appointment-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.appointment-table th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.appointment-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.appointment-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn.cancel:hover {
+  background-color: #e53935;
 }

@@ -112,6 +112,17 @@ button:hover {
   text-decoration: underline;
 }
 
+.login-container .logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container .logo img {
+  max-width: 200px; /* Adjust size as needed */
+  height: auto;
+}
+
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .login-container {
@@ -126,3 +137,4 @@ button:hover {
     font-size: 14px;
   }
 }
+

@@ -1,4 +1,7 @@
 <div class="login-container">
+  <div class="logo">
+    <img src="../../assets/logo.png" alt="Company Logo">
+  </div>
   <h2>Log In to Your Account</h2>
   <form (ngSubmit)="onLogin()">
     <div class="form-group">
@@ -14,7 +17,6 @@
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
-
     <button type="submit">Log In</button>
   </form>
 

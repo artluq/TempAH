@@ -1,53 +1,44 @@
 <div>
-  <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">
-    <div class="content-header d-flex">
-      <h2>Profil</h2>
+  <mat-card class="profile-card">
+    <div class="content-header">
+      <h2>User Profile</h2>
     </div>
 
     <mat-card-content>
-      <!-- Profile Details Section as a Table -->
+      <!-- Display User Information -->
       <div class="profile-details">
         <table class="profile-table">
           <tr>
-            <td>Nama:</td>
-            <td>John Doe</td>
+            <td><strong>Name:</strong></td>
+            <td>{{ user.fullName }}</td>
           </tr>
           <tr>
-            <td>Email:</td>
-            <td>johndoe&#64;example.com</td>
+            <td><strong>Email:</strong></td>
+            <td>{{ user.email }}</td>
           </tr>
           <tr>
-            <td>Role:</td>
-            <td>Administrator</td>
+            <td><strong>Phone Number:</strong></td>
+            <td>{{ user.phoneNumber }}</td>
+          </tr>
+          <tr>
+            <td><strong>Role:</strong></td>
+            <td>{{ user.role }}</td>
+          </tr>
+          <tr>
+            <td><strong>Account Created:</strong></td>
+            <td>{{ user.createdAt | date: 'mediumDate' }}</td>
+          </tr>
+          <tr>
+            <td><strong>Status:</strong></td>
+            <td>{{ user.isActive ? 'Active' : 'Inactive' }}</td>
           </tr>
         </table>
       </div>
-      <form *ngIf="isEditing" (ngSubmit)="saveProfile()" class="profile-form">
-        <label>
-          Fullname:
-          <input type="text" [(ngModel)]="userProfile.fullname" name="fullname" required />
-        </label>
-        <label>
-          Email:
-          <input type="email" [(ngModel)]="userProfile.email" name="email" required />
-        </label>
-        <label>
-          Phone Number:
-          <input type="tel" [(ngModel)]="userProfile.phone" name="phone" required />
-        </label>
-        <label>
-          Address:
-          <input type="text" [(ngModel)]="userProfile.address" name="address" />
-        </label>
-        <label>
-          Date of Birth:
-          <input type="date" [(ngModel)]="userProfile.dateOfBirth" name="dateOfBirth" />
-        </label>
-      </form>
-      <!-- Action Buttons Section -->
-      <div class="action-buttons" style="text-align: right;">
-       <!-- <button class="button" style="margin-right: 10px;">+ Tambah Pengguna</button> -->
-        <button class="buttonExcel">Change Password</button>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons" style="text-align: right; margin-top: 20px;">
+        <button class="button" (click)="editProfile()">Edit Profile</button>
+        <button class="button" (click)="changePassword()">Change Password</button>
       </div>
     </mat-card-content>
   </mat-card>

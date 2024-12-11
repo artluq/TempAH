@@ -1,52 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { FormsModule } from '@angular/forms';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
-  userProfile: any = {
-    fullname: '',
-    email: '',
-    role: '',
-    phone: '',
-    address: '',
-    dateOfBirth: '',
+export class ProfileComponent implements OnInit { 
+  user: User = {
+  userId: 1,
+  username: 'johndoe',
+  passwordHash: 'hash123',
+  email: 'johndoe@example.com',
+  fullName: 'John Doe',
+  phoneNumber: '123456789',
+  createdAt: new Date('2023-01-01'),
+  isActive: true,
+  roleId: 1,
+  role: 'Administrator',
+};
 
-  };
-  
-  isEditing = false;
+constructor() {}
 
-  constructor(private authService: AuthService) {}
+ngOnInit(): void {
+  // Optionally fetch user data from an API or service
+}
 
-  ngOnInit(): void {
-    this.loadUserProfile();
-  }
+editProfile(): void {
+  alert('Edit profile functionality goes here.');
+}
 
-  loadUserProfile() {
-    // Load user profile from AuthService or any other service
-    const username = sessionStorage.getItem('username');
-    if (username) {
-      // For demo purposes, assuming we fetch this from AuthService
-      // this.userProfile = this.authService.getUserProfile(username); // Assume this method exists
-    }
-  }
-
-  editProfile() {
-    this.isEditing = true;
-  }
-
-  saveProfile() {
-    // Logic to save updated profile information
-    // this.authService.updateUserProfile(this.userProfile); // Assume this method exists
-    this.isEditing = false;
-  }
-
-  cancelEdit() {
-    this.loadUserProfile(); // Reload the original user profile
-    this.isEditing = false;
-  }
+changePassword(): void {
+  alert('Change password functionality goes here.');
+}
 }
