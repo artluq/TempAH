@@ -1,0 +1,17 @@
+.question-container {
+  padding: 20px 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-content {
+  min-height: 200px;
+  min-width: 400px;
+}
+
+h3 {
+  margin-bottom: 16px;
+  color: #666;
+}
