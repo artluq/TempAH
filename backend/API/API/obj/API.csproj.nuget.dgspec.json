@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/luqy/Documents/UTM/TempAH-3/backend/API/API/API.csproj": {}
+    "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj": {}
   },
   "projects": {
-    "/Users/luqy/Documents/UTM/TempAH-3/backend/API/API/API.csproj": {
+    "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/luqy/Documents/UTM/TempAH-3/backend/API/API/API.csproj",
+        "projectUniqueName": "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/luqy/Documents/UTM/TempAH-3/backend/API/API/API.csproj",
+        "projectPath": "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj",
         "packagesPath": "/Users/luqy/.nuget/packages/",
-        "outputPath": "/Users/luqy/Documents/UTM/TempAH-3/backend/API/API/obj/",
+        "outputPath": "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/luqy/.nuget/NuGet/NuGet.Config"
