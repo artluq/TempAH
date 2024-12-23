@@ -77,12 +77,13 @@ textarea[matInput] {
   border: none; /* Removes any border */
   border-bottom: none; /* Specifically removes bottom border */
   border-radius: 20px; /* Keeps the oblong shape */
-  padding: 5px 10px; /* Adjust the padding */
+  padding: 0px 10px; /* Adjust the padding */
   height: 60px; /* Set a specific height */
   resize: none; /* Prevents resizing of the textarea */
   box-sizing: border-box; /* Ensures padding and border are included */
   background-color: #F4F1DE; /* Background color */
   color: #2E4057; /* Text color */
+  text-align: center;
 }
 
 /* Remove potential borders from parent mat-form-field */
