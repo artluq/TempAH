@@ -16,9 +16,11 @@
   </div>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" (click)="nextQuestion(currentResponse)">
-    {{ currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit' }}
-  </button>
+<mat-dialog-actions class="custom-actions">
+  <div class="button-container">
+    <button class="next-button" mat-raised-button color="primary" (click)="nextQuestion(currentResponse)">
+      {{ currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit' }}
+    </button>
+    <button class="cancel-button" mat-button mat-dialog-close>Cancel</button>
+  </div>
 </mat-dialog-actions>

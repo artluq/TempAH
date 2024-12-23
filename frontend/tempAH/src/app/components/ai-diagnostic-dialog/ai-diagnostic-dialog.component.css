@@ -1,5 +1,28 @@
+@keyframes teeter {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+::ng-deep .mat-dialog-container {
+  animation: teeter 2s ease-in-out;
+}
+
+h2[mat-dialog-title] {
+  font-weight: bold; /* Makes the text bold */
+  font-size: 30px; /* Increases the text size */
+  text-align: center;
+  background: linear-gradient(45deg, #ffa701, #2E4057);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .question-container {
-  padding: 20px 0;
+  width: 100%; /* Full width of the dialog content */
+  max-width: 600px; /* Adjust max-width as needed */
+  text-align: center; /* Center text inside the container */
 }
 
 .full-width {
@@ -8,11 +31,15 @@
 
 mat-dialog-content {
   min-height: 200px;
-  min-width: 400px;
+  min-width: 500px;
+  align-items: center;
 }
 
 ::ng-deep .mat-dialog-container {
+  background-color: rgba(46, 64, 87, 0.8); /* Sets the background color with transparency */
   position: center !important; /*Make the mat dialog in the center*/
+  padding: 20px; /* Optional: Adds padding around the content */
+  border-radius: 20px; /* Optional: Adds rounded corners */
 }
 
 ::ng-deep .cdk-overlay-pane {
@@ -23,11 +50,85 @@ mat-dialog-content {
 }
 
 h3 {
-  margin-bottom: 16px;
-  color: #666;
+  color: #2E4057; /* Updated color */
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center; /* This will center the text */
+}
+
+p {
+  text-align: center; /* This will center the text horizontally */
+  color: #2E4057; /* Updated color */
 }
 
 .centered-dialog {
   position: fixed !important;
   transform: translate(-50%, -50%);
+}
+
+mat-form-field.full-width {
+  display: block;
+  width: 100%; /* Adjust the width as needed */
+}
+
+/* Remove default border from the textarea */
+textarea[matInput] {
+  border: none; /* Removes any border */
+  border-bottom: none; /* Specifically removes bottom border */
+  border-radius: 20px; /* Keeps the oblong shape */
+  padding: 5px 10px; /* Adjust the padding */
+  height: 60px; /* Set a specific height */
+  resize: none; /* Prevents resizing of the textarea */
+  box-sizing: border-box; /* Ensures padding and border are included */
+  background-color: #F4F1DE; /* Background color */
+  color: #2E4057; /* Text color */
+}
+
+/* Remove potential borders from parent mat-form-field */
+mat-form-field {
+  border: none; /* Removes any border */
+  outline: none; /* Removes any outline */
+}
+.custom-actions {
+  display: flex;
+  justify-content: center; /* Centers the button container horizontally */
+  margin-top: -10px; /* Moves the buttons up by 10px */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* Stacks the buttons vertically */
+  align-items: center; /* Centers the buttons horizontally */
+}
+
+.button-container .next-button {
+  margin-bottom: 10px; /* Adds some space between the buttons */
+  padding: 12px 80px; /* Increases padding for a bigger button */
+  font-size: 18px; /* Increases font size for a bigger button */
+  border-radius: 70px; /* Makes the button oblong */
+  background-color: #ffa701; /* Background color */
+  color: #2E4057; /* Text color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Adds a transition for the hover effect */
+}
+
+.button-container .cancel-button {
+  margin-bottom: 0; /* Ensures no margin for the last button */
+  padding: 8px 16px; /* Default padding */
+  font-size: 14px; /* Default font size */
+  border-radius: 50px; /* Makes the button oblong */
+  background-color: #2E4057; /* Background color */
+  color: #F4F1DE; /* Text color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Adds a transition for the hover effect */
+}
+
+/* Hover effects */
+.button-container .next-button:hover {
+  background-color: #2E4057; /* Change to a different color on hover */
+  color: #F4F1DE; /* Text color on hover */
+}
+
+.button-container .cancel-button:hover {
+  background-color: #ffa701; /* Change to a different color on hover */
+  color: #2E4057; /* Text color on hover */
 }
