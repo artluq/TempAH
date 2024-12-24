@@ -10,6 +10,10 @@ import { AiDiagnosticService } from '../../service/ai-diagnostic.service';
 export class AiDiagnosticDialogComponent {
   currentQuestionIndex = 0;
   currentResponse = '';
+  isLoading = false;
+  errorMessage: string | null = null;
+  analysis: string | null = null;
+  
   responses: { [key: string]: string } = {};
   questions = [
     "Can you describe the problem you're experiencing with your car?",
@@ -37,13 +41,35 @@ export class AiDiagnosticDialogComponent {
   }
 
   submitDiagnosis() {
+    this.isLoading = true;
+    this.errorMessage = null;
+    
+    if (Object.keys(this.responses).length === 0) {
+      this.errorMessage = 'Please answer at least one question';
+      this.isLoading = false;
+      return;
+    }
+    
+    console.log('Submitting responses:', this.responses);
+    
     this.aiService.getDiagnostic(this.responses).subscribe({
       next: (result) => {
-        this.dialogRef.close(result);
+        console.log('Received response:', result);
+        this.isLoading = false;
+        if (result.success) {
+          this.analysis = result.analysis;
+        } else {
+          this.errorMessage = result.errorMessage || 'An error occurred during diagnosis';
+        }
       },
       error: (error) => {
-        console.error('Error:', error);
-        this.dialogRef.close(null);
+        console.error('Error details:', error);
+        this.isLoading = false;
+        if (error.status === 0) {
+          this.errorMessage = 'Cannot connect to the server. Please ensure both backend services are running.';
+        } else {
+          this.errorMessage = `Error: ${error.message || 'Unknown error occurred'}`;
+        }
       }
     });
   }
