@@ -12,15 +12,13 @@ Backend:
 - C#
 - ASP.Ne
 - REST API
+- CORS API
 
 Database
 - SQL Server (Microsoft)
 
 Artificial Intelligence
-- HuggingFace
-    - pip install langchain-huggingface
-    - pip install huggingface-hub
-    - pip install -U langchain-huggingface
-- Pandas
+- Python file
+- Flask service
 - Groq
     - pip install groq
