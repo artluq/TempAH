@@ -41,6 +41,8 @@ import { ApiService } from './service/api.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { ServiceDetailsComponent } from './service-details/service-details.compo
     MatNativeDateModule,
     MatFormFieldModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
