@@ -31,3 +31,34 @@ h3 {
   position: fixed !important;
   transform: translate(-50%, -50%);
 }
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.loading-container p {
+  margin-top: 16px;
+  color: #666;
+}
+
+.error-message {
+  color: #f44336;
+  padding: 16px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.analysis-container {
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.analysis-content {
+  white-space: pre-line;
+  line-height: 1.5;
+}

@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>AI Car Diagnostic Assistant</h2>
 
 <mat-dialog-content>
-  <div class="question-container">
+  <div class="question-container" *ngIf="!analysis && !isLoading">
     <h3>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</h3>
     <p>{{ questions[currentQuestionIndex] }}</p>
 
@@ -14,11 +14,31 @@
       </textarea>
     </mat-form-field>
   </div>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Analyzing your responses...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="analysis" class="analysis-container">
+    <h3>Diagnostic Analysis</h3>
+    <div class="analysis-content">
+      {{ analysis }}
+    </div>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" (click)="nextQuestion(currentResponse)">
-    {{ currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit' }}
+  <button mat-button mat-dialog-close>Close</button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="nextQuestion(currentResponse)"
+    *ngIf="!analysis && !isLoading">
+    {{ currentQuestionIndex < questions.length - 1 ? 'Next' : 'Get Diagnosis' }}
   </button>
 </mat-dialog-actions>
