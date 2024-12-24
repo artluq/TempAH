@@ -32,23 +32,13 @@
   </div>
 </mat-dialog-content>
 
-<<<<<<< HEAD
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Close</button>
-  <button 
-    mat-raised-button 
-    color="primary" 
+  <button
+    mat-raised-button
+    color="primary"
     (click)="nextQuestion(currentResponse)"
     *ngIf="!analysis && !isLoading">
     {{ currentQuestionIndex < questions.length - 1 ? 'Next' : 'Get Diagnosis' }}
   </button>
-=======
-<mat-dialog-actions class="custom-actions">
-  <div class="button-container">
-    <button class="next-button" mat-raised-button color="primary" (click)="nextQuestion(currentResponse)">
-      {{ currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit' }}
-    </button>
-    <button class="cancel-button" mat-button mat-dialog-close>Cancel</button>
-  </div>
->>>>>>> origin
 </mat-dialog-actions>

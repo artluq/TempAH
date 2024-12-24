@@ -13,7 +13,7 @@ export class AiDiagnosticDialogComponent {
   isLoading = false;
   errorMessage: string | null = null;
   analysis: string | null = null;
-  
+
   responses: { [key: string]: string } = {};
   questions = [
     "Can you describe the problem you're experiencing with your car?",
@@ -43,15 +43,15 @@ export class AiDiagnosticDialogComponent {
   submitDiagnosis() {
     this.isLoading = true;
     this.errorMessage = null;
-    
+
     if (Object.keys(this.responses).length === 0) {
       this.errorMessage = 'Please answer at least one question';
       this.isLoading = false;
       return;
     }
-    
+
     console.log('Submitting responses:', this.responses);
-    
+
     this.aiService.getDiagnostic(this.responses).subscribe({
       next: (result) => {
         console.log('Received response:', result);

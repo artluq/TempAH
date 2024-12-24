@@ -62,43 +62,6 @@ p {
   color: #2E4057; /* Updated color */
 }
 
-.centered-dialog {
-  position: fixed !important;
-  transform: translate(-50%, -50%);
-}
-
-<<<<<<< HEAD
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.loading-container p {
-  margin-top: 16px;
-  color: #666;
-}
-
-.error-message {
-  color: #f44336;
-  padding: 16px;
-  background-color: #ffebee;
-  border-radius: 4px;
-  margin: 16px 0;
-}
-
-.analysis-container {
-  padding: 16px;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-}
-
-.analysis-content {
-  white-space: pre-line;
-  line-height: 1.5;
-}
-=======
 mat-form-field.full-width {
   display: block;
   width: 100%; /* Adjust the width as needed */
@@ -165,4 +128,39 @@ mat-form-field {
   background-color: #ffa701; /* Change to a different color on hover */
   color: #2E4057; /* Text color on hover */
 }
->>>>>>> origin
+
+.centered-dialog {
+  position: fixed !important;
+  transform: translate(-50%, -50%);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.loading-container p {
+  margin-top: 16px;
+  color: #666;
+}
+
+.error-message {
+  color: #f44336;
+  padding: 16px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.analysis-container {
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.analysis-content {
+  white-space: pre-line;
+  line-height: 1.5;
+}
