@@ -1,49 +1,86 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using System;
 using API.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using System.Text.Json;
+using Microsoft.AspNetCore.Cors;
 
-//This is the controller for the AI Diagnostic API
-//It is used to diagnose the car issue based on the user's responses
-//Hopefully it works !!!!
+[Route("api/[controller]")]
+[ApiController]
+[EnableCors("AllowAll")]
 
-namespace API.Controllers
+public class AIDiagnosticController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AIDiagnosticController : ControllerBase
+    private readonly HttpClient _httpClient;
+    private readonly ILogger<AIDiagnosticController> _logger;
+    private const string FLASK_SERVICE_URL = "http://localhost:5000/diagnose";
+
+    public AIDiagnosticController(
+        ILogger<AIDiagnosticController> logger)
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        _logger = logger;
+        _httpClient = new HttpClient();
+        _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    }
 
-        public AIDiagnosticController(IHttpClientFactory httpClientFactory)
+    [HttpPost("diagnose")]
+    public async Task<IActionResult> GetDiagnostic([FromBody] DiagnosticRequest request)
+    {
+        try
         {
-            _httpClientFactory = httpClientFactory;
-        }
+            _logger.LogInformation("Starting diagnostic request");
 
-        [HttpPost("diagnose")]
-        public async Task<IActionResult> GetDiagnostic([FromBody] DiagnosticRequest request)
-        {
-            try
+            _logger.LogInformation($"Attempting to connect to Flask service at: {FLASK_SERVICE_URL}");
+
+            var flaskRequest = new
             {
-                var client = _httpClientFactory.CreateClient();
-                // Forward the request to the Python Flask service
-                var response = await client.PostAsJsonAsync("http://localhost:5000/diagnose", request);
+                problemDescription = string.Join("\n", request.Responses.Select(r => $"{r.Key}: {r.Value}"))
+            };
 
-                if (!response.IsSuccessStatusCode)
+            _logger.LogInformation($"Request payload: {JsonSerializer.Serialize(flaskRequest)}");
+
+            var jsonContent = new StringContent(
+                JsonSerializer.Serialize(flaskRequest),
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var response = await _httpClient.PostAsync(FLASK_SERVICE_URL, jsonContent);
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            _logger.LogInformation($"Response Status: {response.StatusCode}");
+            _logger.LogInformation($"Response Content: {responseContent}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var flaskResponse = JsonDocument.Parse(responseContent);
+                var analysis = flaskResponse.RootElement
+                    .GetProperty("analysis")
+                    .GetString();
+
+                return Ok(new DiagnosticResponse
                 {
-                    var errorContent = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, new { error = errorContent });
-                }
-
-                var result = await response.Content.ReadFromJsonAsync<DiagnosticResponse>();
-                return Ok(result);
+                    Success = true,
+                    Analysis = analysis ?? "No analysis provided"
+                });
             }
-            catch (Exception ex)
+            else
             {
-                return StatusCode(500, new { error = ex.Message });
+                _logger.LogError($"Flask service error: {responseContent}");
+                return StatusCode((int)response.StatusCode, new DiagnosticResponse
+                {
+                    Success = false,
+                    ErrorMessage = $"AI service error: {responseContent}"
+                });
             }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error in diagnostic: {ex}");
+            return StatusCode(500, new DiagnosticResponse
+            {
+                Success = false,
+                ErrorMessage = $"An unexpected error occurred: {ex.Message}"
+            });
         }
     }
 }
