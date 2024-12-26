@@ -1,172 +1,175 @@
-/* General styling for the page */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-}
-
-/* Card Container */
+/* Profile Card */
 .profile-card {
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--light-beige);
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Content Header */
 .content-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  padding: 10px 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 
 .content-header h2 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #333;
   margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-/* Search Section */
+/* Search Container */
 .search-container {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 30px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.search-input, .search-select {
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+.search-input,
+.search-select {
+  width: 48%;
+  padding: 10px;
+  border: 1px solid var(--dark-blue);
   border-radius: 5px;
-  width: 45%;
-}
-
-.search-input::placeholder, .search-select {
-  color: #888;
+  background-color: #FFFFFF;
+  color: var(--dark-blue);
 }
 
 .search-button {
-  padding: 12px 20px;
-  background-color: #ff5722;
-  color: #fff;
+  padding: 10px 20px;
+  background-color: var(--orange);
+  color: var(--light-beige);
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-weight: bold;
 }
 
 .search-button:hover {
-  background-color: #e64a19;
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
-/* Workshop List */
+/* Workshops List */
 .workshops-list {
   margin-top: 20px;
 }
 
-.workshop-card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.workshops-list h3 {
+  color: var(--dark-blue);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.workshop-card {
+/* Workshop Card Container */
+.workshop-card-container {
   display: flex;
-  flex-direction: column;
-  background-color: #fafafa;
-  border-radius: 8px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Center the items */
+}
+
+/* Workshop Card */
+.workshop-card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 20px); /* Three items per row */
   padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .workshop-card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Workshop Image */
 .workshop-image-container {
-  margin-bottom: 15px;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .workshop-image {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 /* Workshop Details */
 .workshop-details {
-  padding: 10px 0;
   text-align: center;
 }
 
 .workshop-details h4 {
-  font-size: 20px;
-  color: #333;
+  color: var(--dark-blue);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.workshop-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.workshop-description {
-  color: #555;
-  font-size: 14px;
-  margin: 10px 0;
+.workshop-rating .fa-star {
+  color: var(--orange);
 }
 
+.rating-number {
+  margin-left: 5px;
+  color: var(--dark-blue);
+}
+
+.workshop-description,
 .workshop-location {
-  color: #777;
-  font-size: 14px;
+  color: var(--dark-blue);
+  margin-bottom: 10px;
 }
 
 /* Book Appointment Button */
 .book-button {
-  padding: 12px 20px;
-  background-color: var(--light-orange);
-  color: #fff;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--orange);
+  color: var(--light-beige);
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  margin-top: 15px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-weight: bold;
 }
 
 .book-button:hover {
-  background-color: var(--orange);
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
-/* No Results Section */
-.no-results {
-  text-align: center;
-  margin-top: 40px;
-  color: #555;
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .workshop-card {
+    width: calc(50% - 20px); /* Two items per row on smaller screens */
+  }
 }
 
-.no-results p {
-  font-size: 16px;
-  font-weight: 500;
-}
-/* Workshop Rating */
-.workshop-rating {
-  display: flex;
-  justify-content: center; /* Center the stars horizontally */
-  align-items: center; /* Optionally center them vertically */
-  gap: 5px; /* Space between stars */
+@media (max-width: 480px) {
+  .workshop-card {
+    width: 100%; /* One item per row on very small screens */
+  }
 }
 
-.workshop-rating .fa-star {
-  color: gold; /* Star color */
-  font-size: 18px; /* Adjust size of stars */
-}
-
-.rating-number {
-  margin-left: 5px; /* Space between stars and rating number */
-  font-size: 16px; /* Adjust size of rating number */
-}

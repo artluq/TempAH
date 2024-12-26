@@ -40,7 +40,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--white);
+  background-color: #FFFFFF;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -59,10 +59,9 @@ button:hover {
 .navbar-nav li a,
 .login-container h2 {
   font-family: 'Poppins', sans-serif;
-  font-weight: 700; /* Adjust to desired weight */
+  font-weight: 700;
 }
 
-/* Optional: If you want to apply it globally to all headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -75,11 +74,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.3s ease, color 0.3s ease;
   color: var(--dark-blue);
 }
-/* Applying Modern Font to the "Book an Appointment" Button */
-.bookAnAppointment {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700; /* You can adjust the weight if needed */
-}
 
 .navbar-nav li a:hover {
   background-color: var(--orange);
@@ -90,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Book Appointment Button */
 .book-an-appointment-container {
   position: absolute;
-  bottom: 170px; /* Adjust this value as needed */
+  bottom: 170px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -116,7 +110,6 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
   height: 500px;
   overflow: hidden;
-  /* border-radius: 15px; */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -130,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .slide-image {
   width: 100%;
-  height: 30%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -177,19 +170,13 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
   border-radius: 12px;
-  background-color: var(--white);
+  background-color: #FFFFFF;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .feature:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.feature-icon {
-  font-size: 40px;
-  color: var(--orange);
-  margin-bottom: 20px;
 }
 
 .feature h3 {
@@ -204,7 +191,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Testimonials Section */
 .testimonials-section {
   padding: 60px 20px;
-  background-color: var(--white);
+  background-color: #FFFFFF;
   text-align: center;
 }
 
@@ -262,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
 .how-to-book-section ol li {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  background-color: var(--white);
+  background-color: #FFFFFF;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -348,15 +335,15 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Background overlay */
+    background: rgba(0, 0, 0, 0.5); 
     display: flex;
-    justify-content: center;
+    justify-content: centre;
     align-items: center;
     z-index: 1000; /* Ensure it's above other elements */
   }
   
   .modal-content {
-    background-color: var(--light-orange); 
+    background-color: var(--light-beige); 
     padding: 45px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -387,7 +374,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: var(--dark-orange);;
+    color: var(--dark-blue);
   }
   
   .form-group input {
@@ -408,7 +395,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   button[type="submit"]:hover {
-    background-color: var(--dark-orange);
+    background-color: var(--dark-blue);
   }
   
   .signup-redirect, .forgot-password {
@@ -417,12 +404,28 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .signup-redirect a, .forgot-password a {
-    color: #007bff;
+    color: var(--orange);
     text-decoration: none;
   }
   
   .signup-redirect a:hover, .forgot-password a:hover {
     text-decoration: underline;
   }
-  
+}
+/* Highlighting the login button */
+.navbar-nav li a.login {
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 15px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.navbar-nav li a.login:hover,
+.navbar-nav li a.login:focus {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: scale(1.05);
 }

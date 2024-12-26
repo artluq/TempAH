@@ -1,140 +1,90 @@
-/* Global color variables */
-:root {
-  --orange: #ffa701;
-  --dark-blue: #2E4057;
-  --light-beige: #F4F1DE;
-  --text-dark: #333;
-  --text-medium: #666;
-}
-
-/* General Styles for Create Account Page */
+/* Main container styling */
 .login-container {
+  width: 100%;
   max-width: 400px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: var(--light-beige);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.login-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-h2 {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #F4F1DE; /* Light cream background for a clean look */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2rem;
-  color: var(--orange);
-  font-weight: 700;
+  font-family: Arial, sans-serif;
 }
 
+/* Logo styling */
+.logo img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+/* Heading styling */
+h2 {
+  color: #2E4057; /* Deep blue for headings */
+  margin-bottom: 20px;
+}
+
+/* Form group styling */
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  text-align: left;
 }
 
+/* Label styling */
 label {
   display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: var(--dark-blue);
+  margin-bottom: 5px;
+  color: #2E4057; /* Deep blue for labels */
 }
 
-input {
+/* Input styling */
+input[type="text"],
+input[type="password"] {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid var(--dark-blue);
-  border-radius: 8px;
-  background-color: var(--light-beige);
-  color: var(--text-dark);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #2E4057; /* Deep blue border */
+  border-radius: 5px;
+  background-color: #F4F1DE; /* Light cream background */
+  color: #2E4057; /* Deep blue text */
+  box-sizing: border-box;
 }
 
-input:hover {
-  border-color: var(--orange);
-}
-
-input:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 10px rgba(255, 167, 1, 0.5);
-  outline: none;
-  background-color: #fff5e6; /* Subtle background color change for better visibility */
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  color: var(--light-beige);
-  background-color: var(--orange);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: var(--dark-blue);
-  transform: translateY(-3px);
-}
-
+/* Error message styling */
 .error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
+  color: #ff0000; /* Red for error messages */
+  margin-bottom: 15px;
 }
 
-.success-message {
-  color: green;
-  font-size: 14px;
-  margin-top: 10px;
+/* Button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffa701; /* Warm yellow button */
+  border: none;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.login-redirect {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 1rem;
-  color: var(--text-medium);
+button[type="submit"]:hover {
+  background-color: #cc8500; /* Darker shade for hover */
 }
 
-.login-redirect a {
-  color: var(--orange);
+/* Redirect and forgot password links styling */
+.signup-redirect,
+.forgot-password {
+  margin-top: 15px;
+}
+
+.signup-redirect a,
+.forgot-password a {
+  color: #ffa701; /* Warm yellow for links */
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.login-redirect a:hover {
-  color: var(--dark-blue);
+.signup-redirect a:hover,
+.forgot-password a:hover {
   text-decoration: underline;
 }
-
-.login-container .logo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.login-container .logo img {
-  max-width: 200px; /* Adjust size as needed */
-  height: auto;
-}
-
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .login-container {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  label, input, button {
-    font-size: 14px;
-  }
-}
-

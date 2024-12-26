@@ -1,18 +1,54 @@
-/* Global color variables */
-:root {
-  --orange: #ffa701;
-  --dark-blue: #2E4057;
-  --light-beige: #F4F1DE;
-}
-
-/* Appointments Container */
-.appointments-container {
-  max-width: 100%;
+/* Profile Card */
+.profile-card {
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--light-beige);
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.content-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Action Buttons */
+.action-buttons {
+  text-align: right;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
 /* Appointments List */
@@ -20,110 +56,60 @@
   margin-top: 20px;
 }
 
-/* Appointments Table */
 .appointments-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  background-color: var(--light-beige);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .appointments-table th,
 .appointments-table td {
-  padding: 15px;
   text-align: left;
-  border-bottom: 1px solid var(--orange);
+  padding: 12px 15px;
+  border-bottom: 1px solid #dddddd;
 }
 
 .appointments-table th {
-  background-color: var(--orange);
+  background-color: var(--dark-blue);
   color: var(--light-beige);
-  font-weight: 700;
-}
-
-.appointments-table td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid var(--orange);
-  white-space: nowrap; /* Keeps icons and text on one line */
+  font-weight: bold;
 }
 
 .appointments-table tr:nth-child(even) {
-  background-color: var(--light-beige);
+  background-color: #f9f9f9;
 }
 
-.appointments-table tr:hover {
+/* Icon Buttons in Appointments Table */
+.icon-button {
+  padding: 5px 10px;
   background-color: var(--orange);
   color: var(--light-beige);
-}
-
-.appointments-table tr:hover td {
-  color: var(--light-beige);
-}
-
-/* Icon Button */
-.icon-button {
-  background: none;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1.1em;
-  margin: 0 2px;
-  color: var(--dark-blue);
-  transition: color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .icon-button:hover {
-  color: var(--orange);
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
 }
 
-.icon-button:focus {
-  outline: none;
-}
-
-/* Profile Card Styling */
-.profile-card {
-  padding: 30px;
-  border-radius: 15px;
-  background-color: var(--light-beige);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.profile-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Profile Details Table */
-.profile-table {
-  width: 100%;
-  border-collapse: collapse;
+.icon-button .fas {
   font-size: 16px;
-  color: var(--dark-blue);
 }
 
-.profile-table td {
-  padding: 12px;
-  vertical-align: top;
-  border-bottom: 1px solid var(--orange);
+.icon-button.cancel {
+  background-color: #ff4d4d; /* Red for cancel button */
 }
 
-.profile-table td:first-child {
-  width: 35%;
-  font-weight: bold;
-  color: var(--dark-blue);
+.icon-button.cancel:hover {
+  background-color: #e60000;
 }
 
-/* Profile Header */
-h2 {
-  font-size: 26px;
+/* No Appointments Message */
+.no-appointments {
+  text-align: center;
   color: var(--dark-blue);
-  letter-spacing: 1px;
-  margin: 0;
-  padding: 0;
-  font-weight: 700;
+  margin-top: 20px;
 }
