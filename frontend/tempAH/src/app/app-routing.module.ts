@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'servicemanagement', component: ServiceManagementComponent },
   { path: 'serviceslist', component: ServiceListComponent },
   { path: 'servicesdetails', component: ServiceDetailsComponent },
+  { path: 'servicesdetails/:vendorId', component: ServiceDetailsComponent },
   { path: 'bookappointment', component: BookAppointmentComponent },
   { path: 'listbusiness', component: ListBusinessComponent },
   { path: 'corporateAdd', component: CorporateCollabAddComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'setting', component: SettingComponent },
   { path: 'vendorlist', component: VendorListComponent },
   { path: 'userlist', component: UserListComponent },
+
 ];
 
 @NgModule({

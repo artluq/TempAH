@@ -40,15 +40,14 @@ export class AuthService {
           sessionStorage.setItem('fullname', response.fullname);
           sessionStorage.setItem('userid', response.userid);
           this.loggedIn.next(true);  // Emit loggedIn as true
-          this.userRole = response.role;  // Update the role
+          this.userRole = response.role; 
           this.fullname = response.fullname;
-          console.log('Logged in and role is:', this.userRole); // Debug
+          console.log('Logged in and role is:', this.userid); // Debug
         }
       })
     );
   }
   
-
   logout() {
     sessionStorage.removeItem('access_token');
     sessionStorage.removeItem('role');

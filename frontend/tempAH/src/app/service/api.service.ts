@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from '../model/user.model';  // Import the User interface
 import { Vendor } from '../model/vendor.model';
 import { Service, ServiceDetail } from '../model/services.model';
 import { Booking, ViewBooking } from '../model/appointment.model';
+import { NumericValueAccessor } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,11 @@ export class ApiService {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
 
+  getProfile(): Observable<User> {
+    let userid = sessionStorage.getItem('userid');
+    return this.http.get<User>(`${this.apiUrl}/users/` + userid)
+  }
+
   deleteUser(userId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/users/${userId}`);
   }
@@ -51,8 +57,24 @@ export class ApiService {
   }
 
 //---------------------------VENDORS--------------------------------------------
-  registerVendor(vendor: Vendor): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/Vendors`, vendor);
+   registerVendor(formData: FormData) {
+    return this.http.post<{ vendor: Vendor; message: string }>(`${this.apiUrl}/Vendors`, formData);  // Replace with your API endpoint
+  }
+
+  getVendorInfo(vendorId: number): Observable<Vendor> {
+    return this.http.get<Vendor>(`${this.apiUrl}/Vendors/${vendorId}`).pipe(
+      map((vendor) => {
+        if (vendor.imagePath) {
+          // Prepend base URL if necessary
+          vendor.imagePath = `https://api.lgm.gov.my/API_Tempah/images${vendor.imagePath.split('/images')[1]}`;
+        }
+        return vendor;
+      })
+    );
+  }
+  
+  updateVendor(vendor: Vendor): Observable<Vendor> {
+    return this.http.put<Vendor>(`${this.apiUrl}/vendors/${vendor.vendorId}`, vendor);
   }
 
   getVendor(): Observable<Vendor[]> {
@@ -67,16 +89,20 @@ export class ApiService {
     return this.http.put<any>(`${this.apiUrl}/Vendors/${userId}/status`, { active });
   }
 
-  updateVendor(user: any) {
-    return this.http.put<any>(`${this.apiUrl}/Vendors/${user.userId}`, user);
-  }
+  // updateVendor(user: any) {
+  //   return this.http.put<any>(`${this.apiUrl}/Vendors/${user.userId}`, user);
+  // }
 
   //---------------------------SERVICES--------------------------------------------
   getService(): Observable<Service[]> {
     return this.http.get<Service[]>(`${this.apiUrl}/Services`);
   }
 
-  getServiceDetails(): Observable<ServiceDetail[]> {
+  getServiceDetails(vendorId: number): Observable<ServiceDetail[]> {
+    return this.http.get<ServiceDetail[]>(`${this.apiUrl}/ServiceDetails/detail/${vendorId}`);
+  }
+
+  getAllServiceDetails(): Observable<ServiceDetail[]> {
     return this.http.get<ServiceDetail[]>(`${this.apiUrl}/ServiceDetails`);
   }
   AddServiceDetails(service: ServiceDetail): Observable<any> {
@@ -89,13 +115,13 @@ export class ApiService {
   }
 
   getBookAppointment(): Observable<ViewBooking[]> {
-    let userid = sessionStorage.getItem('userid'); 
+    let userid = sessionStorage.getItem('userid');
     console.log(userid)
     return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/user/` + userid)
   }
 
   getBookAppointmentbyVendor(): Observable<ViewBooking[]> {
-    let userid = sessionStorage.getItem('userid'); 
+    let userid = sessionStorage.getItem('userid');
     console.log(userid)
     return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/vendor/` + userid)
   }

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../service/api.service';
+import { Vendor } from '../model/vendor.model';
 
 @Component({
   selector: 'app-service-list',
@@ -21,48 +23,17 @@ export class ServiceListComponent implements OnInit {
   // Updated workshops with images and descriptions
   workshops = [
     { 
-      name: 'Autohaus KL', 
-      location: 'Kuala Lumpur', 
+      vendorid: 0,
+      name: '', 
+      location: '', 
       rating: 4.7, 
-      services: ['Oil Change', 'Brake Inspection', 'Tire Rotation', 'Battery Check'],
+      services: [''],
       image: '../../assets/Untitled design (3).png',
-      description: 'Specialist in European car servicing and diagnostics with over 15 years of experience.'
-    },
-    { 
-      name: 'MEC Auto Garage', 
-      location: 'Petaling Jaya', 
-      rating: 4.5, 
-      services: ['Air Conditioning Service', 'Engine Diagnostics', 'Tire Rotation', 'Alignment'],
-      image: '../../assets/Aesthetic Luxury.jpeg',
-      description: 'Expert in air conditioning and engine diagnostics with a focus on quick and reliable service.'
-    },
-    { 
-      name: 'Garage 51', 
-      location: 'Shah Alam', 
-      rating: 4.5, 
-      services: ['Oil Change', 'Brake Inspection', 'Transmission Service'],
-      image: '../../assets/slide3.jpeg',
-      description: 'Specializing in transmission services and brake inspections with a customer satisfaction focus.'
-    },
-    { 
-      name: 'Xpert Car Care', 
-      location: 'Johor Bahru', 
-      rating: 4.4, 
-      services: ['Battery Check', 'Engine Overhaul', 'Suspension Repair', 'Alignment'],
-      image: '../../assets/slide2.jpg',
-      description: 'Known for engine overhauls and battery checks, offering top-notch service in Johor Bahru.'
-    },
-    { 
-      name: 'QuickFix Workshop', 
-      location: 'Penang', 
-      rating: 4.6, 
-      services: ['Oil Change', 'Tire Rotation', 'Brake Inspection', 'Air Conditioning Service'],
-      image: '../../assets/slide1.png',
-      description: 'Fast and reliable service, specializing in oil changes and tire rotations in Penang.'
+      description: ''
     }
   ];
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private apiService: ApiService ) {
     this.filteredWorkshops = this.workshops;
   }
 
@@ -70,6 +41,31 @@ export class ServiceListComponent implements OnInit {
     this.authService.loggedIn$.subscribe(loggedIn => {
       this.login = loggedIn;
     });
+    this.fetchWorkshops(); // Fetch vendor data from the API
+  }
+
+  // Fetch vendors and map them to workshops
+  fetchWorkshops() {
+    this.apiService.getVendor().subscribe(
+      (vendors: Vendor[]) => {
+        this.workshops = vendors.map((vendor) => ({
+          vendorid: vendor.vendorId,
+          name: vendor.vendorName,
+          location: vendor.city,
+          rating: vendor.rating, // Mock rating for demo purposes
+          services: ['Oil Change', 'Brake Inspection'], // Replace with actual services if available
+          image: vendor.imagePath
+          ? `https://api.lgm.gov.my/API_Tempah/images${vendor.imagePath.split('/images')[1]}`
+          : '../../assets/background.jpg', // Default image for null paths
+          description: vendor.address,
+        }));
+        console.log(vendors)
+        this.filteredWorkshops = this.workshops; // Initialize filtered list
+      },
+      (error) => {
+        console.error('Error fetching vendors:', error);
+      }
+    );
   }
 
   searchWorkshops() {
@@ -83,12 +79,8 @@ export class ServiceListComponent implements OnInit {
   }
 
   selectWorkshop(workshop: any) {
-    // if (this.login == true) {
-    //   this.router.navigate(['/servicesdetails']);
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
-    this.router.navigate(['/servicesdetails']);
+    console.log('Selected workshop:', workshop); 
+    this.router.navigate(['/servicesdetails', workshop.vendorid]);
   }
 
   resetBooking() {

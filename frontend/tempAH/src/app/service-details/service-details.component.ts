@@ -3,7 +3,7 @@ import { ApiService } from '../service/api.service';
 import { ServiceDetail } from '../model/services.model';
 import { AiDiagnosticDialogComponent } from '../components/ai-diagnostic-dialog/ai-diagnostic-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-details',
@@ -14,16 +14,27 @@ export class ServiceDetailsComponent {
   services: ServiceDetail[] = [];
   selectedService: any = null;
   aiGeneratedSolution!: string;
-
-  constructor(private Service: ApiService, private dialog: MatDialog, private router: Router) {}
+  vendorId!: number;
+  
+  constructor(private Service: ApiService, private dialog: MatDialog, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getServices();
+    this.vendorId = Number(this.route.snapshot.paramMap.get('vendorId'));
+    if (this.vendorId) {
+      // Fetch service details using the vendorId
+      this.Service.getServiceDetails(this.vendorId).subscribe(details => {
+        this.services = details;
+        // Process service details here
+      });
+    } else {
+      console.error("Vendor ID is missing or invalid.");
+    }
+    // this.getServices();
   }
 
   // Fetching the list of services from the API or service
   getServices(): void {
-    this.Service.getServiceDetails().subscribe(
+    this.Service.getServiceDetails(this.vendorId).subscribe(
       (response: any) => {
         this.services = response;
         this.formatDetails();

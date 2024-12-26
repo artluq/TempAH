@@ -30,7 +30,7 @@ export class ServiceManagementComponent implements OnInit {
   }
 
   loadAvailableServices(): void {
-    this.service.getServiceDetails().subscribe(
+    this.service.getAllServiceDetails().subscribe(
       (data: ServiceDetail[]) => {
         this.serviceDetails = data;
         console.log(data);

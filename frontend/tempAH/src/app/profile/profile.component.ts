@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { FormsModule } from '@angular/forms';
 import { User } from '../model/user.model';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,24 +10,26 @@ import { User } from '../model/user.model';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit { 
-  user: User = {
-  userId: 1,
-  username: 'johndoe',
-  passwordHash: 'hash123',
-  email: 'johndoe@example.com',
-  fullName: 'John Doe',
-  phoneNumber: '123456789',
-  createdAt: new Date('2023-01-01'),
-  isActive: true,
-  roleId: 1,
-  role: 'Administrator',
-};
+user: User | null = null;
 
-constructor() {}
+constructor(private authService: ApiService) {}
 
 ngOnInit(): void {
-  // Optionally fetch user data from an API or service
+  this.getProfile();
 }
+
+getProfile(): void {
+  this.authService.getProfile().subscribe({
+    next: (userData) => {
+      this.user = userData;
+      console.log('User data fetched successfully:', this.user);
+    },
+    error: (err) => {
+      console.error('Failed to fetch user data:', err);
+    },
+  });
+}
+
 
 editProfile(): void {
   alert('Edit profile functionality goes here.');

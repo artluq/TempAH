@@ -11,7 +11,7 @@
         <h3>Add New Vendor</h3>
         <button class="close-button" (click)="closeAddVendorModal()">&times;</button>
       </div>
-      <form (ngSubmit)="submitVendor()" class="form-modal">
+      <form (ngSubmit)="submitVendor()" class="form-modal" enctype="multipart/form-data">
         <div class="form-group">
           <label for="vendorName">Vendor Name</label>
           <input type="text" id="vendorName" [(ngModel)]="newVendor.vendorName" name="vendorName" required placeholder="Enter vendor name">
@@ -32,11 +32,19 @@
           <label for="city">City</label>
           <input type="text" id="city" [(ngModel)]="newVendor.city" name="city" required placeholder="Enter city">
         </div>
+        
+        <!-- New Image Input -->
+        <div class="form-group">
+          <label for="imageFile">Vendor Image</label>
+          <input type="file" id="imageFile" (change)="onImageSelect($event)" name="imageFile">
+        </div>
+      
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Add Vendor</button>
           <button type="button" class="btn btn-secondary" (click)="closeAddVendorModal()">Cancel</button>
         </div>
       </form>
+      
     </div>
   </div>
 
@@ -65,6 +73,9 @@
             </span>
           </td>
           <td>
+            <button (click)="viewVendor(vendor.vendorId)" class="icon-button" title="View">
+              <i class="fas fa-eye"></i>
+            </button>
             <button (click)="editVendor(vendor)" class="icon-button" title="Edit">
               <i class="fas fa-edit"></i>
             </button>
@@ -84,4 +95,73 @@
   <div *ngIf="!vendors || vendors.length === 0" class="no-vendors">
     <p>No vendors available. Click "Add New Vendor" to get started.</p>
   </div>
+
+  <!-- View Vendor Modal -->
+<div *ngIf="selectedVendors" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Vendor Details</h3>
+      <button class="close-button" (click)="closeViewVendorModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Name:</strong> {{ selectedVendor.vendorName }}</p>
+      <p><strong>Address:</strong> {{ selectedVendor.address }}</p>
+      <p><strong>Contact:</strong> {{ selectedVendor.phoneNumber }}</p>
+      <p><strong>Email:</strong> {{ selectedVendor.email }}</p>
+      <p><strong>City:</strong> {{ selectedVendor.city }}</p>
+      <p><strong>Status:</strong> {{ selectedVendor.isActive ? 'Active' : 'Inactive' }}</p>
+      <div class="workshop-image-container">
+        <img [src]="selectedVendor.imagePath" class="workshop-image" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <!-- <button class="btn btn-primary" (click)="openEditVendorModal(selectedVendor)">Edit</button> -->
+      <!-- <button class="btn btn-danger" (click)="deleteVendor(selectedVendor)">Delete</button> -->
+      <button class="btn btn-secondary" (click)="closeViewVendorModal()">Close</button>
+    </div>
+  </div>
 </div>
+<!-- Edit Vendor Modal -->
+<div *ngIf="isEditingVendor" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Edit Vendor</h3>
+      <button class="close-button" (click)="closeEditVendorModal()">&times;</button>
+    </div>
+    <form (ngSubmit)="submitEditVendor()" class="form-modal">
+      <div class="form-group">
+        <label for="vendorName">Vendor Name</label>
+        <input type="text" id="vendorName" [(ngModel)]="selectedVendor.vendorName" name="vendorName" required placeholder="Enter vendor name">
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact</label>
+        <input type="text" id="contact" [(ngModel)]="selectedVendor.phoneNumber" name="contact" required placeholder="Enter contact number">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="selectedVendor.email" name="email" required placeholder="Enter email address">
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" [(ngModel)]="selectedVendor.address" name="address" required placeholder="Enter address">
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" [(ngModel)]="selectedVendor.city" name="city" required placeholder="Enter city">
+      </div>
+
+      <!-- Image Input (optional for updating image) -->
+      <div class="form-group">
+        <label for="imageFile">Vendor Image</label>
+        <input type="file" id="imageFile" (change)="onImageSelect($event)" name="imageFile">
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Update Vendor</button>
+        <button type="button" class="btn btn-secondary" (click)="closeEditVendorModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  </div>

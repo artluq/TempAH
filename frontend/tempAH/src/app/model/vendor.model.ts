@@ -1,3 +1,4 @@
+import { NumericValueAccessor } from "@ionic/angular";
 
 export interface Vendor {
   vendorId: number;       
@@ -9,6 +10,9 @@ export interface Vendor {
   isActive: boolean;      
   createdAt: string;     
   stateId: number;  
+  userId: number;
+  imagePath?: string; 
+  rating: number;
   }
   
   

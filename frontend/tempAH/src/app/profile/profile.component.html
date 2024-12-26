@@ -10,27 +10,27 @@
         <table class="profile-table">
           <tr>
             <td><strong>Name:</strong></td>
-            <td>{{ user.fullName }}</td>
+            <td>{{ user?.fullName }}</td>
           </tr>
           <tr>
             <td><strong>Email:</strong></td>
-            <td>{{ user.email }}</td>
+            <td>{{ user?.email }}</td>
           </tr>
           <tr>
             <td><strong>Phone Number:</strong></td>
-            <td>{{ user.phoneNumber }}</td>
+            <td>{{ user?.phoneNumber }}</td>
           </tr>
           <tr>
             <td><strong>Role:</strong></td>
-            <td>{{ user.role }}</td>
+            <td>{{ user?.role }}</td>
           </tr>
           <tr>
             <td><strong>Account Created:</strong></td>
-            <td>{{ user.createdAt | date: 'mediumDate' }}</td>
+            <td>{{ user?.createdAt | date: 'mediumDate' }}</td>
           </tr>
           <tr>
             <td><strong>Status:</strong></td>
-            <td>{{ user.isActive ? 'Active' : 'Inactive' }}</td>
+            <td>{{ user?.isActive ? 'Active' : 'Inactive' }}</td>
           </tr>
         </table>
       </div>
