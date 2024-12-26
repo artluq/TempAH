@@ -2,19 +2,29 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from typing import Dict
 from groq import Groq
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Read the GROQ API key from environment variables
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY environment variable is not set")
 
 app = Flask(__name__)
 CORS(app, resources={
-    r"/diagnose": {
+    r"/*": {
         "origins": ["http://localhost:4200", "http://localhost:5246"],
-        "methods": ["POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "Authentication"],
         "expose_headers": ["Content-Type"],
-        "supports_credentials": True
+        "supports_credentials": True,
+        "allow_credentials": True
     }
 })
 
-GROQ_API_KEY = "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"  # GROQ API key here
 
 def analyze_car_issue(responses: Dict) -> str:
     # Initialize Groq client
@@ -61,33 +71,48 @@ Please provide your analysis in this format:
         print(f"Debug - Error details: {error_msg}")
         return f"Error analyzing responses: {error_msg}"
 
+
 @app.route('/')
 def home():
-    return "Welcome to the Car Diagnostic Service"
+    return "Welcome to the AI Car Diagnostic Service"
+
 
 @app.route('/diagnose', methods=['POST'])
 def diagnose():
     try:
+        print("Received request at /diagnose endpoint")
+        
         if not request.is_json:
-            return jsonify({"error": "Content-Type must be application/json"}), 400
+            print("Request is not JSON")
+            return jsonify({"success": False, "errorMessage": "Content-Type must be application/json"}), 400
 
         data = request.json
-        if not data or 'problemDescription' not in data:
-            return jsonify({"error": "Missing problemDescription in request"}), 400
+        print(f"Received data: {data}")
+        
+        if not data or 'Responses' not in data:
+            print("Missing Responses in data")
+            return jsonify({"success": False, "errorMessage": "Missing Responses in request"}), 400
 
-        problem_description = data['problemDescription']
-        if not problem_description:
-            return jsonify({"error": "problemDescription cannot be empty"}), 400
-
-        responses = {
-            "Can you describe the problem you're experiencing with your car?": problem_description
-        }
-
-        analysis = analyze_car_issue(responses)  # Directly calling the function
-        return jsonify({"analysis": analysis, "success": True})
+        responses = data['Responses']
+        print(f"Processing responses: {responses}")
+        
+        analysis = analyze_car_issue(responses)
+        print(f"Analysis result: {analysis}")
+        
+        response = jsonify({
+            "success": True,
+            "analysis": analysis
+        })
+        print(f"Sending response: {response.get_data(as_text=True)}")
+        return response
+        
     except Exception as e:
-        print(f"Error in diagnose endpoint: {str(e)}")  # Debug logging
-        return jsonify({"error": str(e), "success": False}), 500
+        print(f"Error in diagnose endpoint: {str(e)}")
+        return jsonify({
+            "success": False,
+            "errorMessage": str(e)
+        }), 500
+
 
 if __name__ == '__main__':
     print("Starting Flask server on http://localhost:5000")  # Debug logging
