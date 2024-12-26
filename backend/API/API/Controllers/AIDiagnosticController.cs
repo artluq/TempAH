@@ -12,7 +12,7 @@ public class AIDiagnosticController : ControllerBase
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<AIDiagnosticController> _logger;
-    private const string FLASK_SERVICE_URL = "http://localhost:5000/diagnose";
+    private const string FLASK_SERVICE_URL = "http://127.0.0.1:5000/diagnose";
 
     public AIDiagnosticController(
         ILogger<AIDiagnosticController> logger)
@@ -22,64 +22,84 @@ public class AIDiagnosticController : ControllerBase
         _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     }
 
+    [HttpOptions("diagnose")]
+    public IActionResult PreflightRoute()
+    {
+        return Ok();
+    }
+
     [HttpPost("diagnose")]
-    public async Task<IActionResult> GetDiagnostic([FromBody] DiagnosticRequest request)
+    public async Task<IActionResult> PostDiagnostic([FromBody] DiagnosticRequest request)
     {
         try
         {
-            _logger.LogInformation("Starting diagnostic request");
-
-            _logger.LogInformation($"Attempting to connect to Flask service at: {FLASK_SERVICE_URL}");
-
-            var flaskRequest = new
-            {
-                problemDescription = string.Join("\n", request.Responses.Select(r => $"{r.Key}: {r.Value}"))
-            };
-
-            _logger.LogInformation($"Request payload: {JsonSerializer.Serialize(flaskRequest)}");
+            _logger.LogInformation($"Received request with {request.Responses?.Count} responses");
 
             var jsonContent = new StringContent(
-                JsonSerializer.Serialize(flaskRequest),
+                JsonSerializer.Serialize(new { Responses = request.Responses }),
                 Encoding.UTF8,
                 "application/json"
             );
 
-            var response = await _httpClient.PostAsync(FLASK_SERVICE_URL, jsonContent);
+            _logger.LogInformation($"Sending to Flask: {await jsonContent.ReadAsStringAsync()}");
+
+            using var response = await _httpClient.PostAsync(FLASK_SERVICE_URL, jsonContent);
             var responseContent = await response.Content.ReadAsStringAsync();
+            
+            _logger.LogInformation($"Flask response status: {response.StatusCode}");
+            _logger.LogInformation($"Flask response content: {responseContent}");
 
-            _logger.LogInformation($"Response Status: {response.StatusCode}");
-            _logger.LogInformation($"Response Content: {responseContent}");
-
-            if (response.IsSuccessStatusCode)
+            if (string.IsNullOrEmpty(responseContent))
             {
-                var flaskResponse = JsonDocument.Parse(responseContent);
-                var analysis = flaskResponse.RootElement
-                    .GetProperty("analysis")
-                    .GetString();
-
-                return Ok(new DiagnosticResponse
+                _logger.LogError("Empty response from Flask service");
+                return StatusCode(502, new DiagnosticResponse
                 {
-                    Success = true,
-                    Analysis = analysis ?? "No analysis provided"
+                    Success = false,
+                    ErrorMessage = "Empty response from AI service"
                 });
             }
-            else
+
+            if (!response.IsSuccessStatusCode)
             {
-                _logger.LogError($"Flask service error: {responseContent}");
+                _logger.LogError($"Flask service error: {response.StatusCode} - {responseContent}");
                 return StatusCode((int)response.StatusCode, new DiagnosticResponse
                 {
                     Success = false,
-                    ErrorMessage = $"AI service error: {responseContent}"
+                    ErrorMessage = $"Flask service error: {responseContent}"
+                });
+            }
+
+            try
+            {
+                var flaskResponse = JsonSerializer.Deserialize<DiagnosticResponse>(responseContent);
+                if (flaskResponse == null)
+                {
+                    _logger.LogError("Failed to deserialize Flask response");
+                    return StatusCode(502, new DiagnosticResponse
+                    {
+                        Success = false,
+                        ErrorMessage = "Invalid response from AI service"
+                    });
+                }
+                return Ok(flaskResponse);
+            }
+            catch (JsonException ex)
+            {
+                _logger.LogError($"JSON parsing error: {ex.Message}");
+                return StatusCode(502, new DiagnosticResponse
+                {
+                    Success = false,
+                    ErrorMessage = "Failed to parse AI service response"
                 });
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error in diagnostic: {ex}");
+            _logger.LogError($"Error: {ex.Message}");
             return StatusCode(500, new DiagnosticResponse
             {
                 Success = false,
-                ErrorMessage = $"An unexpected error occurred: {ex.Message}"
+                ErrorMessage = $"An error occurred: {ex.Message}"
             });
         }
     }
