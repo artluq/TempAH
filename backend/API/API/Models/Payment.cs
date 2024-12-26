@@ -18,8 +18,4 @@ public partial class Payment
     public string? PaymentStatus { get; set; }
 
     public int? MethodId { get; set; }
-
-    public virtual Booking Booking { get; set; } = null!;
-
-    public virtual PaymentMethod? Method { get; set; }
 }

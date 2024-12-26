@@ -25,5 +25,5 @@ public partial class Booking
 
     public int? StatusId { get; set; }
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public string? Slot { get; set; }
 }

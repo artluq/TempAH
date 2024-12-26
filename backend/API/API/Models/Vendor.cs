@@ -7,7 +7,7 @@ public partial class Vendor
 {
     public int VendorId { get; set; }
 
-    public string VendorName { get; set; } = null!;
+    public string? VendorName { get; set; }
 
     public string? Address { get; set; }
 
@@ -22,4 +22,6 @@ public partial class Vendor
     public DateTime? CreatedAt { get; set; }
 
     public int? StateId { get; set; }
+
+    public int? UserId { get; set; }
 }
