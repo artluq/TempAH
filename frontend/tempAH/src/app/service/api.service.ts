@@ -58,7 +58,7 @@ export class ApiService {
 
 //---------------------------VENDORS--------------------------------------------
    registerVendor(formData: FormData) {
-    return this.http.post<{ vendor: Vendor; message: string }>(`${this.apiUrl}/Vendors`, formData);  // Replace with your API endpoint
+    return this.http.post<{ vendor: Vendor; message: string }>(`${this.apiUrl}/Vendors/UploadVendorImage`, formData);  // Replace with your API endpoint
   }
 
   getVendorInfo(vendorId: number): Observable<Vendor> {
@@ -119,10 +119,25 @@ export class ApiService {
     console.log(userid)
     return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/user/` + userid)
   }
+  
+  getHistoryAppointment(): Observable<ViewBooking[]> {
+    let userid = sessionStorage.getItem('userid');
+    console.log(userid)
+    return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/BookingsHistory/user/` + userid)
+  }
 
   getBookAppointmentbyVendor(): Observable<ViewBooking[]> {
     let userid = sessionStorage.getItem('userid');
     console.log(userid)
     return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/vendor/` + userid)
   }
+
+  getBookingInfo(bookingId: number): Observable<ViewBooking> {
+    return this.http.get<ViewBooking>(`${this.apiUrl}/Bookings/${bookingId}`)
+  }
+
+  updateBookingCancelled(bookingId: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/Bookings/updateStatus/${bookingId}`, { statusId: 5 });
+  }
+  
 }

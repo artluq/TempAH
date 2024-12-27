@@ -1,11 +1,8 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 <div class="appointments-container">
   <mat-card class="profile-card shadow p-3 mb-5 bg-white rounded">  
-  <div class="content-header d-flex">
+    <div class="content-header d-flex">
       <h2>Appointment</h2>
     </div>
-  
 
     <div class="action-buttons" style="text-align: right;">
       <button class="button" style="margin-right: 10px;" (click)="createAppointment()" *ngIf="role === 3">+ New Appointment</button>
@@ -19,34 +16,42 @@
             <th>Time</th>
             <th>Service</th>
             <th>Location</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let appointment of appointment">
-            <td>{{ appointment.date | date: 'shortDate' }}</td>
-            <td>{{ appointment.time }}</td>
-            <td>{{ appointment.service }}</td>
-            <td>{{ appointment.location }}</td>
+            <td>{{ appointment.bookingDate | date: 'shortDate' }}</td>
+            <td>{{ appointment.slot }}</td>
+            <td>{{ appointment.serviceTitle }}</td>
+            <td>{{ appointment.vendorName }}</td>
+            <td>{{ appointment.expr1 }}</td>
             <td>
-                <button (click)="editAppointment(appointment)" title="Edit" class="icon-button" *ngIf="role == 3">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button (click)="deleteAppointment(appointment)" title="Delete" class="icon-button"  *ngIf="role == 3">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-                <button (click)="viewAppointment(appointment)" title="View Details" class="icon-button">
-                    <i class="fas fa-info-circle"></i>
-                </button>
-              </td>
+              <button class="btn" (click)="viewAppointment(appointment)">View</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-  
+
     <div *ngIf="appointment.length === 0" class="no-appointments">
-      <p>No appointments found.</p>
+      <p>No History appointments found.</p>
+    </div>
+    
+    <!-- Display selected appointment details below -->
+    <div *ngIf="selectedAppointment" class="appointment-details">
+      <h3>Appointment Details</h3>
+      <p><strong>Date:</strong> {{ selectedAppointment.bookingDate | date: 'dd.MM.yyyy' }}</p>
+      <p><strong>Time:</strong> {{ selectedAppointment.slot }}</p>
+      <p><strong>Service:</strong> {{ selectedAppointment.serviceTitle }}</p>
+      <p><strong>Location:</strong> {{ selectedAppointment.vendorName }}</p>
+      <p><strong>Status:</strong> {{ selectedAppointment.expr1 }}</p>
+      <p><strong>Description:</strong> {{ selectedAppointment.description }}</p>
+      <p><strong>Price:</strong> RM {{ selectedAppointment.priceRange | number: '1.2-2' }}</p>
+
+      <!-- Close Button -->
+      <button class="button" (click)="closeAppointmentDetails()">Close</button>
     </div>
   </mat-card>
-  </div>
-  
+</div>

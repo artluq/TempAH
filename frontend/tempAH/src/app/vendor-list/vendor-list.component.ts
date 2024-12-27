@@ -7,6 +7,8 @@ import { Vendor } from '../model/vendor.model';
   templateUrl: './vendor-list.component.html',
   styleUrls: ['./vendor-list.component.css']
 })
+
+
 export class VendorListComponent implements OnInit {
   vendors: Vendor[] = [];
   isAddingVendor = false;
@@ -62,31 +64,31 @@ export class VendorListComponent implements OnInit {
     formData.append('phoneNumber', this.newVendor.phoneNumber);
     formData.append('email', this.newVendor.email);
     formData.append('address', this.newVendor.address);
-    formData.append('city', this.newVendor.city); 
-    formData.append('isActive', JSON.stringify(true)); // Send it as a string representation
-
-
-    // Add the selected image file (if any)
+    formData.append('city', this.newVendor.city);
+    formData.append('isActive', JSON.stringify(true));
+  
+    // Ensure file is appended to FormData
     if (this.selectedImage) {
       formData.append('file', this.selectedImage, this.selectedImage.name);
+    } else {
+      alert('Please select an image for the vendor.');
+      return; // Prevent submission if no file is selected
     }
   
-    // Call the service method to register the vendor
     this.vendorService.registerVendor(formData).subscribe(
       (response: { vendor: Vendor; message: string }) => {
-        // On success
-        const addedVendor = response.vendor;
-        this.vendors.push(addedVendor);  // Update the vendor list with the new vendor
+        this.vendors.push(response.vendor); // Update list
         this.closeAddVendorModal();
-        alert(response.message);  // Display success message
+        alert(response.message);
       },
       (error) => {
-        // On error
-        console.error('There was an error!', error);
-        alert('Failed to add vendor. Please try again later.');
+        console.error('Failed to add vendor:', error);
+        alert('Error occurred. Please try again.');
       }
     );
   }
+  
+
   // Submit the edited vendor data
   submitEditVendor() {
     this.vendorService.updateVendor(this.selectedVendor).subscribe({
@@ -106,12 +108,19 @@ export class VendorListComponent implements OnInit {
   }
 
   // Method to handle image selection (optional)
+  // onImageSelect(event: any) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     // Process the file (e.g., upload it to the server)
+  //     // For now, you can just store the file in the vendor object
+  //     this.selectedVendor.imagePath = URL.createObjectURL(file);  // Temporarily show the image
+  //   }
+  // }
+  
   onImageSelect(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Process the file (e.g., upload it to the server)
-      // For now, you can just store the file in the vendor object
-      this.selectedVendor.imagePath = URL.createObjectURL(file);  // Temporarily show the image
+      this.selectedImage = file;
     }
   }
   
