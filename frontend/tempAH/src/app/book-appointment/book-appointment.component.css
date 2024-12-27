@@ -1,77 +1,97 @@
-.booking-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F1DE;
+    color: #2E4057;
+    margin: 0;
+    padding: 0;
 }
 
-h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.booking-container {
+    background-color: #fff;
+    border: 1px solid #2E4057;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #2E4057;
 }
 
 label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
 }
 
 input[type="date"],
 textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 100px;
+    border: 1px solid #2E4057;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(100% - 22px);
 }
 
 .slot-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
 }
 
 .slot-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.slot-btn:hover {
-  background-color: #0056b3;
+    background-color: #ffa701;
+    border: none;
+    border-radius: 5px;
+    color: #2E4057;
+    cursor: pointer;
+    margin: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
 }
 
 .slot-btn.selected {
-  background-color: #28a745;
+    background-color: #e69500;
 }
 
-button[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-top: 10px;
+.slot-btn:hover {
+    background-color: #e69500;
 }
 
-button[type="submit"]:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.btn-primary {
+    background-color: #2E4057;
+    border: none;
+    border-radius: 5px;
+    color: #F4F1DE;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #1f2d3e;
+}
+
+@media (max-width: 768px) {
+    .booking-container {
+        width: 90%;
+    }
+
+    .slot-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
 }

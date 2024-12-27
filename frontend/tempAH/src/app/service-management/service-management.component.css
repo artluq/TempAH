@@ -1,164 +1,100 @@
-/* Global Styles */
+/* General Styles */
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--light-beige);
-  color: var(--dark-blue);
+  font-family: Arial, sans-serif;
+  background-color: #F4F1DE;
+  color: #2E4057;
   margin: 0;
   padding: 0;
 }
 
-/* Service Management Container */
 .service-management-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 40px auto;
+  max-width: 800px;
+  margin: 20px auto;
   padding: 20px;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
-.service-management-container h2 {
+h2, h3 {
+  color: #2E4057;
   text-align: center;
-  color: var(--dark-blue);
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-weight: bold;
 }
 
-/* Form */
+/* Form Styles */
 form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-form div {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
-form label {
-  font-size: 1rem;
-  color: var(--dark-blue);
-  margin-bottom: 5px;
+form > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-form input,
-form select {
-  padding: 12px;
-  border: 1px solid var(--dark-blue);
-  border-radius: 5px;
-  background-color: #fff;
-  color: var(--dark-blue);
-  font-size: 1rem;
+label {
+  font-weight: bold;
+  width: 150px; /* Adjust this width as needed */
+}
+
+input, select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 button[type="submit"] {
-  grid-column: 1 / -1;
-  padding: 12px 20px;
-  background-color: var(--orange);
+  background-color: #ffa701;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  font-weight: bold;
-  align-self: center;
+  transition: background-color 0.3s ease;
 }
 
 button[type="submit"]:hover {
-  background-color: var(--dark-blue);
-  color: #fff;
-  transform: translateY(-3px);
+  background-color: #e69500;
 }
 
-/* Available Services */
-.available-services {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.available-services h3 {
-  color: var(--dark-blue);
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-
-.available-services table {
+/* Table Styles */
+table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.available-services th,
-.available-services td {
+th, td {
+  padding: 10px;
   text-align: left;
-  padding: 15px 20px;
-}
-
-.available-services th {
-  background-color: var(--dark-blue);
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.available-services td {
-  text-align: center;
-  color: var(--dark-blue);
   border-bottom: 1px solid #ddd;
 }
 
-.available-services tr:nth-child(even) {
-  background-color: #f9f9f9;
+th {
+  background-color: #2E4057;
+  color: #fff;
 }
 
-.available-services tr:last-child td {
-  border-bottom: none;
+td {
+  background-color: #F4F1DE;
 }
 
-.available-services td:last-child {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Action Buttons */
 .action-button {
-  padding: 8px 12px;
-  background-color: var(--orange);
+  background-color: #2E4057;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
-  background-color: var(--dark-blue);
-  color: #fff;
-  transform: translateY(-3px);
+  background-color: #1f2d3b;
 }
-
-/* One Line Style */
-.available-services td {
-  white-space: nowrap; /* Ensure content stays on one line */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-
-

@@ -28,39 +28,34 @@
   font-weight: bold;
 }
 
-/* Search Container */
+/* Search Section Styles */
 .search-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.search-input,
-.search-select {
-  width: 48%;
+.search-input, .search-select {
+  flex: 1;
   padding: 10px;
-  border: 1px solid var(--dark-blue);
-  border-radius: 5px;
-  background-color: #FFFFFF;
-  color: var(--dark-blue);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .search-button {
-  padding: 10px 20px;
-  background-color: var(--orange);
-  color: var(--light-beige);
+  background-color: #ffa701;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: var(--dark-blue);
-  color: var(--light-beige);
-  transform: translateY(-3px);
+  background-color: #e69500;
 }
 
 /* Workshops List */
@@ -98,14 +93,22 @@
 }
 
 /* Workshop Image */
+/* Workshop Image */
 .workshop-image-container {
-  text-align: center;
-  margin-bottom: 15px;
+  width: 100%;
+  height: 200px; /* Fixed height for the image */
+  overflow: hidden; /* Ensures that the image doesn't overflow the container */
+  border-radius: 10px; /* Rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .workshop-image {
-  width: 100%;
-  border-radius: 10px;
+  width: 100%; /* Fill the container's width */
+  height: 100%; /* Fill the container's height */
+  object-fit: contain; /* Ensure the image covers the area of the container while maintaining its aspect ratio */
+  object-position: center; /* Center the image within the container */
 }
 
 /* Workshop Details */
