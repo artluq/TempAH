@@ -58,6 +58,9 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles(); // Enables serving static files
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

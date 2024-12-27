@@ -30,7 +30,7 @@ namespace API.Controllers
             }
 
             var bookings = await _context.UvwBookings
-                .Where(b => b.UserId == userId)
+                .Where(b => b.UserId == userId && (b.StatusId == 1 || b.StatusId == 2 || b.StatusId == 3 || b.StatusId == 7))
                 .ToListAsync();
 
             if (bookings == null || bookings.Count == 0)
@@ -51,8 +51,8 @@ namespace API.Controllers
             }
 
             var bookings = await _context.UvwBookings
-                .Where(b => b.UserId == userId && b.StatusId == 4)
-                .ToListAsync();
+                 .Where(b => b.UserId == userId && (b.StatusId == 4 || b.StatusId == 5 || b.StatusId == 6))
+                 .ToListAsync();
 
             if (bookings == null || bookings.Count == 0)
             {
@@ -114,6 +114,41 @@ namespace API.Controllers
             return booking;
         }
 
+        // PUT: api/Bookings/updateStatus/5
+        [HttpPut("updateStatus/{id}")]
+        public async Task<IActionResult> UpdateBookingStatus(int id)
+        {
+            // Check if the booking exists
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking == null)
+            {
+                return NotFound($"Booking with ID {id} not found.");
+            }
+
+            // Update the StatusId to 5
+            booking.StatusId = 5;
+
+            // Save changes to the database
+            _context.Entry(booking).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
 
         // PUT: api/Bookings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
