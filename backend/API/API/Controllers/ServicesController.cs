@@ -24,10 +24,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Service>>> GetServices()
         {
-          if (_context.Services == null)
-          {
-              return NotFound();
-          }
+            if (_context.Services == null)
+            {
+                return NotFound();
+            }
             return await _context.Services.ToListAsync();
         }
 
@@ -35,10 +35,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Service>> GetService(int id)
         {
-          if (_context.Services == null)
-          {
-              return NotFound();
-          }
+            if (_context.Services == null)
+            {
+                return NotFound();
+            }
             var service = await _context.Services.FindAsync(id);
 
             if (service == null)
@@ -85,10 +85,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Service>> PostService(Service service)
         {
-          if (_context.Services == null)
-          {
-              return Problem("Entity set 'TempahDbContext.Services'  is null.");
-          }
+            if (_context.Services == null)
+            {
+                return Problem("Entity set 'TempahDbContext.Services'  is null.");
+            }
             _context.Services.Add(service);
             await _context.SaveChangesAsync();
 

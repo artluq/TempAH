@@ -1,25 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj": {}
+    "C:\\Users\\nsyazwani\\OneDrive\\Documents\\GitHub\\TempAH\\backend\\API\\API\\API.csproj": {}
   },
   "projects": {
-    "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj": {
+    "C:\\Users\\nsyazwani\\OneDrive\\Documents\\GitHub\\TempAH\\backend\\API\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj",
+        "projectUniqueName": "C:\\Users\\nsyazwani\\OneDrive\\Documents\\GitHub\\TempAH\\backend\\API\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/API.csproj",
-        "packagesPath": "/Users/luqy/.nuget/packages/",
-        "outputPath": "/Users/luqy/Documents/UTM/TempAH-1/backend/API/API/obj/",
+        "projectPath": "C:\\Users\\nsyazwani\\OneDrive\\Documents\\GitHub\\TempAH\\backend\\API\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\nsyazwani\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nsyazwani\\OneDrive\\Documents\\GitHub\\TempAH\\backend\\API\\API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/luqy/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\nsyazwani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,13 +41,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net7.0": {
@@ -96,20 +99,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-x64",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -118,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

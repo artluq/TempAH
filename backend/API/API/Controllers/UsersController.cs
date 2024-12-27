@@ -75,7 +75,7 @@ namespace API.Controllers
             var token = GenerateJwtToken(user);
 
             // Return the token and role information
-            return Ok(new { token, role = user.RoleId, fullname = user.FullName });
+            return Ok(new { token, role = user.RoleId, fullname = user.FullName, userid = user.UserId });
         }
 
         // GET: api/Users
@@ -95,14 +95,14 @@ namespace API.Controllers
 
         // GET: api/Users/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<UvwUserRole>> GetUser(int id)
         {
-            if (_context.Users == null)
+            if (_context.UvwUserRoles == null)
             {
                 return NotFound("Users not found.");
             }
 
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.UvwUserRoles.FirstOrDefaultAsync(x => x.UserId == id);
 
             if (user == null)
             {
@@ -111,6 +111,7 @@ namespace API.Controllers
 
             return Ok(user); // Return the user data if found
         }
+
 
         // Method to generate JWT token
         private string GenerateJwtToken(User user)

@@ -24,21 +24,31 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ServiceDetail>>> GetServiceDetails()
         {
-          if (_context.ServiceDetails == null)
-          {
-              return NotFound();
-          }
+            if (_context.ServiceDetails == null)
+            {
+                return NotFound();
+            }
             return await _context.ServiceDetails.ToListAsync();
+        }
+
+        [HttpGet("detail/{id}")]
+        public async Task<ActionResult<IEnumerable<UvwVendorDetail>>> GetListServiceDetails(int id)
+        {
+            if (_context.UvwVendorDetails == null)
+            {
+                return NotFound();
+            }
+            return await _context.UvwVendorDetails.Where(x => x.VendorId == id).ToListAsync();
         }
 
         // GET: api/ServiceDetails/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceDetail>> GetServiceDetail(int id)
         {
-          if (_context.ServiceDetails == null)
-          {
-              return NotFound();
-          }
+            if (_context.ServiceDetails == null)
+            {
+                return NotFound();
+            }
             var serviceDetail = await _context.ServiceDetails.FindAsync(id);
 
             if (serviceDetail == null)
@@ -85,10 +95,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<ServiceDetail>> PostServiceDetail(ServiceDetail serviceDetail)
         {
-          if (_context.ServiceDetails == null)
-          {
-              return Problem("Entity set 'TempahDbContext.ServiceDetails'  is null.");
-          }
+            if (_context.ServiceDetails == null)
+            {
+                return Problem("Entity set 'TempahDbContext.ServiceDetails'  is null.");
+            }
             _context.ServiceDetails.Add(serviceDetail);
             await _context.SaveChangesAsync();
 

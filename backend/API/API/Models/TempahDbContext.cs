@@ -37,6 +37,8 @@ public partial class TempahDbContext : DbContext
 
     public virtual DbSet<UvwUserRole> UvwUserRoles { get; set; }
 
+    public virtual DbSet<UvwVendorDetail> UvwVendorDetails { get; set; }
+
     public virtual DbSet<Vendor> Vendors { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -163,19 +165,35 @@ public partial class TempahDbContext : DbContext
             entity.Property(e => e.Username).HasMaxLength(50);
         });
 
-        modelBuilder.Entity<Vendor>(entity =>
+        modelBuilder.Entity<UvwVendorDetail>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToTable("Vendor");
+                .ToView("uvw_VendorDetails");
 
             entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.City).HasMaxLength(50);
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+            entity.Property(e => e.PriceRange).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Rating).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.ServiceName).HasMaxLength(100);
             entity.Property(e => e.UserId).HasColumnName("userId");
-            entity.Property(e => e.VendorId).ValueGeneratedOnAdd();
+            entity.Property(e => e.VendorName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<Vendor>(entity =>
+        {
+            entity.ToTable("Vendor");
+
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.City).HasMaxLength(50);
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+            entity.Property(e => e.Rating).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.VendorName).HasMaxLength(100);
         });
 
