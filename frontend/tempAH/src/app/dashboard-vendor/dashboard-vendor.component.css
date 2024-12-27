@@ -10,79 +10,120 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Header */
-.dashboard-container h2 {
+/* Dashboard Header */
+.dashboard-header {
   text-align: center;
-  color: var(--dark-blue);
-  font-size: 2rem;
   margin-bottom: 30px;
 }
 
-/* Statistics Section */
-/*
-.stats-section {
-  margin-bottom: 40px;
-}
-
-.stats-section h3 {
+.dashboard-header h1 {
   color: var(--dark-blue);
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.stat-card {
-  display: inline-block;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(33.333% - 20px);
-  margin: 10px;
-  padding: 20px;
-  text-align: center;
-}
-
-.stat-card h4 {
-  color: var(--dark-blue);
-  font-size: 1.2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
-.stat-card p {
+.dashboard-header p {
   color: var(--dark-blue);
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.2rem;
 }
-*/
+
+/* Main Section */
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+}
 
 /* Appointments Section */
-.appointments-section {
-  margin-top: 40px;
-}
-
-.appointments-section h3 {
-  color: var(--dark-blue);
-  font-size: 1.5rem;
+.appointments {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-.appointments-section table {
+.appointments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.appointments-header h2 {
+  color: var(--dark-blue);
+  font-size: 1.8rem;
+}
+
+.book-btn {
+  padding: 10px 20px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-weight: bold;
+}
+
+.book-btn:hover {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
+}
+
+/* Appointment Table */
+.appointment-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.appointments-section th,
-.appointments-section td {
+.appointment-table th,
+.appointment-table td {
   text-align: left;
   padding: 12px 15px;
   border-bottom: 1px solid #dddddd;
 }
 
-.appointments-section th {
+.appointment-table th {
   background-color: var(--dark-blue);
   color: var(--light-beige);
   font-weight: bold;
 }
 
-.appointments-section tr:nth-child(even) {
+.appointment-table tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+/* Buttons in Appointment Table */
+.appointment-table .btn {
+  padding: 5px 10px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.appointment-table .btn:hover {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
+}
+
+.appointment-table .btn.cancel {
+  background-color: #ff4d4d; /* Red for cancel button */
+}
+
+.appointment-table .btn.cancel:hover {
+  background-color: #e60000;
+}
+.selected {
+  background-color: #4CAF50; /* Change this to whatever color you prefer */
+  color: white;
+}
+.slot-btn {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
 }

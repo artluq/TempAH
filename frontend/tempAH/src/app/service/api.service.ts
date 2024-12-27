@@ -116,7 +116,6 @@ export class ApiService {
 
   getBookAppointment(): Observable<ViewBooking[]> {
     let userid = sessionStorage.getItem('userid');
-    console.log(userid)
     return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/user/` + userid)
   }
   
@@ -127,7 +126,7 @@ export class ApiService {
   }
 
   getBookAppointmentbyVendor(): Observable<ViewBooking[]> {
-    let userid = sessionStorage.getItem('userid');
+    let userid = sessionStorage.getItem('vendorid');
     console.log(userid)
     return this.http.get<ViewBooking[]>(`${this.apiUrl}/Bookings/api/Bookings/vendor/` + userid)
   }

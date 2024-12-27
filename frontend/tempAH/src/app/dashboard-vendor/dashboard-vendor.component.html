@@ -1,44 +1,78 @@
 <div class="dashboard-container">
-    <h2>Vendor Dashboard</h2>
-  
-    <!-- Statistics Section -->
-    <!-- <div class="stats-section">
-        <h3>Vendor Statistics</h3>
-        <div class="stat-card" *ngFor="let stat of vendorStats">
-          <h4>{{ stat.label }}</h4>
-          <p>{{ stat.count }}</p>
-        </div>
+  <h2>Vendor Dashboard</h2>
+
+  <main class="dashboard-main">
+    <section class="appointments">
+      <div class="appointments-header">
+        <h2>Upcoming Appointments</h2>
       </div>
-    
-      <div class="stats-section">
-        <h3>User Statistics</h3>
-        <div class="stat-card" *ngFor="let stat of userStats">
-          <h4>{{ stat.label }}</h4>
-          <p>{{ stat.count }}</p>
-        </div>
-      </div> -->
-  
-    <!-- Upcoming Appointments Section -->
-    <div class="appointments-section">
-      <h3>Upcoming Appointments</h3>
-      <table>
+      <table class="appointment-table">
         <thead>
           <tr>
             <th>Date</th>
-            <th>Time</th>
+            <th>Slot</th>
             <th>Service</th>
-            <th>Customer</th>
+            <th>Price (RM)</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let appointment of upcomingAppointments">
-            <td>{{ appointment.bookingDate | date: 'shortDate' }}</td>
-            <td>{{ appointment.slot }}</td>
+            <td>{{ appointment.bookingDate | date:'dd.MM.yyyy' }}</td>
+            <td>{{ transformSlotTo12HourFormat(appointment.slot) }}</td>
             <td>{{ appointment.serviceTitle }}</td>
-            <td>{{ appointment.notes }}</td>
+            <td>{{ appointment.priceRange | currency:'RM ':true:'1.2-2' }}</td>
+            <td>{{ appointment.expr1 }}</td>
+            <td>
+              <button class="btn" (click)="viewAppointment(appointment)">View</button>
+              <button class="btn reschedule" (click)="openRescheduleModal(appointment)">Reschedule</button>
+            </td>
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-  
+
+      <!-- Booking Details Section (Displayed when an appointment is selected) -->
+      <div *ngIf="selectedAppointment">
+        <h3>Appointment Details</h3>
+        <button class="btn" (click)="closeAppointment()">Close</button>
+        <p><strong>Service Title:</strong> {{ selectedAppointment.serviceTitle }}</p>
+        <p><strong>Description:</strong> {{ selectedAppointment.description }}</p>
+        <p><strong>Vendor:</strong> {{ selectedAppointment.vendorName }}</p>
+        <p><strong>Price (RM):</strong> {{ selectedAppointment.priceRange }}</p>
+        <p><strong>Booking Date:</strong> {{ selectedAppointment.bookingDate | date:'longDate' }}</p>
+        <p><strong>Status:</strong> {{ selectedAppointment.expr1 }}</p>
+        <p><strong>Details:</strong> {{ selectedAppointment.details }}</p>
+        <p><strong>Notes:</strong> {{ selectedAppointment.notes }}</p>
+        <p><strong>Slot:</strong> {{ selectedAppointment.slot }}</p>
+      </div>
+
+      <!-- Reschedule Modal -->
+      <div *ngIf="showRescheduleModal" class="reschedule-modal">
+        <h3>Reschedule Appointment</h3>
+        <p><strong>Service:</strong> {{ selectedAppointment?.serviceTitle }}</p>
+        <form (ngSubmit)="rescheduleAppointment()">
+          <label for="date">New Date</label>
+          <input type="date" id="date" [min]="today" ngModel name="newDate" required>
+
+          <label for="slot">Available Slots</label>
+          <div class="slot-buttons">
+            <button
+              type="button"
+              *ngFor="let slot of availableSlots"
+              [ngClass]="{ selected: selectedSlot === slot }"
+              (click)="selectSlot(slot)"
+              class="slot-btn"
+            >
+              {{ slot }}
+            </button>
+          </div>
+          <br>
+
+          <button type="submit" [disabled]="!selectedSlot" class="btn btn-primary">Confirm Reschedule</button>
+          <button type="button" (click)="showRescheduleModal = false" class="btn btn-secondary">Cancel</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
