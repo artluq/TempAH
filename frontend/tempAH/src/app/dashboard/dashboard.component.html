@@ -25,29 +25,23 @@
             <td>{{ appointment.bookingDate |  date:'dd.MM.yyyy' }}</td>
             <td>{{ transformSlotTo12HourFormat(appointment.slot) }}</td>
             <td>{{ appointment.serviceTitle }}</td>
-            <td>{{ appointment.priceRange | currency:'RM ':true:'1.2-2'  }}</td>
+            <td>{{ appointment.priceRange | currency:'RM ':true:'1.2-2' }}</td>
             <td>{{ appointment.expr1 }}</td>
             <td>
               <button class="btn" (click)="viewAppointment(appointment)">View</button>
-              <button class="btn cancel"  (click)="cancelBooking(appointment.bookingId)">Cancel</button>
+              <button class="btn cancel" (click)="cancelBooking(appointment.bookingId)">Cancel</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <!-- Booking Details Section (Displayed when an appointment is selected) -->
-      <div *ngIf="selectedAppointment">
-        <h3>Appointment Details</h3>
-        <button class="btn" (click)="closeAppointment()">Close</button> <!-- Close button -->
-        <p><strong>Service Title:</strong> {{ selectedAppointment.serviceTitle }}</p>
-        <p><strong>Description:</strong> {{ selectedAppointment.description }}</p>
-        <p><strong>Vendor:</strong> {{ selectedAppointment.vendorName }}</p>
-        <p><strong>Price (RM):</strong> {{ selectedAppointment.priceRange }}</p>
-        <p><strong>Booking Date:</strong> {{ selectedAppointment.bookingDate | date:'longDate' }}</p>
-        <p><strong>Status:</strong> {{ selectedAppointment.expr1 }}</p>
-        <p><strong>Details:</strong> {{ selectedAppointment.details }}</p>
-        <p><strong>Notes:</strong> {{ selectedAppointment.notes }}</p>
-        <p><strong>Slot:</strong> {{ selectedAppointment.slot }}</p>
-      </div>
     </section>
   </main>
+
+  <!-- Include the modal component -->
+  <app-modal 
+    [isVisible]="isModalVisible" 
+    [modalTitle]="modalTitle" 
+    [modalMessage]="modalMessage" 
+    (closeModalEvent)="closeModal()">
+  </app-modal>
 </div>

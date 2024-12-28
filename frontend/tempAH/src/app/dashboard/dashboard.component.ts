@@ -16,6 +16,9 @@ export class DashboardComponent implements OnInit {
   upcomingAppointments: ViewBooking[] = []; // Updated to store ViewBooking objects
   selectedAppointment: ViewBooking | null = null;
   remindedAppointments = new Set<string>();
+  modalTitle: string = '';
+  modalMessage: string = '';
+  isModalVisible: boolean = false;
 
   constructor(private bookingService: ApiService, private router: Router, private authService: AuthService, private toastr: ToastrService) {}
 
@@ -34,37 +37,51 @@ export class DashboardComponent implements OnInit {
         console.error('Error fetching appointments:', error);
       }
     );
-    
   }
+
   checkForDailyReminders(): void {
-    const today = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
-
+    // Get today's date in the Malaysia time zone (Asia/Kuala_Lumpur)
+    const today = new Date();
+    const localToday = new Date(today.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
+  
+    // Format the date to 'YYYY-MM-DD'
+    const todayString = localToday.toISOString().split('T')[0]; // Get today's date as 'YYYY-MM-DD'
+  
     // Check if today's reminder has already been sent
-    if (!this.remindedAppointments.has(today)) {
+    if (!this.remindedAppointments.has(todayString)) {
       const todaysAppointments = this.upcomingAppointments.filter((appointment) => {
-        const appointmentDate = new Date(appointment.bookingDate).toISOString().split('T')[0];
-        console.log(appointmentDate)
-        return appointmentDate === today;
-        
+        // Adjust the appointment date to Malaysia time zone
+        const appointmentDate = new Date(appointment.bookingDate).toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' });
+  
+        // Convert the appointment date to 'YYYY-MM-DD' format
+        const formattedAppointmentDate = new Date(appointmentDate).toISOString().split('T')[0];
+  
+        console.log('Checking appointment:', formattedAppointmentDate); // Check if the date is correct
+        return formattedAppointmentDate === todayString; // Compare the appointment date with today's date
       });
-
+  
       if (todaysAppointments.length > 0) {
         this.showDailyReminder(todaysAppointments); // Show a single reminder for all appointments today
-        this.remindedAppointments.add(today); // Mark today's date as reminded
+        this.remindedAppointments.add(todayString); // Mark today's date as reminded
       }
     }
   }
+  
+  
 
   showDailyReminder(appointments: any[]): void {
-    const summary = appointments
+    console.log('Showing daily reminder'); // Debug log
+    this.modalTitle = 'Daily Appointment Reminder';
+    this.modalMessage = appointments
       .map((appointment) => `• ${appointment.serviceTitle} at ${appointment.slot}`)
-      .join('\n'); // Create a bulleted list of appointments
+      .join('\n'); 
+  
+    this.isModalVisible = true; // Show the modal
+  }
+  
 
-    this.toastr.info(
-      `You have the following appointments today:\n${summary}`,
-      'Daily Appointment Reminder',
-      { timeOut: 10000, closeButton: true, enableHtml: true } // Customize Toastr options
-    );
+  closeModal() {
+    this.isModalVisible = false; // Close the modal
   }
 
   bookNewAppointment() {
