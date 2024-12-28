@@ -58,6 +58,7 @@ export class AiDiagnosticDialogComponent {
         this.isLoading = false;
         if (result.success) {
           this.analysis = result.analysis;
+          console.log('Submitting Result:', this.analysis);
         } else {
           this.errorMessage = result.errorMessage || 'An error occurred during diagnosis';
         }
