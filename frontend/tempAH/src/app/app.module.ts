@@ -43,6 +43,8 @@ import { AiDiagnosticDialogComponent } from './components/ai-diagnostic-dialog/a
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ToastrModule } from 'ngx-toastr';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UserListComponent,
     ServiceManagementComponent,
     ForgotPasswordComponent,
-    ServiceDetailsComponent
+    ServiceDetailsComponent,
+    ModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -89,7 +92,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({   // Configure Toastr globally
+      timeOut: 3000,         // Duration of toast (in ms)
+      positionClass: 'toast-top-right', // Position
+      preventDuplicates: true // Avoid duplicate toasts
+    })
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

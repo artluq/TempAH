@@ -112,6 +112,7 @@ button:hover {
   text-decoration: underline;
 }
 
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .signup-container {

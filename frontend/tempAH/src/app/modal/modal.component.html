@@ -1,0 +1,15 @@
+<div *ngIf="isVisible" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>{{ modalTitle }}</h5>
+       
+      </div>
+      <div class="modal-body">
+        <p>{{ modalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" class="ok-btn">OK</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,38 +1,23 @@
 <div class="booking-container">
-  <h2>Book Appointment  </h2>
-  <h3>{{ selectedService.serviceTitle }}  </h3>
+  <h2>Book Appointment</h2>
+  <h3>{{ selectedService.serviceTitle }}</h3>
   <p>{{ selectedService.description }}</p>
   <p>{{ selectedService.details }}</p>
 
   <form (ngSubmit)="bookAppointment(bookingForm.value)" #bookingForm="ngForm">
     <label for="date">Preferred Date</label>
-    <input
-      type="date"
-      id="date"
-      name="date"
-      ngModel
-      required
-      [min]="today"
-    />
+    <input type="date" id="date" name="date" ngModel required [min]="today" (change)="onDateChange($event)" />
 
     <label for="slot">Available Slot</label>
     <div class="slot-buttons">
-      <button
-        type="button"
-        *ngFor="let slot of availableSlots"
-        [ngClass]="{ selected: selectedSlot === slot }"
-        (click)="selectSlot(slot)"
-        class="slot-btn"
-      >
-        {{ slot }}
-      </button>
+      <button type="button" *ngFor="let slot of availableSlots" [ngClass]="{ selected: selectedSlot === slot }" (click)="selectSlot(slot)" class="slot-btn">{{ slot }}</button>
     </div>
 
     <label for="comments">Additional Comments</label>
     <textarea id="comments" name="comments" ngModel></textarea>
 
-    <button type="submit" [disabled]="!bookingForm.valid || !selectedSlot" class="btn btn-primary">
-      Confirm Booking
-    </button>
+    <button type="submit" [disabled]="!bookingForm.valid || !selectedSlot" class="btn btn-primary">Confirm Booking</button>
   </form>
 </div>
+
+<app-modal [isVisible]="isModalVisible" [modalTitle]="modalTitle" [modalMessage]="modalMessage" (closeModalEvent)="handleModalClose()"></app-modal>

@@ -11,20 +11,22 @@
   <div class="stats-section">
     <h3>Vendor Statistics</h3>
     <div class="stat-cards">
-      <div class="stat-card" *ngFor="let stat of vendorStats">
+      <div class="stat-card" *ngFor="let stat of vendorStatsArray">
         <h4>{{ stat.label }}</h4>
         <p>{{ stat.count }}</p>
       </div>
     </div>
   </div>
 
-  <div class="stats-section">
-    <h3>User Statistics</h3>
-    <div class="stat-cards">
-      <div class="stat-card" *ngFor="let stat of userStats">
-        <h4>{{ stat.label }}</h4>
-        <p>{{ stat.count }}</p>
-      </div>
+  <!-- user-dashboard.component.html -->
+<div class="stats-section"> 
+  <h3>User Statistics</h3>
+  <div class="stat-cards">
+    <div class="stat-card" *ngFor="let stat of userStatsArray">
+      <h4>{{ stat.label }}</h4>
+      <p>{{ stat.count }}</p>
     </div>
   </div>
+</div>
+
 </div>

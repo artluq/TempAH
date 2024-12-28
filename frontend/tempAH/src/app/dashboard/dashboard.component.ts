@@ -3,6 +3,7 @@ import { ApiService } from '../service/api.service';
 import { ViewBooking } from '../model/appointment.model';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +15,9 @@ export class DashboardComponent implements OnInit {
   userid = '';
   upcomingAppointments: ViewBooking[] = []; // Updated to store ViewBooking objects
   selectedAppointment: ViewBooking | null = null;
+  remindedAppointments = new Set<string>();
 
-  constructor(private bookingService: ApiService, private router: Router, private authService: AuthService,) {}
+  constructor(private bookingService: ApiService, private router: Router, private authService: AuthService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.username = sessionStorage.getItem('fullname') || 'User'; 
@@ -25,10 +27,43 @@ export class DashboardComponent implements OnInit {
     this.bookingService.getBookAppointment().subscribe(
       (appointments: ViewBooking[]) => {
         this.upcomingAppointments = appointments; // Update the upcoming appointments
+        setInterval(() => this.checkForDailyReminders(), 60 * 60 * 1000);
+        this.checkForDailyReminders(); // Run immediately on load
       },
       (error) => {
         console.error('Error fetching appointments:', error);
       }
+    );
+    
+  }
+  checkForDailyReminders(): void {
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
+
+    // Check if today's reminder has already been sent
+    if (!this.remindedAppointments.has(today)) {
+      const todaysAppointments = this.upcomingAppointments.filter((appointment) => {
+        const appointmentDate = new Date(appointment.bookingDate).toISOString().split('T')[0];
+        console.log(appointmentDate)
+        return appointmentDate === today;
+        
+      });
+
+      if (todaysAppointments.length > 0) {
+        this.showDailyReminder(todaysAppointments); // Show a single reminder for all appointments today
+        this.remindedAppointments.add(today); // Mark today's date as reminded
+      }
+    }
+  }
+
+  showDailyReminder(appointments: any[]): void {
+    const summary = appointments
+      .map((appointment) => `• ${appointment.serviceTitle} at ${appointment.slot}`)
+      .join('\n'); // Create a bulleted list of appointments
+
+    this.toastr.info(
+      `You have the following appointments today:\n${summary}`,
+      'Daily Appointment Reminder',
+      { timeOut: 10000, closeButton: true, enableHtml: true } // Customize Toastr options
     );
   }
 

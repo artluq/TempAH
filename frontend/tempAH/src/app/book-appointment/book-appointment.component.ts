@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { Booking } from '../model/appointment.model';
 
+import { ModalComponent } from '../modal/modal.component'; // Import ModalComponent
+
 @Component({
   selector: 'app-book-appointment',
   templateUrl: './book-appointment.component.html',
@@ -13,10 +15,14 @@ export class BookAppointmentComponent implements OnInit {
   availableSlots: string[] = [];
   selectedSlot: string = '';
   today: string = '';
-  
+  isModalVisible: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
+
   constructor(private router: Router, private bookingService: ApiService) {}
 
   ngOnInit(): void {
+    // initialization code
     const navigation = this.router.getCurrentNavigation();
     this.selectedService = navigation?.extras.state?.['service'];
 
@@ -32,9 +38,39 @@ export class BookAppointmentComponent implements OnInit {
     }
 
     sessionStorage.setItem('selectedService', JSON.stringify(this.selectedService));
-    console.log(this.selectedService.serviceDetailId)
-    this.generateAvailableSlots();
     this.setTodayDate();
+  }
+
+  setTodayDate(): void {
+    const today = new Date();
+    today.setDate(today.getDate() + 2); // Move to tomorrow
+    this.today = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+  }
+
+  onDateChange(event: Event): void {
+    const selectedDateString = (event.target as HTMLInputElement).value;
+    const selectedDate = new Date(selectedDateString);
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+
+    const vendorId = this.selectedService.vendorId;
+    this.fetchAvailableSlots(vendorId, formattedDate);
+  }
+
+  fetchAvailableSlots(vendorId: number, formattedDate: string): void {
+    this.bookingService.getAvailableSlot(vendorId, formattedDate).subscribe(
+      (slots) => {
+        this.availableSlots = slots;
+      },
+      (error) => {
+        console.error('Error fetching available slots:', error);
+        this.availableSlots = [];
+        alert('Failed to load available slots. Please try again.');
+      }
+    );
+  }
+
+  selectSlot(slot: string): void {
+    this.selectedSlot = slot;
   }
 
   bookAppointment(formData: any): void {
@@ -44,66 +80,40 @@ export class BookAppointmentComponent implements OnInit {
     }
 
     const booking: Booking = {
-      bookingId: 0, // Set bookingId to 0 for new bookings
-      userId: 3, // Replace with the logged-in user's ID
-      workshopId: 2, // Replace with the selected workshop ID
-      serviceId: this.selectedService.serviceDetailId, 
-      bookingDate: formData.date, // The selected date
-      notes: formData.comments, // The comments from the form
+      bookingId: 0, 
+      userId: 3, 
+      workshopId: 2, 
+      serviceId: this.selectedService.serviceDetailId,
+      bookingDate: formData.date,
+      notes: formData.comments,
       createdAt: new Date(),
       updatedAt: new Date(),
       statusId: 1,
       status: '',
       slot: this.selectedSlot.toString(),
     };
-    
 
-    // Send booking data to backend API
     this.bookingService.AddBookAppointment(booking).subscribe(
       (response) => {
-        console.log(booking)
-        console.log('Booking successful!', response);
-        alert('Booking Successful!');
-        this.router.navigate(['/dashboard']);
+        // Set modal visibility to true and show success message
+        this.modalTitle = 'Booking Successful';
+        this.modalMessage = 'Your booking has been confirmed. Please make the payment at the counter once the service is completed.';
+        this.isModalVisible = true;
       },
       (error) => {
         console.error('Booking failed', error);
         alert('Booking Failed. Please try again.');
-        // alert('Booking Successful!');
-        // this.router.navigate(['/dashboard']);
       }
     );
-    
   }
 
-  generateAvailableSlots() {
-    const startHour = 9;
-    const endHour = 17;
-    const interval = 30; // in minutes
-    const slots: string[] = [];
-
-    for (let hour = startHour; hour < endHour; hour++) {
-      slots.push(`${this.formatTime(hour)}:00`);
-      slots.push(`${this.formatTime(hour)}:30`);
-    }
-
-    slots.push(`${this.formatTime(endHour)}:00`);
-    this.availableSlots = slots;
+  navigateToDashboard(): void {
+    this.router.navigate(['/dashboard']);
   }
 
-  formatTime(hour: number): string {
-    const suffix = hour >= 12 ? 'PM' : 'AM';
-    const formattedHour = hour > 12 ? hour - 12 : hour;
-    return `${formattedHour}`;
-  }
-
-  selectSlot(slot: string) {
-    this.selectedSlot = slot;
-  }
-
-  setTodayDate() {
-    const today = new Date();
-    today.setDate(today.getDate() + 2); // Move to tomorrow
-    this.today = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+  // Handle the close modal event and navigate to dashboard
+  handleModalClose(): void {
+    this.isModalVisible = false;
+    this.navigateToDashboard(); // Navigate to dashboard after modal closes
   }
 }

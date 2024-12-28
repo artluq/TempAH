@@ -6,6 +6,7 @@ import { Vendor } from '../model/vendor.model';
 import { Service, ServiceDetail } from '../model/services.model';
 import { Booking, ViewBooking } from '../model/appointment.model';
 import { NumericValueAccessor } from '@ionic/angular';
+import { Statistics } from '../model/statistic.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,11 @@ export class ApiService {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
 
+  // Get user statistics (new, active, inactive)
+  getUserStatistics(): Observable<Statistics> {
+    return this.http.get<Statistics>(`${this.apiUrl}/users/statistics`);
+  }
+
   getProfile(): Observable<User> {
     let userid = sessionStorage.getItem('userid');
     return this.http.get<User>(`${this.apiUrl}/users/` + userid)
@@ -60,6 +66,13 @@ export class ApiService {
    registerVendor(formData: FormData) {
     return this.http.post<{ vendor: Vendor; message: string }>(`${this.apiUrl}/Vendors/UploadVendorImage`, formData);  // Replace with your API endpoint
   }
+
+
+  // Get user statistics (new, active, inactive)
+  getVendorStatistics(): Observable<Statistics> {
+    return this.http.get<Statistics>(`${this.apiUrl}/Vendors/statistics`);
+  }
+
 
   getVendorInfo(vendorId: number): Observable<Vendor> {
     return this.http.get<Vendor>(`${this.apiUrl}/Vendors/${vendorId}`).pipe(
@@ -110,6 +123,13 @@ export class ApiService {
   }
 
   //---------------------------BOOKING--------------------------------------------
+  getAvailableSlot(vendorId: number, date: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.apiUrl}/Bookings/availableSlots?vendorId=${vendorId}&date=${date}`
+    );
+  }
+  
+
   AddBookAppointment(booking: Booking): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Bookings`, booking);
   }

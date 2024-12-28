@@ -54,7 +54,7 @@ textarea {
 }
 
 .slot-btn.selected {
-    background-color: #e69500;
+    background-color: #7ae2a2;
 }
 
 .slot-btn:hover {
@@ -84,7 +84,14 @@ textarea {
 .btn-primary:hover:not(:disabled) {
     background-color: #1f2d3e;
 }
+.modal-dialog-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100% - 1rem); /* Adjusts for small screens */
+  }
 
+  
 @media (max-width: 768px) {
     .booking-container {
         width: 90%;
