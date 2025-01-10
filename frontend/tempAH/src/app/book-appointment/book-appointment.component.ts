@@ -18,6 +18,7 @@ export class BookAppointmentComponent implements OnInit {
   isModalVisible: boolean = false;
   modalTitle: string = '';
   modalMessage: string = '';
+  userid: any;
 
   constructor(private router: Router, private bookingService: ApiService) {}
 
@@ -25,6 +26,7 @@ export class BookAppointmentComponent implements OnInit {
     // initialization code
     const navigation = this.router.getCurrentNavigation();
     this.selectedService = navigation?.extras.state?.['service'];
+    this.userid = sessionStorage.getItem('userid') || 'userid'; 
 
     if (!this.selectedService) {
       const savedService = sessionStorage.getItem('selectedService');
@@ -81,8 +83,8 @@ export class BookAppointmentComponent implements OnInit {
 
     const booking: Booking = {
       bookingId: 0, 
-      userId: 3, 
-      workshopId: 2, 
+      userId: this.userid, 
+      workshopId: this.selectedService.vendorId, 
       serviceId: this.selectedService.serviceDetailId,
       bookingDate: formData.date,
       notes: formData.comments,

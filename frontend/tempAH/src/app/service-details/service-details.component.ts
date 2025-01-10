@@ -15,23 +15,33 @@ export class ServiceDetailsComponent {
   selectedService: any = null;
   aiGeneratedSolution!: string;
   vendorId!: number;
-  
+  isLoading = true;
+
   constructor(private Service: ApiService, private dialog: MatDialog, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.vendorId = Number(this.route.snapshot.paramMap.get('vendorId'));
-    if (this.vendorId) {
-      // Fetch service details using the vendorId
-      this.Service.getServiceDetails(this.vendorId).subscribe(details => {
-        this.services = details;
-        // Process service details here
-      });
-    } else {
-      console.error("Vendor ID is missing or invalid.");
-    }
-    // this.getServices();
+  this.vendorId = Number(this.route.snapshot.paramMap.get('vendorId'));
+  if (this.vendorId) {
+    this.isLoading = true; // Set loading to true before the API call
+    this.Service.getServiceDetails(this.vendorId).subscribe(
+      (details) => {
+        this.services = details || []; // Ensure `services` is an empty array if no data
+        console.log(this.services)
+        this.isLoading = false; // Set loading to false after data is loaded
+      },
+      (error) => {
+        console.error('Error fetching services:', error);
+        this.services = []; // Set `services` to an empty array if an error occurs
+        this.isLoading = false; // Set loading to false after error
+      }
+    );
+  } else {
+    console.error('Vendor ID is missing or invalid.');
+    this.services = [];
+    this.isLoading = false; // No need to load if vendorId is invalid
   }
-
+}
+  
   // Fetching the list of services from the API or service
   getServices(): void {
     this.Service.getServiceDetails(this.vendorId).subscribe(

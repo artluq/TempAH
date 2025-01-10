@@ -13,8 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/temp-ah",
+            "outputPath": "dist",
             "index": "src/index.html",
+            "baseHref": "/TempAH/",
             "main": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -34,17 +35,22 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "200kb",
+                "maximumError": "300kb"
+              },
+              {
+                "type": "allScript",
+                "maximumWarning": "3mb",
+                "maximumError": "5mb"
+              }
+            ],
               "outputHashing": "all"
             },
             "development": {

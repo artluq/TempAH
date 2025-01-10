@@ -127,3 +127,24 @@
   margin: 5px;
   cursor: pointer;
 }
+
+.confirm {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm:hover {
+  background-color: #218838;
+}
+
+.confirm:disabled {
+  background-color: #c3c3c3;
+  cursor: not-allowed;
+}
+

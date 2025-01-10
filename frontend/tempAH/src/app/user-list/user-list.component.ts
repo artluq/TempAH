@@ -42,7 +42,7 @@ export class UserListComponent implements OnInit {
   }
 
  // Sorting function
- sortList(column: string) {
+ sortList(column: string): void {
   if (this.sortColumn === column) {
     this.sortDirection = !this.sortDirection; // Toggle sort direction if the same column is clicked
   } else {
@@ -52,30 +52,42 @@ export class UserListComponent implements OnInit {
 
   this.users.sort((a, b) => {
     const key = column as keyof User; // Ensure the column is a valid key of User
-    if (a[key] < b[key]) {
+    const aValue = a[key] ?? ''; // Use a fallback value for undefined
+    const bValue = b[key] ?? ''; // Use a fallback value for undefined
+
+    if (aValue < bValue) {
       return this.sortDirection ? -1 : 1; // Ascending or descending
     }
-    if (a[key] > b[key]) {
+    if (aValue > bValue) {
       return this.sortDirection ? 1 : -1;
     }
     return 0; // Equal values
   });
 }
 
-  // Method to toggle the user's active status
-  toggleUserStatus(user: User) {
-    user.isActive = !user.isActive; // Toggle the active status
-    this.apiService.updateUserStatus(user.userId, user.isActive).subscribe(
-      () => {
-        console.log('User status updated successfully');
-      },
-      (error) => {
-        console.error('Error updating user status:', error);
-        // Revert the status back if update fails
-        user.isActive = !user.isActive;
-      }
-    );
+
+toggleUserStatus(user: User): void {
+  if (!user || user.userId === undefined) {
+    console.error('Invalid user object.');
+    return;
   }
+
+  const originalStatus = user.isActive; // Save the original status
+  user.isActive = !user.isActive; // Toggle the active status
+
+  this.apiService.updateUserStatus(user.userId, user.isActive).subscribe(
+    () => {
+      console.log(`User status updated successfully to ${user.isActive ? 'Active' : 'Inactive'}`);
+    },
+    (error) => {
+      console.error('Error updating user status:', error);
+      // Revert the status back if update fails
+      user.isActive = originalStatus;
+      alert('Failed to update user status. Please try again.');
+    }
+  );
+}
+
 
 // Open the Add User modal
 openAddUserModal() {
@@ -139,12 +151,19 @@ updateUser() {
   }
 }
 
-deleteUser(user: User) {
+deleteUser(user: User): void {
+  if (!user || !user.userId) {
+    alert('Invalid user data.');
+    return;
+  }
+
   if (confirm(`Are you sure you want to delete user "${user.fullName}"?`)) {
     this.apiService.deleteUser(user.userId).subscribe({
       next: () => {
         // Remove the user from the local list
-        this.users = this.users.filter(u => u.userId !== user.userId);
+        if (this.users) {
+          this.users = this.users.filter(u => u.userId !== user.userId);
+        }
         alert('User deleted successfully.');
       },
       error: (err) => {
@@ -154,6 +173,7 @@ deleteUser(user: User) {
     });
   }
 }
+
 
 
 

@@ -25,8 +25,14 @@
             <td>{{ appointment.priceRange | currency:'RM ':true:'1.2-2' }}</td>
             <td>{{ appointment.expr1 }}</td>
             <td>
-              <button class="btn" (click)="viewAppointment(appointment)">View</button>
-              <button class="btn reschedule" (click)="openRescheduleModal(appointment)">Reschedule</button>
+              <button class="btn reschedule" (click)="viewAppointment(appointment)">View</button>
+              <button 
+                class="btn confirm" 
+                *ngIf="appointment.expr1 !== 'Confirmed'" 
+                (click)="confirmAppointment(appointment)">
+                Confirm
+              </button>
+              <button class="btn reschedule" *ngIf="appointment.expr1 !== 'Confirmed'" (click)="openRescheduleModal(appointment)">Reschedule</button>
             </td>
           </tr>
         </tbody>
@@ -53,8 +59,16 @@
         <p><strong>Service:</strong> {{ selectedAppointment?.serviceTitle }}</p>
         <form (ngSubmit)="rescheduleAppointment()">
           <label for="date">New Date</label>
-          <input type="date" id="date" [min]="today" ngModel name="newDate" required>
-
+          <input
+            type="date"
+            id="date"
+            [min]="today"
+            [(ngModel)]="newDate"
+            (change)="fetchAvailableSlots()"  
+            name="newDate"
+            required
+          />
+      
           <label for="slot">Available Slots</label>
           <div class="slot-buttons">
             <button
@@ -67,12 +81,13 @@
               {{ slot }}
             </button>
           </div>
-          <br>
-
+          <br />
+      
           <button type="submit" [disabled]="!selectedSlot" class="btn btn-primary">Confirm Reschedule</button>
-          <button type="button" (click)="showRescheduleModal = false" class="btn btn-secondary">Cancel</button>
+          <button type="button" (click)="closeRescheduleModal()" class="btn btn-secondary">Cancel</button>
         </form>
       </div>
+      
     </section>
   </main>
 </div>

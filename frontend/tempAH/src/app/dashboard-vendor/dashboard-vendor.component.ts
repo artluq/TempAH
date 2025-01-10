@@ -13,81 +13,57 @@ import { AuthService } from '../service/auth.service';
 })
 export class DashboardVendorComponent implements OnInit {
   username = ''; 
-   userid = '';
-   upcomingAppointments: ViewBooking[] = []; // Updated to store ViewBooking objects
-   selectedAppointment: ViewBooking | null = null;
-   newDate: string = '';
-    newSlot: string = '';
-    showRescheduleModal: boolean = false;
-    availableSlots: string[] = [];
-    selectedSlot: string = '';
-    today: string = '';
+  userid = '';
+  upcomingAppointments: ViewBooking[] = []; // Updated to store ViewBooking objects
+  selectedAppointment: ViewBooking | null = null;
+  newDate: string = '';
+  newSlot: string = '';
+  showRescheduleModal: boolean = false;
+  availableSlots: string[] = [];
+  selectedSlot: string = '';
+  today: string = '';
 
-   constructor(private bookingService: ApiService, private router: Router, private authService: AuthService,) {}
- 
-   ngOnInit() {
-     this.username = sessionStorage.getItem('fullname') || 'User'; 
-     this.userid = sessionStorage.getItem('userid') || 'userid'; 
- 
-     // Fetch upcoming appointments from the API
-     this.bookingService.getBookAppointmentbyVendor().subscribe(
-       (appointments: ViewBooking[]) => {
-         this.upcomingAppointments = appointments; // Update the upcoming appointments
-       },
-       (error) => {
-         console.error('Error fetching appointments:', error);
-       }
-     );
-      // Set today's date for booking
+  constructor(private bookingService: ApiService, private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.username = sessionStorage.getItem('fullname') || 'User'; 
+    this.userid = sessionStorage.getItem('userid') || 'userid'; 
+
+    // Fetch upcoming appointments from the API
+    this.bookingService.getBookAppointmentbyVendor().subscribe(
+      (appointments: ViewBooking[]) => {
+        this.upcomingAppointments = appointments; // Update the upcoming appointments
+      },
+      (error) => {
+        console.error('Error fetching appointments:', error);
+      }
+    );
+
+    // Set today's date for booking
     this.setTodayDate();
-    
-    // Generate available slots
-    this.generateAvailableSlots();
-   }
-  
-   transformSlotTo12HourFormat(slot: string): string {
-     // Split the slot into hours and minutes
-     const [hours, minutes] = slot.split(':').map(num => parseInt(num));
-     
-     // Create a new Date object and set the hours and minutes
-     const date = new Date();
-     date.setHours(hours);
-     date.setMinutes(minutes);
-     date.setSeconds(0);  // Optionally reset seconds to 0 if not part of the input
-     
-     // Return the formatted time using Angular's DatePipe
-     return new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }).format(date);
-   }
-   closeAppointment() {
-     this.selectedAppointment = null; // Close the appointment details view
-     this.showRescheduleModal = false; 
-   }
- 
-   viewAppointment(appointment: ViewBooking) {
-     this.selectedAppointment = appointment; // Set the selected appointment
-   }
-   generateAvailableSlots() {
-    const startHour = 9;
-    const endHour = 17;
-    const interval = 30; // in minutes
-    const slots: string[] = [];
-  
-    for (let hour = startHour; hour < endHour; hour++) {
-      slots.push(`${this.formatTime(hour)}:00`);
-      slots.push(`${this.formatTime(hour)}:30`);
-    }
-  
-    slots.push(`${this.formatTime(endHour)}:00`);
-    this.availableSlots = slots;
-  
-    console.log(this.availableSlots); // Check the slots here
   }
   
+  transformSlotTo12HourFormat(slot: string): string {
+    // Split the slot into hours and minutes
+    const [hours, minutes] = slot.split(':').map(num => parseInt(num));
 
-  formatTime(hour: number): string {
-    const suffix = hour >= 12 ? 'PM' : 'AM';
-    const formattedHour = hour > 12 ? hour - 12 : hour;
-    return `${formattedHour}`;
+    // Create a new Date object and set the hours and minutes
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(0);  // Optionally reset seconds to 0 if not part of the input
+
+    // Return the formatted time using Angular's DatePipe
+    return new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }).format(date);
+  }
+
+  closeAppointment() {
+    this.selectedAppointment = null; // Close the appointment details view
+    this.showRescheduleModal = false; 
+  }
+
+  viewAppointment(appointment: ViewBooking) {
+    this.selectedAppointment = appointment; // Set the selected appointment
   }
 
   selectSlot(slot: string) {
@@ -101,31 +77,67 @@ export class DashboardVendorComponent implements OnInit {
     this.today = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
   }
 
-   openRescheduleModal(appointment: ViewBooking) {
-    this.selectedAppointment = appointment; // Set the selected appointment for rescheduling
-  
-    // Ensure the bookingDate is a valid Date object or string and convert it accordingly
-    if (this.selectedAppointment && this.selectedAppointment.bookingDate) {
-      let date: Date;
-  
-      // Check if bookingDate is a string and convert it to Date if necessary
-      if (typeof this.selectedAppointment.bookingDate === 'string') {
-        date = new Date(this.selectedAppointment.bookingDate); // Convert string to Date
-      } else {
-        date = this.selectedAppointment.bookingDate; // Use as-is if it's already a Date object
+  fetchAvailableSlots() {
+    if (!this.selectedAppointment || !this.newDate) return;
+
+    const vendorId = Number(this.userid); // Assuming `userid` is the vendor's ID
+    const selectedDate = this.newDate;
+
+    this.bookingService.getAvailableSlot(vendorId, selectedDate).subscribe(
+      (slots: string[]) => {
+        this.availableSlots = slots;
+        console.log('Available slots:', this.availableSlots, vendorId);
+      },
+      (error) => {
+        console.error('Error fetching available slots:', error);
       }
-  
-      // Get the date part (YYYY-MM-DD) from the Date object
-      this.newDate = date.toISOString().split('T')[0]; // Extract the date part (YYYY-MM-DD)
-      this.newSlot = this.selectedAppointment.slot; // Default to current slot
-    }
-  
-    this.showRescheduleModal = true; // Show the reschedule modal
+    );
   }
-  
+
+  openRescheduleModal(appointment: ViewBooking) {
+    this.selectedAppointment = appointment;
+
+    if (this.selectedAppointment && this.selectedAppointment.bookingDate) {
+      const date = new Date(this.selectedAppointment.bookingDate);
+      this.newDate = date.toISOString().split('T')[0];
+      this.newSlot = this.selectedAppointment.slot;
+
+      this.fetchAvailableSlots(); // Fetch available slots for the selected date
+    }
+
+    this.showRescheduleModal = true;
+  }
 
   closeRescheduleModal() {
-    this.showRescheduleModal = false; // Hide the reschedule modal
+    this.showRescheduleModal = false;
+    this.availableSlots = []; // Clear available slots when modal is closed
+  }
+
+  confirmAppointment(appointment: ViewBooking): void {
+    if (appointment.expr1 === 'Confirmed') {
+      alert('This appointment is already confirmed.');
+      return;
+    }
+
+    const confirmAction = window.confirm('Are you sure you want to confirm this appointment?');
+    if (confirmAction) {
+      // Update status in the UI immediately
+      appointment.expr1 = 'Confirmed';
+
+      // Call the API to persist the change
+      this.bookingService.updateBookingStatus(appointment.bookingId, 2).subscribe(
+        (response) => {
+          alert('Appointment successfully confirmed!');
+          console.log('Status updated successfully:', response);
+        },
+        (error) => {
+          console.error('Error updating status:', error);
+          alert('Failed to update status. Please try again.');
+          // Revert status change in case of an error
+          appointment.expr1 = 'Pending';
+        }
+      );
+    }
   }
 
   rescheduleAppointment() {
@@ -153,31 +165,13 @@ export class DashboardVendorComponent implements OnInit {
       // );
     }
   }
-   cancelBooking(bookingId: number) {
-     const confirmed = window.confirm('Are you sure you want to cancel this appointment?');
-     if (confirmed) {
-       this.bookingService.updateBookingCancelled(bookingId).subscribe(
-         () => {
-           alert('Booking cancelled successfully');
-           // Optionally, you can remove the cancelled appointment from the UI
-           this.upcomingAppointments = this.upcomingAppointments.filter(app => app.bookingId !== bookingId);
-         },
-         (error) => {
-           console.error('Error cancelling booking:', error);
-           alert('An error occurred while canceling the booking.');
-         }
-       );
-     }
-   }
-   
-   logout() {
-     const confirmed = window.confirm("Are you sure you want to log out?");
-     if (confirmed) {
-       this.authService.logout();  // Use the AuthService to log out
-       alert("Logged out successfully");
-       this.router.navigate(['/']);
-     }
-   }
-   
- }
- 
+
+  logout() {
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      this.authService.logout();  // Use the AuthService to log out
+      alert("Logged out successfully");
+      this.router.navigate(['/']);
+    }
+  }
+}

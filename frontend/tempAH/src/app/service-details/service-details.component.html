@@ -7,6 +7,10 @@
     <span class="icon">🤖</span> AI Diagnostic Assistant
   </button>
   <br /><br />
+  <div *ngIf="isLoading; else content">
+    <p>Loading services...</p>
+  </div>
+  <ng-template #content>
   <div *ngIf="services && services.length > 0; else noServices">
     <div *ngFor="let service of services" class="service-item">
       <div class="service-header">
@@ -28,11 +32,12 @@
       </div>
     </div>
   </div>
-
   <ng-template #noServices>
     <div class="no-services">
-      <p>No services available at the moment. Check back soon!</p>
+      <h3>No Services Available</h3>
+      <p>We currently have no services to display. Please check back later or contact support for assistance.</p>
       <img src="assets/images/no-services.png" alt="No services available" />
     </div>
   </ng-template>
+</ng-template>
 </div>

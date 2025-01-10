@@ -72,3 +72,90 @@
   color: var(--light-beige);
   transform: translateY(-3px);
 }
+
+/* Profile Card for Edit Form */
+.profile-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--light-beige);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Form Input Styling */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: var(--orange);
+  outline: none;
+}
+
+/* Action Buttons */
+.action-buttons {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: var(--orange);
+  color: var(--light-beige);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.button:hover {
+  background-color: var(--dark-blue);
+  color: var(--light-beige);
+  transform: translateY(-3px);
+}
+
+/* Notification Styles */
+.notification {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.error {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Fade In/Out Animation */
+.notification {
+  animation: fadeIn 0.5s, fadeOut 0.5s 3s forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+

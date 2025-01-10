@@ -62,6 +62,12 @@ export class ApiService {
     return this.http.put<any>(`${this.apiUrl}/Users/${user.userId}`, user);
   }
 
+  changePassword(passwordData: { currentPassword: string, newPassword: string, confirmNewPassword: string }): Observable<any> {
+    let userid = sessionStorage.getItem('userid');
+    return this.http.put(`${this.apiUrl}/users/`+ userid + `/change-password`, passwordData);
+  }
+  
+
 //---------------------------VENDORS--------------------------------------------
    registerVendor(formData: FormData) {
     return this.http.post<{ vendor: Vendor; message: string }>(`${this.apiUrl}/Vendors/UploadVendorImage`, formData);  // Replace with your API endpoint
@@ -155,8 +161,19 @@ export class ApiService {
     return this.http.get<ViewBooking>(`${this.apiUrl}/Bookings/${bookingId}`)
   }
 
-  updateBookingCancelled(bookingId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/Bookings/updateStatus/${bookingId}`, { statusId: 5 });
+  updateBookingStatus(bookingId: number, statusId: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/Bookings/updateStatus/${bookingId}`, statusId, {
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
+
+
+    
+
+
+  updateAppointmentStatus(appointmentId: number, status: string): Observable<any> {
+    return this.http.put(`your-api-endpoint/appointments/${appointmentId}/status`, { status });
   }
+  
   
 }
