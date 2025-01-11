@@ -35,19 +35,50 @@
         </tbody>
       </table>
       <!-- Booking Details Section (Displayed when an appointment is selected) -->
-      <div *ngIf="selectedAppointment">
+      <div *ngIf="selectedAppointment" class="selected-appointment">
         <h3>Appointment Details</h3>
-        <button class="btn" (click)="closeAppointment()">Close</button> <!-- Close button -->
-        <p><strong>Service Title:</strong> {{ selectedAppointment.serviceTitle }}</p>
-        <p><strong>Description:</strong> {{ selectedAppointment.description }}</p>
-        <p><strong>Vendor:</strong> {{ selectedAppointment.vendorName }}</p>
-        <p><strong>Price (RM):</strong> {{ selectedAppointment.priceRange }}</p>
-        <p><strong>Booking Date:</strong> {{ selectedAppointment.bookingDate | date:'longDate' }}</p>
-        <p><strong>Status:</strong> {{ selectedAppointment.expr1 }}</p>
-        <p><strong>Details:</strong> {{ selectedAppointment.details }}</p>
-        <p><strong>Notes:</strong> {{ selectedAppointment.notes }}</p>
-        <p><strong>Slot:</strong> {{ selectedAppointment.slot }}</p>
-      </div>
+        <button class="btn close-btn" (click)="closeAppointment()">Close</button> <!-- Close button -->
+        <table class="details-table">
+          <tbody>
+            <tr>
+              <th>Service Title:</th>
+              <td>{{ selectedAppointment.serviceTitle }}</td>
+            </tr>
+            <tr>
+              <th>Description:</th>
+              <td>{{ selectedAppointment.description }}</td>
+            </tr>
+            <tr>
+              <th>Vendor:</th>
+              <td>{{ selectedAppointment.vendorName }}</td>
+            </tr>
+            <tr>
+              <th>Price (RM):</th>
+              <td>{{ selectedAppointment.priceRange }}</td>
+            </tr>
+            <tr>
+              <th>Booking Date:</th>
+              <td>{{ selectedAppointment.bookingDate | date:'longDate' }}</td>
+            </tr>
+            <tr>
+              <th>Status:</th>
+              <td>{{ selectedAppointment.expr1 }}</td>
+            </tr>
+            <tr>
+              <th>Details:</th>
+              <td>{{ selectedAppointment.details }}</td>
+            </tr>
+            <tr>
+              <th>Notes:</th>
+              <td>{{ selectedAppointment.notes }}</td>
+            </tr>
+            <tr>
+              <th>Slot:</th>
+              <td>{{ selectedAppointment.slot }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>      
     </section>
   </main>
 </div>

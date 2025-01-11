@@ -1,126 +1,143 @@
-<div>
-  <mat-card class="profile-card">
-    <div class="content-header">
-      <h2>User Profile</h2>
-    </div>
-
-    <!-- Success and Error Notifications -->
-    <div *ngIf="successMessage" class="notification success">
-      {{ successMessage }}
-    </div>
-    <div *ngIf="errorMessage" class="notification error">
-      {{ errorMessage }}
-    </div>
-
-    <mat-card-content>
-      <!-- Display User Information -->
-      <div *ngIf="!isEditMode && !isChangePasswordMode" class="profile-details">
-        <table class="profile-table">
-          <tr>
-            <td><strong>Fullname:</strong></td>
-            <td>{{ user?.fullName }}</td>
-          </tr>
-          <tr>
-            <td><strong>Username:</strong></td>
-            <td>{{ user?.username }}</td>
-          </tr>
-          <tr>
-            <td><strong>Email:</strong></td>
-            <td>{{ user?.email }}</td>
-          </tr>
-          <tr>
-            <td><strong>Phone Number:</strong></td>
-            <td>{{ user?.phoneNumber }}</td>
-          </tr>
-        </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div>
+    <mat-card class="profile-card">
+      <div class="content-header">
+        <h2>User Profile</h2>
       </div>
 
-      <!-- Edit Form -->
-      <form *ngIf="isEditMode" (ngSubmit)="saveChanges()" class="profile-card">
-        <div class="content-header">
-          <h2>Edit Profile</h2>
-        </div>
+      <!-- Success and Error Notifications -->
+      <div *ngIf="successMessage" class="notification success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="notification error">
+        {{ errorMessage }}
+      </div>
 
-        <div class="profile-details">
+      <mat-card-content>
+        <!-- Display User Information -->
+        <div *ngIf="!isEditMode && !isChangePasswordMode" class="profile-details">
           <table class="profile-table">
             <tr>
-              <td>Full Name:</td>
-              <td>
-                <input [(ngModel)]="userToEdit.fullName" name="fullName" required class="form-input" />
-              </td>
+              <td><strong>Fullname:</strong></td>
+              <td>{{ user?.fullName }}</td>
             </tr>
             <tr>
-              <td>Username:</td>
-              <td>
-                <input [(ngModel)]="userToEdit.username" name="username" required class="form-input" />
-              </td>
+              <td><strong>Username:</strong></td>
+              <td>{{ user?.username }}</td>
             </tr>
             <tr>
-              <td>Email:</td>
-              <td>
-                <input [(ngModel)]="userToEdit.email" name="email" type="email" required class="form-input" />
-              </td>
+              <td><strong>Email:</strong></td>
+              <td>{{ user?.email }}</td>
             </tr>
             <tr>
-              <td>Phone Number:</td>
-              <td>
-                <input [(ngModel)]="userToEdit.phoneNumber" name="phoneNumber" required class="form-input" />
-              </td>
+              <td><strong>Phone Number:</strong></td>
+              <td>{{ user?.phoneNumber }}</td>
             </tr>
           </table>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-          <button type="submit" class="button">Save</button>
-          <button type="button" class="button" (click)="cancelEdit()">Cancel</button>
-        </div>
-      </form>
+        <!-- Edit Form -->
+        <form *ngIf="isEditMode" (ngSubmit)="saveChanges()" class="profile-card">
+          <div class="content-header">
+            <h2>Edit Profile</h2>
+          </div>
 
-      <!-- Change Password Form -->
-      <form *ngIf="isChangePasswordMode" (ngSubmit)="changePasswordSubmit()" class="profile-card">
-        <div class="content-header">
-          <h2>Change Password</h2>
-        </div>
+          <div class="profile-details">
+            <table class="profile-table">
+              <tr>
+                <td>Full Name:</td>
+                <td>
+                  <input [(ngModel)]="userToEdit.fullName" name="fullName" required class="form-input" />
+                </td>
+              </tr>
+              <tr>
+                <td>Username:</td>
+                <td>
+                  <input [(ngModel)]="userToEdit.username" name="username" required class="form-input" />
+                </td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td>
+                  <input [(ngModel)]="userToEdit.email" name="email" type="email" required class="form-input" />
+                </td>
+              </tr>
+              <tr>
+                <td>Phone Number:</td>
+                <td>
+                  <input [(ngModel)]="userToEdit.phoneNumber" name="phoneNumber" required class="form-input" />
+                </td>
+              </tr>
+            </table>
+          </div>
 
-        <div class="profile-details">
-          <table class="profile-table">
-            <tr>
-              <td>Current Password:</td>
-              <td>
-                <input [(ngModel)]="passwordData.currentPassword" name="currentPassword" type="password" required class="form-input" [type]="showPassword ? 'text' : 'password'" />
-                <button type="button" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide' : 'Show' }}</button>
-              </td>
-            </tr>
-            <tr>
-              <td>New Password:</td>
-              <td>
-                <input [(ngModel)]="passwordData.newPassword" name="newPassword" type="password" required class="form-input" [type]="showPassword ? 'text' : 'password'" />
-                <button type="button" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide' : 'Show' }}</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Confirm New Password:</td>
-              <td>
-                <input [(ngModel)]="passwordData.confirmNewPassword" name="confirmNewPassword" type="password" required class="form-input" [type]="showPassword ? 'text' : 'password'" />
-                <button type="button" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide' : 'Show' }}</button>
-              </td>
-            </tr>
-          </table>
-        </div>
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button type="submit" class="button">Save</button>
+            <button type="button" class="button" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-          <button type="submit" class="button">Change Password</button>
-          <button type="button" class="button" (click)="cancelPasswordChange()">Cancel</button>
-        </div>
-      </form>
+        <!-- Change Password Form -->
+        <form *ngIf="isChangePasswordMode" (ngSubmit)="changePasswordSubmit()" class="profile-card">
+          <div class="content-header">
+            <h2>Change Password</h2>
+          </div>
 
-      <!-- Action Buttons (Always Visible) -->
-      <div class="action-buttons" *ngIf="!isEditMode && !isChangePasswordMode" style="text-align: right; margin-top: 20px;">
-        <button class="button" (click)="editProfile()">Edit Profile</button>
-        <button class="button" (click)="enableChangePasswordMode()">Change Password</button>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+          <div class="profile-details">
+            <table class="profile-table">
+              <tr>
+                <td>Current Password:</td>
+                <td>
+                  <div class="password-container">
+                    <input [(ngModel)]="passwordData.currentPassword" name="currentPassword" required class="form-input" [type]="showPassword ? 'text' : 'password'" />
+                    <i class="fas fa-eye" (click)="togglePasswordVisibility()" [class.fa-eye-slash]="showPassword"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>New Password:</td>
+                <td>
+                  <div class="password-container">
+                    <input [(ngModel)]="passwordData.newPassword" name="newPassword" required class="form-input" [type]="showPassword ? 'text' : 'password'" />
+                    <i class="fas fa-eye" (click)="togglePasswordVisibility()" [class.fa-eye-slash]="showPassword"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Confirm New Password:</td>
+                <td>
+                  <div class="password-container">
+                    <input [(ngModel)]="passwordData.confirmNewPassword" name="confirmNewPassword" required class="form-input" [type]="showPassword ? 'text' : 'password'" />
+                    <i class="fas fa-eye" (click)="togglePasswordVisibility()" [class.fa-eye-slash]="showPassword"></i>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button type="submit" class="button">Change Password</button>
+            <button type="button" class="button" (click)="cancelPasswordChange()">Cancel</button>
+          </div>
+        </form>
+
+        <!-- Action Buttons (Always Visible) -->
+        <div class="action-buttons" *ngIf="!isEditMode && !isChangePasswordMode" style="text-align: right; margin-top: 20px;">
+          <button class="button" (click)="editProfile()">Edit Profile</button>
+          <button class="button" (click)="enableChangePasswordMode()">Change Password</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</body>
+</html>

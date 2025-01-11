@@ -1,44 +1,44 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #F4F1DE;
-  color: #2E4057;
-  margin: 0;
-  padding: 0;
+/* Global color variables */
+:root {
+  --orange: #ffa701;
+  --dark-blue: #2E4057;
+  --light-beige: #F4F1DE;
+  --text-dark: #333;
 }
 
+/* Dashboard Container */
 .dashboard-container {
-  max-width: 1200px;
-  margin: 20px auto;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-beige);
+  color: var(--text-dark);
   padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Header Styles */
 .dashboard-header {
   text-align: center;
   margin-bottom: 20px;
 }
 
 .dashboard-header h1 {
-  color: #2E4057;
+  color: var(--dark-blue);
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.dashboard-main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.dashboard-header p {
+  color: var(--dark-blue);
+  font-size: 1.2rem;
 }
 
-/* Appointments Section Styles */
+/* Appointment Section Styles */
 .appointments {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
+/* Appointment Header */
 .appointments-header {
   display: flex;
   justify-content: space-between;
@@ -47,83 +47,169 @@ body {
 }
 
 .appointments-header h2 {
-  color: #2E4057;
+  color: var(--dark-blue);
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
+/* Button Styles */
 .btn {
-  background-color: #2E4057;
+  background-color: var(--orange);
   color: #fff;
   border: none;
-  padding: 10px 30px;
-  font-size: 16px;
-  border-radius: 9px;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn.primary {
-  background-color: #ffa701;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
-  background-color: #1f2d3b;
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
 }
 
-.btn.primary:hover {
-  background-color: #e69500;
-}
-
-.btn.cancel {
-  background-color: #ff4d4d;
-}
-
-.btn.cancel:hover {
-  background-color: #cc0000;
-}
-
-/* Appointment Table Styles */
-.appointment-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.appointment-table th, .appointment-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.appointment-table th {
-  background-color: #2E4057;
+.btn.primary {
+  background-color: var(--dark-blue);
   color: #fff;
 }
 
-.appointment-table td {
-  background-color: #F4F1DE;
+.btn.primary:hover {
+  background-color: var(--orange);
 }
 
-/* Appointment Details Styles */
+/* Appointment Table Styles with Oblong Cells */
+.appointment-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 12px 15px;
+  border: 1px solid var(--dark-blue);
+}
+
+.appointment-table th {
+  background-color: var(--dark-blue);
+  color: #fff;
+  font-weight: bold;
+}
+
+.appointment-table td {
+  text-align: center;
+  background-color: var(--light-beige);
+}
+
+.appointment-table tr:first-child th:first-child {
+  border-top-left-radius: 10px; /* Rounded top-left corner */
+}
+
+.appointment-table tr:first-child th:last-child {
+  border-top-right-radius: 10px; /* Rounded top-right corner */
+}
+
+.appointment-table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+}
+
+.appointment-table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px; /* Rounded bottom-right corner */
+}
+
+/* Selected Appointment Details */
 .selected-appointment {
+  background-color: var(--light-beige);
+  border: 1px solid var(--dark-blue);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   max-width: 600px;
   margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
 }
 
+/* Header Styling */
 .selected-appointment h3 {
-  color: #2E4057;
+  color: var(--dark-blue);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.selected-appointment p {
-  margin: 10px 0;
-  font-size: 16px;
+/* Close Button Styling */
+.selected-appointment .btn {
+  background-color: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
+  display: block;
+  margin: 0 auto 20px auto; /* Center button and add margin */
 }
 
-.selected-appointment .btn {
-  display: block;
-  margin: 10px auto;
+.selected-appointment .btn:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
+}
+
+/* Table for Appointment Details with Oblong Cells */
+.details-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.details-table th,
+.details-table td {
+  padding: 12px 15px;
+  border: 1px solid var(--dark-blue);
+}
+
+.details-table th {
+  background-color: var(--dark-blue);
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+}
+
+.details-table td {
+  background-color: var(--light-beige);
+}
+
+.details-table tr:first-child th:first-child {
+  border-top-left-radius: 10px; /* Rounded top-left corner */
+}
+
+.details-table tr:first-child th:last-child {
+  border-top-right-radius: 10px; /* Rounded top-right corner */
+}
+
+.details-table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+}
+
+.details-table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px; /* Rounded bottom-right corner */
+}
+
+/* Add gap between buttons */
+.appointment-table td .btn {
+  margin-right: 10px; /* Add some space between the buttons */
+}
+
+.appointment-table td .btn:last-child {
+  margin-right: 0; /* Ensure the last button has no right margin */
 }
