@@ -16,7 +16,7 @@ if not GROQ_API_KEY:
 app = Flask(__name__)
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:4200", "http://localhost:5246"],
+        "origins": ["http://localhost:4200", "https://artluq.github.io/TempAH/"],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Authentication"],
         "expose_headers": ["Content-Type"],
@@ -81,31 +81,31 @@ def home():
 def diagnose():
     try:
         print("Received request at /diagnose endpoint")
-        
+
         if not request.is_json:
             print("Request is not JSON")
             return jsonify({"success": False, "errorMessage": "Content-Type must be application/json"}), 400
 
         data = request.json
         print(f"Received data: {data}")
-        
+
         if not data or 'Responses' not in data:
             print("Missing Responses in data")
             return jsonify({"success": False, "errorMessage": "Missing Responses in request"}), 400
 
         responses = data['Responses']
         print(f"Processing responses: {responses}")
-        
+
         analysis = analyze_car_issue(responses)
         print(f"Analysis result: {analysis}")
-        
+
         response = jsonify({
             "success": True,
             "analysis": analysis
         })
         print(f"Sending response: {response.get_data(as_text=True)}")
         return response
-        
+
     except Exception as e:
         print(f"Error in diagnose endpoint: {str(e)}")
         return jsonify({
@@ -115,5 +115,7 @@ def diagnose():
 
 
 if __name__ == '__main__':
-    print("Starting Flask server on http://localhost:5000")  # Debug logging
-    app.run(port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use Heroku's assigned port or default to 5000 locally
+    print(f"Starting Flask server on port {port}")  # Debug logging
+    app.run(host='0.0.0.0', port=port, debug=False)  # Bind to all interfaces, disable debug in production
+
