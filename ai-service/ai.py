@@ -2,7 +2,7 @@ import os
 from typing import Dict
 from groq import Groq
 
-GROQ_API_KEY = "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" #GROQ API key here
+GROQ_API_KEY = "" #GROQ API key here
 
 def car_issue_screening():
     print("Car Issue Screening Questions\n")
@@ -20,7 +20,7 @@ def car_issue_screening():
         "Have there been any recent changes in the car's performance, such as difficulty starting, reduced power, or trouble stopping?"
     ]
 
-    # Loop through each question and get user inpu
+    # Loop through each question and get user's input
     for question in questions:
         print("\n" + question)
         response = input("Your response: ")
